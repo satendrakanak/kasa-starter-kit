@@ -16,3 +16,13 @@
 	encode zstd gzip
 	reverse_proxy {$LICENSE_PORTAL_UPSTREAM}
 }
+
+{$ENTERPRISE_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy {$ENTERPRISE_CLIENT_UPSTREAM}
+}
+
+{$ENTERPRISE_API_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy {$ENTERPRISE_API_UPSTREAM}
+}
