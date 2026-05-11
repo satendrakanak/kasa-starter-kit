@@ -17,4 +17,4 @@ docker compose \
   --env-file "$ENV_FILE" \
   -f docker-compose.starter.yml \
   exec -T server \
-  node dist/database/seed-production-demo-content.js
+  sh -lc "MARKETPLACE_DEMO_RESET_CONFIRM=RESET_DEMO_DATABASE node dist/database/seed-marketplace-demo-reset.js"
