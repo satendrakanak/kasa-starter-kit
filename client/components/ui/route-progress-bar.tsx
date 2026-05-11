@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { LoaderCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -9,22 +10,27 @@ export function RouteProgressBar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [active, setActive] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
   const [progress, setProgress] = useState(0);
   const timerRef = useRef<number | null>(null);
+  const overlayTimerRef = useRef<number | null>(null);
   const pendingUrlRef = useRef<string | null>(null);
   const watchdogRef = useRef<number | null>(null);
 
   useEffect(() => {
     const clearTimers = () => {
       if (timerRef.current) window.clearInterval(timerRef.current);
+      if (overlayTimerRef.current) window.clearTimeout(overlayTimerRef.current);
       if (watchdogRef.current) window.clearTimeout(watchdogRef.current);
       timerRef.current = null;
+      overlayTimerRef.current = null;
       watchdogRef.current = null;
     };
 
     const start = (nextUrl: URL) => {
       pendingUrlRef.current = `${nextUrl.pathname}${nextUrl.search}`;
       setActive(true);
+      setShowOverlay(false);
       setProgress(18);
 
       clearTimers();
@@ -38,6 +44,10 @@ export function RouteProgressBar() {
       watchdogRef.current = window.setTimeout(() => {
         setProgress((current) => Math.max(current, 92));
       }, 2500);
+
+      overlayTimerRef.current = window.setTimeout(() => {
+        setShowOverlay(true);
+      }, 450);
     };
 
     const clickHandler = (event: MouseEvent) => {
@@ -106,11 +116,13 @@ export function RouteProgressBar() {
 
     const timeout = window.setTimeout(() => {
       setActive(false);
+      setShowOverlay(false);
       setProgress(0);
       pendingUrlRef.current = null;
     }, 240);
 
     if (timerRef.current) window.clearInterval(timerRef.current);
+    if (overlayTimerRef.current) window.clearTimeout(overlayTimerRef.current);
     if (watchdogRef.current) window.clearTimeout(watchdogRef.current);
 
     return () => {
@@ -120,17 +132,34 @@ export function RouteProgressBar() {
   }, [pathname, searchParams, active]);
 
   return (
-    <div
-      className={cn(
-        "fixed inset-x-0 top-0 z-[9999] h-1 origin-left bg-transparent",
-        active ? "opacity-100" : "opacity-0",
-      )}
-      aria-hidden="true"
-    >
+    <>
       <div
-        className="h-full bg-[linear-gradient(90deg,var(--brand-500),#5f7bff,var(--primary))] shadow-[0_0_18px_rgba(95,123,255,0.7)] transition-[width] duration-150 ease-out"
-        style={{ width: `${progress}%` }}
-      />
-    </div>
+        className={cn(
+          "fixed inset-x-0 top-0 z-[9999] h-1 origin-left bg-transparent",
+          active ? "opacity-100" : "opacity-0",
+        )}
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-[linear-gradient(90deg,var(--brand-500),#5f7bff,var(--primary))] shadow-[0_0_18px_rgba(95,123,255,0.7)] transition-[width] duration-150 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      <div
+        className={cn(
+          "pointer-events-none fixed inset-0 z-[9998] grid place-items-center bg-background/35 opacity-0 backdrop-blur-[2px] transition-opacity duration-200",
+          showOverlay && active ? "opacity-100" : "opacity-0",
+        )}
+        aria-hidden="true"
+      >
+        <div className="flex min-w-38 flex-col items-center gap-3 rounded-2xl border border-border/70 bg-card/92 px-6 py-5 text-card-foreground shadow-[0_24px_80px_rgba(15,23,42,0.22)] backdrop-blur-xl">
+          <LoaderCircle className="size-8 animate-spin text-primary" />
+          <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+            Loading
+          </span>
+        </div>
+      </div>
+    </>
   );
 }

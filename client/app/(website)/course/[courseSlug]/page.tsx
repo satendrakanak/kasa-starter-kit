@@ -61,55 +61,47 @@ export default async function CourseSlugPage({ params }: CoursePageProps) {
     throw new Error(getErrorMessage(error));
   }
 
-  let relatedCourses: Course[] = [];
   try {
-    const response = await courseServerService.getRealtedCourses(course.id);
-    relatedCourses = response.data;
+    const [relatedCoursesResponse, testimonialsResponse] = await Promise.all([
+      courseServerService.getRealtedCourses(course.id),
+      testimonialServerService.getPublic({
+        courseId: course.id,
+        limit: 6,
+      }),
+    ]);
+
+    const relatedCourses: Course[] = relatedCoursesResponse.data;
+    const testimonials: Testimonial[] = testimonialsResponse.data.data;
+
+    return (
+      <div className="relative bg-background">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-(--surface-shell)" />
+        </div>
+
+        <div className="relative z-10">
+          <CourseHero course={course} />
+
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-start lg:gap-10">
+              <div className="order-2 min-w-0 lg:order-1 lg:mt-10">
+                <CourseTabs course={course} testimonials={testimonials} />
+              </div>
+
+              <div className="order-1 w-full min-w-0 lg:sticky lg:top-30 lg:z-40 lg:order-2 lg:-mt-120">
+                <CourseSidebarCard course={course} />
+              </div>
+            </div>
+          </Container>
+
+          <Container>
+            <RelatedCourses courses={relatedCourses} />
+          </Container>
+        </div>
+      </div>
+    );
   } catch (error: unknown) {
     const message = getErrorMessage(error);
     throw new Error(message);
   }
-
-  let testimonials: Testimonial[] = [];
-  try {
-    const response = await testimonialServerService.getPublic({
-      courseId: course.id,
-      limit: 6,
-    });
-    testimonials = response.data.data;
-  } catch (error: unknown) {
-    const message = getErrorMessage(error);
-    throw new Error(message);
-  }
-
-  return (
-    <div className="relative bg-background">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-(--surface-shell)" />
-      </div>
-
-      <div className="relative z-10">
-        {/* HERO */}
-        <CourseHero course={course} />
-
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-start lg:gap-10">
-            {/* LEFT */}
-            <div className="order-2 min-w-0 lg:order-1 lg:mt-10">
-              <CourseTabs course={course} testimonials={testimonials} />
-            </div>
-
-            {/* RIGHT */}
-            <div className="order-1 w-full min-w-0 lg:sticky lg:top-30 lg:z-40 lg:order-2 lg:-mt-120">
-              <CourseSidebarCard course={course} />
-            </div>
-          </div>
-        </Container>
-
-        <Container>
-          <RelatedCourses courses={relatedCourses} />
-        </Container>
-      </div>
-    </div>
-  );
 }

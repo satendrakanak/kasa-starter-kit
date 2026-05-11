@@ -46,7 +46,9 @@ export const courseServerService = {
 
   getById: (id: number) => apiServer.get<ApiResponse<Course>>(`/courses/${id}`),
   getBySlug: (slug: string) =>
-    apiServer.get<ApiResponse<Course>>(`/courses/slug/${slug}`),
+    apiServer.get<ApiResponse<Course>>(`/courses/slug/${slug}`, {
+      next: { revalidate: PUBLIC_REVALIDATE_SECONDS },
+    }),
   getLearningCourseBySlug: (slug: string) =>
     apiServer.get<ApiResponse<Course>>(`/courses/learn/${slug}`),
 };
