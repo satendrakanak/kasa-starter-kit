@@ -1,14 +1,14 @@
-name: kasa-enterprise-dev
+name: kasa-starter-kit-dev
 
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: kasa-enterprise-postgres-dev
+    container_name: kasa-starter-kit-postgres-dev
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-codewithkasa}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-codewithkasa}
-      POSTGRES_DB: ${POSTGRES_DB:-kasa_enterprise}
+      POSTGRES_USER: ${POSTGRES_USER:-kasa-starter-kit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kasa-starter-kit}
+      POSTGRES_DB: ${POSTGRES_DB:-kasa-starter-kit}
     ports:
       - "${POSTGRES_PORT:-5433}:5432"
     volumes:
@@ -23,7 +23,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: kasa-enterprise-redis-dev
+    container_name: kasa-starter-kit-redis-dev
     restart: unless-stopped
     volumes:
       - redis_data:/data
@@ -39,7 +39,7 @@ services:
     build:
       context: ./server
       target: development
-    container_name: kasa-enterprise-server-dev
+    container_name: kasa-starter-kit-server-dev
     restart: unless-stopped
     env_file:
       - .env.docker
@@ -50,22 +50,22 @@ services:
       FRONT_END_URL: http://localhost:3000
       DATABASE_HOST: postgres
       DATABASE_PORT: 5432
-      DATABASE_USER: ${POSTGRES_USER:-codewithkasa}
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-codewithkasa}
-      DATABASE_NAME: ${POSTGRES_DB:-kasa_enterprise}
+      DATABASE_USER: ${POSTGRES_USER:-kasa-starter-kit}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-kasa-starter-kit}
+      DATABASE_NAME: ${POSTGRES_DB:-kasa-starter-kit}
       DATABASE_SYNC: ${DATABASE_SYNC:-true}
       DATABASE_AUTO_LOAD: ${DATABASE_AUTO_LOAD:-true}
       REDIS_HOST: redis
       REDIS_PORT: 6379
       LICENSE_PORTAL_URL: ${LICENSE_PORTAL_URL:-http://localhost:5000}
-      LICENSE_PRODUCT_SLUG: ${LICENSE_PRODUCT_SLUG:-kasa-enterprise}
+      LICENSE_PRODUCT_SLUG: ${LICENSE_PRODUCT_SLUG:-kasa-starter-kit}
     ports:
       - "${SERVER_PORT:-8000}:8000"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./server:/app
-      - ./.kasa:/app/.kasa
+      - ./.kasa-starter-kit:/app/.kasa-starter-kit
       - server_node_modules:/app/node_modules
     depends_on:
       postgres:
@@ -79,7 +79,7 @@ services:
     build:
       context: ./client
       target: development
-    container_name: kasa-enterprise-client-dev
+    container_name: kasa-starter-kit-client-dev
     restart: unless-stopped
     stdin_open: true
     tty: true
@@ -102,9 +102,9 @@ services:
 
 volumes:
   postgres_data:
-    name: ${POSTGRES_VOLUME_NAME:-kasa-enterprise-dev_postgres_data}
+    name: ${POSTGRES_VOLUME_NAME:-kasa-starter-kit-dev_postgres_data}
   redis_data:
-    name: ${REDIS_VOLUME_NAME:-kasa-enterprise-dev_redis_data}
+    name: ${REDIS_VOLUME_NAME:-kasa-starter-kit-dev_redis_data}
   server_node_modules:
   client_node_modules:
   client_next_cache:

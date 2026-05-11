@@ -12,17 +12,18 @@
     "isAutoApply": false
   },
   {
-    "code": "LIVECLASS1000",
+    "code": "STARTER500",
     "type": "FIXED",
-    "value": 1000,
-    "minOrderValue": 4999,
+    "value": 500,
+    "minOrderValue": 2499,
     "scope": "COURSE",
     "status": "ACTIVE",
-    "usageLimit": 150,
+    "usageLimit": 250,
     "perUserLimit": 1,
     "courseSlugs": [
-      "ayurveda-nutrition-live-practitioner-program",
-      "full-stack-web-development-mentorship"
+      "frontend-developer-starter-kit",
+      "ui-ux-design-essentials",
+      "digital-marketing-launchpad"
     ]
   },
   {
@@ -37,7 +38,34 @@
     "courseSlugs": [
       "frontend-developer-starter-kit",
       "ui-ux-design-essentials",
-      "digital-marketing-launchpad"
+      "digital-marketing-launchpad",
+      "spoken-english-confidence-builder"
     ]
+  },
+  {
+    "code": "CAREER15",
+    "type": "PERCENTAGE",
+    "value": 15,
+    "maxDiscount": 1500,
+    "minOrderValue": 3999,
+    "scope": "COURSE",
+    "status": "ACTIVE",
+    "usageLimit": 200,
+    "perUserLimit": 1,
+    "courseSlugs": [
+      "full-stack-web-development-blueprint",
+      "data-analytics-career-track"
+    ]
+  },
+  {
+    "code": "WELLNESS750",
+    "type": "FIXED",
+    "value": 750,
+    "minOrderValue": 4999,
+    "scope": "COURSE",
+    "status": "ACTIVE",
+    "usageLimit": 120,
+    "perUserLimit": 1,
+    "courseSlugs": ["ayurveda-nutrition-self-learning-program"]
   }
 ]

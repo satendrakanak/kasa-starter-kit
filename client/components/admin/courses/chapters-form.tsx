@@ -11,7 +11,6 @@ import type { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/lib/error-handler";
-import { isFacultyLedCourse, isBlendedCourse } from "@/lib/course-delivery";
 
 interface ChaptersFormProps {
   course: Course;
@@ -20,8 +19,6 @@ interface ChaptersFormProps {
 export default function ChaptersForm({ course }: ChaptersFormProps) {
   const [chapters, setChapters] = useState<Chapter[]>(course.chapters ?? []);
   const [activeId, setActiveId] = useState<number | null>(null);
-  const isFacultyLed = isFacultyLedCourse(course);
-  const isHybrid = isBlendedCourse(course);
 
   const addChapter = () => {
     const newChapter: Chapter = {
@@ -164,12 +161,6 @@ export default function ChaptersForm({ course }: ChaptersFormProps) {
   return (
     <>
       <div className="grid gap-4 rounded-2xl border bg-white p-4 shadow-sm dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(11,18,32,0.96),rgba(17,27,46,0.98))] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        {isHybrid ? (
-          <div className="rounded-xl border border-primary/20 bg-primary/10 px-4 py-3 text-sm leading-6 text-primary lg:col-span-2">
-            Hybrid courses use the normal recorded chapter and lecture builder
-            here, plus faculty batches and live sessions from Faculty Workspace.
-          </div>
-        ) : null}
         <ChaptersList
           chapters={chapters}
           activeId={activeId}
@@ -181,7 +172,7 @@ export default function ChaptersForm({ course }: ChaptersFormProps) {
           viewType="all"
           handleDragEnd={handleDragEnd}
           onLecturePublishChange={onLecturePublishChange}
-          isFacultyLed={isFacultyLed}
+          isFacultyLed={false}
           onChapterSaved={onChapterSaved}
         />
 
@@ -195,7 +186,7 @@ export default function ChaptersForm({ course }: ChaptersFormProps) {
           viewType="published"
           handleDragEnd={handleDragEnd}
           onLecturePublishChange={onLecturePublishChange}
-          isFacultyLed={isFacultyLed}
+          isFacultyLed={false}
           onChapterSaved={onChapterSaved}
         />
       </div>

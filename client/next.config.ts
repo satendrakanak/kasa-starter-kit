@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const allowedDevOrigins = (
   process.env.NEXT_ALLOWED_DEV_ORIGINS ||
-  "*.ngrok-free.dev,*.ngrok-free.app,*.ngrok.io"
+  "client,localhost,127.0.0.1,*.ngrok-free.dev,*.ngrok-free.app,*.ngrok.io"
 )
   .split(",")
   .map((origin) => origin.trim())

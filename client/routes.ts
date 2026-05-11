@@ -10,7 +10,6 @@ export const publicRoutes = [
   "/courses",
   "/course",
   "/client-testimonials",
-  "/our-faculty",
   "/contact",
   "/cart",
   "/checkout",
@@ -29,6 +28,23 @@ export const protectedRoutes = [
   "/certificates",
   "/settings",
   "/learn",
+];
+
+/**
+ * Routes kept in the codebase as extension modules but disabled in the starter kit.
+ */
+export const starterDisabledRoutes = [
+  "/classes",
+  "/classroom",
+  "/exams",
+  "/our-faculty",
+  "/faculty",
+  "/admin/engagement",
+  "/admin/exams",
+  "/admin/moderation",
+  "/admin/recordings",
+  "/admin/refunds",
+  "/admin/tags",
 ];
 
 /**

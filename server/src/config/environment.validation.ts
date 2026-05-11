@@ -24,5 +24,5 @@ export default Joi.object({
   REDIS_PORT: Joi.number().port().default(6379),
   APP_ENCRYPTION_KEY: Joi.string().required(),
   LICENSE_PORTAL_URL: Joi.string().uri().optional(),
-  LICENSE_PRODUCT_SLUG: Joi.string().default('kasa-enterprise'),
+  LICENSE_PRODUCT_SLUG: Joi.string().default('kasa-starter-kit'),
 });

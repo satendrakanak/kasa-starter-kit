@@ -1,5 +1,4 @@
 import ArticlesSection from "@/components/articles/articles-section";
-import Faculty from "@/components/courses/faculty";
 import HowItWorks from "@/components/courses/how-it-works";
 import PopularCourses from "@/components/courses/popular-courses";
 import StatsTimeline from "@/components/courses/stats-timeline";
@@ -9,12 +8,10 @@ import { getErrorMessage } from "@/lib/error-handler";
 import { articleServerService } from "@/services/articles/article.server";
 import { courseServerService } from "@/services/courses/course.server";
 import { testimonialServerService } from "@/services/testimonials/testimonial.server";
-import { userServerService } from "@/services/users/user.server";
 import { Article } from "@/types/article";
 import { Course } from "@/types/course";
 import { Testimonial } from "@/types/testimonial";
 import { FeaturedTestimonialsSection } from "@/components/testimonials/featured-testimonials-section";
-import { User } from "@/types/user";
 import { buildMetadata } from "@/lib/seo";
 import { apiServer } from "@/lib/api/server";
 import { redirect } from "next/navigation";
@@ -23,7 +20,7 @@ export const metadata = buildMetadata({
   path: "/",
   title: "Practical Coding Courses",
   description:
-    "Explore practical coding courses, live classes, exams, certificates, and career-focused learning.",
+    "Explore practical self-learning courses, progress tracking, certificates, and career-focused learning.",
 });
 
 export default async function Home() {
@@ -63,14 +60,6 @@ export default async function Home() {
     throw new Error(message);
   }
 
-  let faculties: User[] = [];
-  try {
-    const response = await userServerService.getFaculties();
-    faculties = response.data;
-  } catch (error) {
-    const message = getErrorMessage(error);
-    throw new Error(message);
-  }
   return (
     <div>
       <Hero courses={courses} />
@@ -79,7 +68,6 @@ export default async function Home() {
       <PopularCourses courses={courses} />
       <HowItWorks />
       <FeaturedTestimonialsSection testimonials={testimonials} />
-      <Faculty faculties={faculties} />
       <ArticlesSection articles={articles} />
     </div>
   );

@@ -24,9 +24,9 @@ fi
 cp .env.docker.example .env.docker
 echo "Reset .env.docker from .env.docker.example"
 
-rm -f .kasa/database.json
+rm -f .kasa-starter-kit/database.json
 
 echo ""
 echo "Development data has been reset."
 echo "Start a fresh install with:"
-echo "  kasa install dev"
+echo "  kasa-starter-kit install dev"

@@ -8,8 +8,6 @@ import { UpsertSiteSettingsDto } from './dtos/upsert-site-settings.dto';
 import { UpsertEmailSettingsDto } from './dtos/upsert-email-settings.dto';
 import { UpsertSocialAuthSettingsDto } from './dtos/upsert-social-auth-settings.dto';
 import { UpsertAwsStorageSettingsDto } from './dtos/upsert-aws-storage-settings.dto';
-import { UpsertBbbSettingsDto } from './dtos/upsert-bbb-settings.dto';
-import { UpsertPushNotificationSettingsDto } from './dtos/upsert-push-notification-settings.dto';
 
 @Controller('settings')
 export class SettingsController {
@@ -96,30 +94,4 @@ export class SettingsController {
     return this.settingsService.upsertAwsStorageSettings(payload);
   }
 
-  @Get('bbb')
-  getBbbSettings() {
-    return this.settingsService.getBbbSettings();
-  }
-
-  @Post('bbb')
-  upsertBbbSettings(@Body() payload: UpsertBbbSettingsDto) {
-    return this.settingsService.upsertBbbSettings(payload);
-  }
-
-  @Get('push-notifications')
-  getPushNotificationSettings() {
-    return this.settingsService.getPushNotificationSettings();
-  }
-
-  @Post('push-notifications')
-  upsertPushNotificationSettings(
-    @Body() payload: UpsertPushNotificationSettingsDto,
-  ) {
-    return this.settingsService.upsertPushNotificationSettings(payload);
-  }
-
-  @Post('push-notifications/generate-keys')
-  generatePushNotificationKeys() {
-    return this.settingsService.generatePushNotificationKeys();
-  }
 }

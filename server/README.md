@@ -1,6 +1,6 @@
-# Code With Kasa - Server
+# kasa-starter-kit - Server
 
-This is the backend application of **Code With Kasa**, a full-stack Learning Management System built with **NestJS**, **Node.js**, **TypeScript**, and **PostgreSQL**.
+This is the backend application of **kasa-starter-kit**, a full-stack Learning Management System built with **NestJS**, **Node.js**, **TypeScript**, and **PostgreSQL**.
 
 The server handles authentication, authorization, users, courses, lessons, orders, coupons, refunds, exams, progress tracking, roles, permissions, logs, and complete LMS business logic.
 
@@ -240,7 +240,7 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 DATABASE_USER=postgres
 DATABASE_PASSWORD=your_postgres_password
-DATABASE_NAME=codewithkasa
+DATABASE_NAME=kasa-starter-kit
 
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRE=7d
@@ -257,7 +257,7 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 DATABASE_USER=postgres
 DATABASE_PASSWORD=your_postgres_password
-DATABASE_NAME=codewithkasa
+DATABASE_NAME=kasa-starter-kit
 
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRE=7d
@@ -410,17 +410,17 @@ Before deployment:
 
 ## Related Screenshots
 
-Frontend and dashboard screenshots are available in the root `screenshots/` folder:
+Frontend and dashboard screenshots are available in `screenshots/envato-focused/`:
 
 ```txt
-../screenshots/admin-dashboard-light-1.jpg
-../screenshots/orders-dashboard.jpg
-../screenshots/coupons-dashboard.jpg
-../screenshots/refunds-dashboard.jpg
-../screenshots/role-management-dashboard.jpg
-../screenshots/roles-permission-dashboard.jpg
-../screenshots/permission-library-dashboard.jpg
-../screenshots/site-settings-dashboard-1.jpg
+../screenshots/envato-focused/admin-01-dashboard.png
+../screenshots/envato-focused/admin-02-courses.png
+../screenshots/envato-focused/admin-03-users.png
+../screenshots/envato-focused/admin-04-sales.png
+../screenshots/envato-focused/admin-05-site-settings.png
+../screenshots/envato-focused/admin-06-coupons.png
+../screenshots/envato-focused/admin-07-testimonials.png
+../screenshots/envato-focused/admin-08-contact-leads.png
 ```
 
 ---

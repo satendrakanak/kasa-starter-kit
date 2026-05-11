@@ -39,7 +39,6 @@ import { Brackets } from 'typeorm';
 import { CreateUserOptions } from '../interfaces/create-user-options.interface';
 import { Enrollment } from 'src/enrollments/enrollment.entity';
 import { Certificate } from 'src/certificates/certificate.entity';
-import { CourseExamAttempt } from 'src/course-exams/course-exam-attempt.entity';
 
 @Injectable()
 export class UsersService {
@@ -56,9 +55,6 @@ export class UsersService {
 
     @InjectRepository(Certificate)
     private readonly certificateRepository: Repository<Certificate>,
-
-    @InjectRepository(CourseExamAttempt)
-    private readonly courseExamAttemptRepository: Repository<CourseExamAttempt>,
 
     /**
      * Inject createUserProvider
@@ -291,7 +287,7 @@ export class UsersService {
         this.mediaFileMappingService.mapCourse(course),
       ) || [];
 
-    const [stats, weeklyProgress, certificates, examAttempts, enrollments] =
+    const [stats, weeklyProgress, certificates, enrollments] =
       await Promise.all([
         this.getDashboardStatsProvider.getDashboardStats(user.id),
         this.getDashboardStatsProvider.getWeeklyProgress(user.id),
@@ -302,11 +298,6 @@ export class UsersService {
               order: { issuedAt: 'DESC' },
             })
           : Promise.resolve([]),
-        this.courseExamAttemptRepository.find({
-          where: { user: { id: user.id } },
-          relations: ['course'],
-          order: { submittedAt: 'DESC', createdAt: 'DESC' },
-        }),
         user.profile.showCourses
           ? this.enrollmentRepository.find({
               where: { user: { id: user.id }, isActive: true },
@@ -320,41 +311,6 @@ export class UsersService {
             })
           : Promise.resolve([]),
       ]);
-
-    const examMap = new Map<
-      number,
-      {
-        courseId: number;
-        courseTitle: string;
-        courseSlug: string;
-        attempts: number;
-        bestPercentage: number;
-        latestPercentage: number;
-        passed: boolean;
-      }
-    >();
-
-    for (const attempt of examAttempts) {
-      const existing = examMap.get(attempt.course.id);
-      const percentage = Number(attempt.percentage || 0);
-
-      if (!existing) {
-        examMap.set(attempt.course.id, {
-          courseId: attempt.course.id,
-          courseTitle: attempt.course.title,
-          courseSlug: attempt.course.slug,
-          attempts: 1,
-          bestPercentage: percentage,
-          latestPercentage: percentage,
-          passed: attempt.passed,
-        });
-        continue;
-      }
-
-      existing.attempts += 1;
-      existing.bestPercentage = Math.max(existing.bestPercentage, percentage);
-      existing.passed = existing.passed || attempt.passed;
-    }
 
     return {
       user: mappedUser,
@@ -381,7 +337,7 @@ export class UsersService {
           slug: certificate.course.slug,
         },
       })),
-      examHistory: Array.from(examMap.values()),
+      examHistory: [],
     };
   }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, BookOpenCheck, ClipboardCheck, TrendingUp } from "lucide-react";
+import { Award, BookOpenCheck, TrendingUp } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { DashboardStats } from "@/types/user";
@@ -18,12 +18,6 @@ export function ProfileInfo({ name, email, stats }: ProfileInfoProps) {
           label: "Courses Completed",
           value: `${stats.completed || 0}/${stats.courses || 0}`,
           icon: BookOpenCheck,
-          featured: false,
-        },
-        {
-          label: "Exam Attempts",
-          value: stats.examsTaken || 0,
-          icon: ClipboardCheck,
           featured: false,
         },
         {
@@ -60,7 +54,7 @@ export function ProfileInfo({ name, email, stats }: ProfileInfoProps) {
       </div>
 
       {stats ? (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-3">
           {statItems.map((item) => {
             const Icon = item.icon;
 

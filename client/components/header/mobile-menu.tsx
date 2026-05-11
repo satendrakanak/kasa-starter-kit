@@ -44,7 +44,6 @@ const MobileMenu = () => {
     pathname?.startsWith("/orders") ||
     pathname?.startsWith("/certificates") ||
     pathname?.startsWith("/my-courses") ||
-    pathname?.startsWith("/exams") ||
     pathname?.startsWith("/auth");
 
   return (

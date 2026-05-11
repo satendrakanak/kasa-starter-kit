@@ -5,26 +5,28 @@ import { PublicSettingsBundle } from "@/types/settings";
 
 const defaultBundle: PublicSettingsBundle = {
   site: {
-    siteName: "Code With Kasa",
+    siteName: "kasa-starter-kit",
     siteTagline: "Coding tutorials for you",
     siteDescription:
       "Practical coding education for learners who want clarity, mentorship, and real-world application.",
-    logoUrl: "/assets/cwk-logo.png",
-    footerLogoUrl: "/assets/cwk-logo.png",
+    lightLogoUrl: "/assets/kasa-logo-light.png",
+    darkLogoUrl: "/assets/kasa-logo-dark.png",
+    logoUrl: "/assets/kasa-logo-light.png",
+    footerLogoUrl: "/assets/kasa-logo-dark.png",
     faviconUrl: "/favicon.png",
     adminPanelName: "CWK",
-    adminPanelIconUrl: "/assets/pwa-icon-192.png",
-    supportEmail: "info@codewithkasa.com",
+    adminPanelIconUrl: "/assets/kasa-logo-light.png",
+    supportEmail: "support@kasa-starter-kit.example",
     supportPhone: "+91-9809-XXXXXX",
     supportAddress: "India",
     footerAbout:
       "Practical coding education for learners who want clarity, mentorship, and real-world application.",
-    footerCopyright: `© ${new Date().getFullYear()} Code With Kasa. All Rights Reserved`,
+    footerCopyright: `© ${new Date().getFullYear()} kasa-starter-kit. All Rights Reserved`,
     footerCtaEyebrow: "Start Your Learning Journey",
     footerCtaHeading:
       "Build practical coding expertise with a learning system that actually supports you.",
     footerCtaDescription:
-      "Explore guided programs, thoughtful faculty, and a curriculum designed to help you learn clearly and apply with confidence.",
+      "Explore self-paced programs and a curriculum designed to help you learn clearly and apply with confidence.",
     footerPrimaryCtaLabel: "Explore Courses",
     footerPrimaryCtaHref: "/courses",
     footerSecondaryCtaLabel: "Talk to Us",

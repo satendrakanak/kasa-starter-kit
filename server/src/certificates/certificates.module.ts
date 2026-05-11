@@ -11,7 +11,6 @@ import { Upload } from 'src/uploads/upload.entity';
 import { UserProgres } from 'src/user-progress/user-progres.entity';
 import { User } from 'src/users/user.entity';
 import { Certificate } from './certificate.entity';
-import { CourseExamsModule } from 'src/course-exams/course-exams.module';
 import { CertificatesController } from './certificates.controller';
 import { CertificateTemplateProvider } from './providers/certificate-template.provider';
 import { CertificatesService } from './providers/certificates.service';
@@ -31,7 +30,6 @@ import { CertificatesService } from './providers/certificates.service';
     UploadsModule,
     MailModule,
     EmailTemplatesModule,
-    CourseExamsModule,
   ],
   controllers: [CertificatesController],
   providers: [CertificatesService, CertificateTemplateProvider],

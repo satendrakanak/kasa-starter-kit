@@ -12,8 +12,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { FloatingThemeToggle } from "@/components/theme/floating-theme-toggle";
 import { ScrollProgressButton } from "@/components/ui/scroll-progress-button";
 import { RouteProgressBar } from "@/components/ui/route-progress-bar";
-import { PwaRegister } from "@/components/pwa/pwa-register";
-import { PwaInstallNudge } from "@/components/pwa/pwa-install-nudge";
 import { InstallationRedirect } from "@/components/install/installation-redirect";
 
 const inter = localFont({
@@ -31,7 +29,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  manifest: "/manifest.webmanifest",
 };
 
 export default async function RootLayout({
@@ -47,26 +44,28 @@ export default async function RootLayout({
     .then((response) => response.data)
     .catch(() => null)) || {
     site: {
-      siteName: "Code With Kasa",
+      siteName: "kasa-starter-kit",
       siteTagline: "Coding tutorials for you",
       siteDescription:
         "Practical coding education for learners who want clarity, mentorship, and real-world application.",
-      logoUrl: "/assets/cwk-logo.png",
-      footerLogoUrl: "/assets/cwk-logo.png",
+      lightLogoUrl: "/assets/kasa-logo-light.png",
+      darkLogoUrl: "/assets/kasa-logo-dark.png",
+      logoUrl: "/assets/kasa-logo-light.png",
+      footerLogoUrl: "/assets/kasa-logo-dark.png",
       adminPanelName: "CWK",
-      adminPanelIconUrl: "/assets/pwa-icon-192.png",
+      adminPanelIconUrl: "/assets/kasa-logo-light.png",
       faviconUrl: "/favicon.png",
-      supportEmail: "info@codewithkasa.com",
+      supportEmail: "support@kasa-starter-kit.example",
       supportPhone: "+91-9809-XXXXXX",
       supportAddress: "India",
       footerAbout:
         "Practical coding education for learners who want clarity, mentorship, and real-world application.",
-      footerCopyright: `© ${new Date().getFullYear()} Code With Kasa. All Rights Reserved`,
+      footerCopyright: `© ${new Date().getFullYear()} kasa-starter-kit. All Rights Reserved`,
       footerCtaEyebrow: "Start Your Learning Journey",
       footerCtaHeading:
         "Build practical coding expertise with a learning system that actually supports you.",
       footerCtaDescription:
-        "Explore guided programs, thoughtful faculty, and a curriculum designed to help you learn clearly and apply with confidence.",
+        "Explore self-paced programs and a curriculum designed to help you learn clearly and apply with confidence.",
       footerPrimaryCtaLabel: "Explore Courses",
       footerPrimaryCtaHref: "/courses",
       footerSecondaryCtaLabel: "Talk to Us",
@@ -91,11 +90,7 @@ export default async function RootLayout({
         ) : (
           <link rel="icon" href="/favicon.png" />
         )}
-        <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="CWK" />
-        <meta name="application-name" content="Code With Kasa" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="kasa-starter-kit" />
       </head>
       <body className="min-h-full bg-background text-foreground">
         <ThemeProvider>
@@ -104,8 +99,6 @@ export default async function RootLayout({
               <RouteProgressBar />
               <InstallationRedirect />
               <Toaster richColors />
-              <PwaRegister />
-              <PwaInstallNudge />
               <FloatingThemeToggle />
               <ScrollProgressButton />
               {children}

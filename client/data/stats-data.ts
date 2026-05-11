@@ -3,22 +3,22 @@ import { GraduationCap, BookOpen, Award, Users } from "lucide-react";
 export const stats = [
   {
     icon: GraduationCap,
-    value: "500+",
-    label: "Learners & counting",
+    value: "2",
+    label: "Core roles",
   },
   {
     icon: BookOpen,
-    value: "800+",
-    label: "Courses & Video",
+    value: "8",
+    label: "Starter modules",
   },
   {
     icon: Award,
-    value: "1000+",
-    label: "Certified Students",
+    value: "1",
+    label: "Certificate flow",
   },
   {
     icon: Users,
-    value: "100+",
-    label: "Registered Enrolls",
+    value: "0",
+    label: "Vendor lock-in",
   },
 ];

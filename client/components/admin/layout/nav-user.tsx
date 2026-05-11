@@ -4,11 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
-  BookOpen,
   ChevronsUpDown,
-  ClipboardCheck,
   ExternalLink,
-  GraduationCap,
   LayoutDashboard,
   Loader,
   LogOut,
@@ -37,7 +34,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useSession } from "@/context/session-context";
 import { apiClient } from "@/lib/api/client";
-import { canAccessAdmin, canAccessFaculty } from "@/lib/access-control";
+import { canAccessAdmin } from "@/lib/access-control";
 import { getErrorMessage } from "@/lib/error-handler";
 import { getUserAvatarUrl, getUserDisplayName } from "@/lib/user-avatar";
 
@@ -67,17 +64,6 @@ export function NavUser({ variant = "sidebar" }: NavUserProps) {
             icon: ShieldCheck,
           },
           { href: "/admin/settings/site", label: "Site settings", icon: Settings },
-        ]
-      : []),
-    ...(canAccessFaculty(user)
-      ? [
-          {
-            href: "/faculty/dashboard",
-            label: "Faculty dashboard",
-            icon: GraduationCap,
-          },
-          { href: "/faculty/courses", label: "Faculty courses", icon: BookOpen },
-          { href: "/faculty/exams", label: "Faculty exams", icon: ClipboardCheck },
         ]
       : []),
     { href: "/", label: "View website", icon: ExternalLink },

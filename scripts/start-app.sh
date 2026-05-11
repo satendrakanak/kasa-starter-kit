@@ -6,15 +6,15 @@ cd "$ROOT_DIR"
 
 if [ ! -f .env.production.local ]; then
   echo ".env.production.local not found."
-  echo "Run first-time setup with: kasa install app"
+  echo "Run first-time setup with: kasa-starter-kit install app"
   exit 1
 fi
 
-echo "Starting Kasa Enterprise production test stack..."
+echo "Starting kasa-starter-kit production test stack..."
 docker compose --env-file .env.production.local -f docker-compose.prod.yml up -d
 
 echo ""
-echo "Kasa Enterprise production test stack is running."
+echo "kasa-starter-kit production test stack is running."
 echo "App:       http://localhost:3000"
 echo "Installer: http://localhost:3000/install"
 echo "API:       http://localhost:8000"

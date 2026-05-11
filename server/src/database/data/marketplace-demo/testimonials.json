@@ -5,31 +5,111 @@
     "company": "Career Switcher",
     "message": "The recorded lessons and final assessment made the learning path very clear. I could revise at my own pace and still track progress properly.",
     "rating": 5,
-    "avatarPath": "/assets/testimonials/student-1.jpg",
+    "avatarPath": "/assets/guest-user.webp",
     "avatarAlt": "Nisha Mehta profile photo",
     "courseSlugs": ["frontend-developer-starter-kit"],
     "priority": 1
   },
   {
     "name": "Rohit Bansal",
-    "designation": "Hybrid Program Student",
-    "company": "Junior Developer",
-    "message": "The hybrid model helped me learn the theory first and then clear doubts in live project sessions. The classroom and recordings were very useful.",
+    "designation": "Junior Developer",
+    "company": "Product Studio",
+    "message": "The self-paced full stack course helped me move from scattered tutorials to a proper project path. The chapters and completion tracking kept me consistent.",
     "rating": 5,
-    "avatarPath": "/assets/testimonials/student-2.jpg",
+    "avatarPath": "/assets/faculty-1.jpg",
     "avatarAlt": "Rohit Bansal profile photo",
-    "courseSlugs": ["full-stack-web-development-mentorship"],
+    "courseSlugs": ["full-stack-web-development-blueprint"],
     "priority": 2
   },
   {
     "name": "Ananya Rao",
     "designation": "Wellness Coach",
     "company": "Independent Practitioner",
-    "message": "Live classes, reminders, attendance, and certificate tracking made the Ayurveda program feel structured and professional.",
+    "message": "The Ayurveda course felt structured and professional. Worksheets, recorded modules, and the certificate flow made it easy to complete alongside work.",
     "rating": 5,
-    "avatarPath": "/assets/testimonials/student-3.jpg",
+    "avatarPath": "/assets/faculty-2.jpg",
     "avatarAlt": "Ananya Rao profile photo",
-    "courseSlugs": ["ayurveda-nutrition-live-practitioner-program"],
+    "courseSlugs": ["ayurveda-nutrition-self-learning-program"],
     "priority": 3
+  },
+  {
+    "name": "Farhan Khan",
+    "designation": "Marketing Associate",
+    "company": "D2C Brand",
+    "message": "The marketing launchpad gave me a clear way to plan content, funnels, and reports. I liked that every module had practical templates.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-3.jpg",
+    "avatarAlt": "Farhan Khan profile photo",
+    "courseSlugs": ["digital-marketing-launchpad"],
+    "priority": 4
+  },
+  {
+    "name": "Priya Iyer",
+    "designation": "UI Designer",
+    "company": "Freelance",
+    "message": "The UI UX course helped me organize my portfolio case study instead of only making screens. The handoff and review checklists were very useful.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-4.jpg",
+    "avatarAlt": "Priya Iyer profile photo",
+    "courseSlugs": ["ui-ux-design-essentials"],
+    "priority": 5
+  },
+  {
+    "name": "Kavya Menon",
+    "designation": "Data Analyst Intern",
+    "company": "Analytics Team",
+    "message": "The analytics course gave me practice datasets and a simple reporting structure. I could see progress after every chapter.",
+    "rating": 4,
+    "avatarPath": "/assets/guest-user.webp",
+    "avatarAlt": "Kavya Menon profile photo",
+    "courseSlugs": ["data-analytics-career-track"],
+    "priority": 6
+  },
+  {
+    "name": "Aditya Sharma",
+    "designation": "College Student",
+    "company": "Final Year BCA",
+    "message": "I bought the starter web course first and then continued with full stack. Having all lessons, resources, and certificates in one dashboard felt clean.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-1.jpg",
+    "avatarAlt": "Aditya Sharma profile photo",
+    "courseSlugs": [
+      "frontend-developer-starter-kit",
+      "full-stack-web-development-blueprint"
+    ],
+    "priority": 7
+  },
+  {
+    "name": "Sneha Kulkarni",
+    "designation": "HR Executive",
+    "company": "Services Company",
+    "message": "The spoken English course was easy to follow. The short recorded practice tasks helped me prepare for meetings and interviews.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-2.jpg",
+    "avatarAlt": "Sneha Kulkarni profile photo",
+    "courseSlugs": ["spoken-english-confidence-builder"],
+    "priority": 8
+  },
+  {
+    "name": "Mukul Jain",
+    "designation": "Academy Owner",
+    "company": "SkillBridge Academy",
+    "message": "The demo content made it easy to understand how the LMS would look after launch. Courses, coupons, testimonials, and CMS pages were ready to show.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-3.jpg",
+    "avatarAlt": "Mukul Jain profile photo",
+    "courseSlugs": ["frontend-developer-starter-kit"],
+    "priority": 9
+  },
+  {
+    "name": "Ishita Das",
+    "designation": "Freelance Creator",
+    "company": "Creator Studio",
+    "message": "The student flow is simple: buy a course, continue watching, mark lessons complete, and download the certificate. That is exactly what I needed.",
+    "rating": 5,
+    "avatarPath": "/assets/faculty-4.jpg",
+    "avatarAlt": "Ishita Das profile photo",
+    "courseSlugs": ["ui-ux-design-essentials"],
+    "priority": 10
   }
 ]

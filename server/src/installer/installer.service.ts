@@ -187,7 +187,7 @@ export class InstallerService implements OnModuleInit {
         restartRequired,
         autoRestart: restartRequired && this.isRunningInsideDocker(),
         message: restartRequired
-          ? 'Bundled database selected. Kasa is restarting the API and will reconnect shortly.'
+          ? 'Bundled database selected. kasa-starter-kit is restarting the API and will reconnect shortly.'
           : 'Bundled database selected and ready.',
       };
     }
@@ -225,13 +225,13 @@ export class InstallerService implements OnModuleInit {
       autoRestart: this.isRunningInsideDocker(),
       host: connectionPayload.host,
       message:
-        'External database verified and saved. Kasa is restarting the API and will reconnect shortly.',
+        'External database verified and saved. kasa-starter-kit is restarting the API and will reconnect shortly.',
     };
   }
 
   async validateLicense(licenseKey: string) {
     const activation = await this.activateLicense(licenseKey, {
-      instanceLabel: 'Kasa Enterprise installer',
+      instanceLabel: 'kasa-starter-kit installer',
     });
 
     return {
@@ -360,16 +360,21 @@ export class InstallerService implements OnModuleInit {
       siteName: payload.siteName,
       siteTagline:
         payload.siteTagline ||
-        'Practical courses, live classes, and certificates in one platform.',
+        'Sell courses, track learning progress, and issue certificates.',
       siteDescription:
-        'Practical courses, live classes, learner dashboards, faculty tools, certificates, and engagement workflows.',
+        'A starter LMS with course sales, learner dashboards, progress tracking, certificates, and core admin tools.',
+      lightLogoUrl: '/assets/kasa-logo-light.png',
+      darkLogoUrl: '/assets/kasa-logo-dark.png',
+      logoUrl: '/assets/kasa-logo-light.png',
+      footerLogoUrl: '/assets/kasa-logo-dark.png',
+      adminPanelIconUrl: '/assets/kasa-logo-light.png',
       supportEmail: payload.supportEmail || payload.adminEmail,
       supportPhone: payload.supportPhone,
       footerCopyright: `© ${new Date().getFullYear()} ${payload.siteName}. All Rights Reserved`,
     });
 
     if (payload.importDemoData) {
-      onProgress?.(70, 'Importing marketplace demo data...');
+      onProgress?.(70, 'Importing starter demo data...');
       await seedProductionDemoContent(this.dataSource);
     } else {
       onProgress?.(82, 'Skipping demo data import...');
@@ -557,7 +562,7 @@ export class InstallerService implements OnModuleInit {
       host: payload.host,
       port: Number(payload.port || 5432),
       username: payload.user,
-      password: `kasa-invalid-${randomUUID()}`,
+      password: `kasa-starter-kit-invalid-${randomUUID()}`,
       database: payload.name,
       ssl: payload.ssl
         ? { rejectUnauthorized: payload.rejectUnauthorized !== false }
@@ -650,7 +655,7 @@ export class InstallerService implements OnModuleInit {
     const instanceId = await this.getOrCreateLicenseInstanceId();
     const productSlug =
       this.configService.get<string>('LICENSE_PRODUCT_SLUG')?.trim() ||
-      'kasa-enterprise';
+      'kasa-starter-kit';
 
     let response: Response;
     try {
@@ -663,7 +668,8 @@ export class InstallerService implements OnModuleInit {
           licenseKey: normalizedKey,
           productSlug,
           instanceId,
-          instanceLabel: options?.instanceLabel || 'Kasa Enterprise installation',
+          instanceLabel:
+            options?.instanceLabel || 'kasa-starter-kit installation',
           productVersion:
             this.configService.get<string>('appConfig.apiVersion') || '0.1.1',
           metadata: {
@@ -742,7 +748,7 @@ export class InstallerService implements OnModuleInit {
       return existingInstanceId;
     }
 
-    const instanceId = `kasa-${randomUUID()}`;
+    const instanceId = `kasa-starter-kit-${randomUUID()}`;
     await this.saveSetting(LICENSE_INSTANCE_KEY, {
       instanceId,
       createdAt: new Date().toISOString(),

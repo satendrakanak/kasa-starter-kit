@@ -1,13 +1,18 @@
-import { DataSource } from 'typeorm';
+import { DataSource, In } from 'typeorm';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { Category } from 'src/categories/category.entity';
 import { CategoryType } from 'src/categories/enums/categoryType.enum';
 import { Chapter } from 'src/chapters/chapter.entity';
 import { Coupon } from 'src/coupons/coupon.entity';
+import { CouponUsage } from 'src/coupons/coupon-usage.entity';
 import { CouponScope } from 'src/coupons/enums/couponScope.enum';
 import { CouponStatus } from 'src/coupons/enums/couponStatus.enum';
 import { CouponType } from 'src/coupons/enums/couponType.enum';
+import {
+  ContactLead,
+  ContactLeadStatus,
+} from 'src/contact-leads/contact-lead.entity';
 import { Course } from 'src/courses/course.entity';
 import { CourseDeliveryMode } from 'src/courses/constants/course-delivery-mode';
 import { Article } from 'src/articles/article.entity';
@@ -27,6 +32,9 @@ import { CourseBatchStatus } from 'src/faculty-workspace/enums/course-batch-stat
 import { Lecture } from 'src/lectures/lecture.entity';
 import { NotificationChannel } from 'src/notifications/enums/notification-channel.enum';
 import { NotificationType } from 'src/notifications/enums/notification-type.enum';
+import { Enrollment } from 'src/enrollments/enrollment.entity';
+import { Order } from 'src/orders/order.entity';
+import { OrderStatus } from 'src/orders/enums/orderStatus.enum';
 import { FacultyProfile } from 'src/profiles/faculty-profile.entity';
 import { UserProfile } from 'src/profiles/user-profile.entity';
 import { Role } from 'src/roles-permissions/role.entity';
@@ -151,6 +159,31 @@ type DemoTestimonial = {
   priority?: number;
 };
 
+type DemoContactLead = {
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  subject?: string;
+  message: string;
+  status?: ContactLeadStatus;
+  source?: string;
+  pageUrl?: string;
+  adminNotes?: string;
+};
+
+type DemoOrder = {
+  reference: string;
+  userEmail: string;
+  courseSlugs: string[];
+  status: OrderStatus;
+  manualCouponCode?: string;
+  discount?: number;
+  paymentMethod?: string;
+  paymentMode?: string;
+  paidOffsetDays?: number;
+  createdOffsetDays?: number;
+};
+
 type DemoNotificationRule = {
   eventKey: string;
   label: string;
@@ -229,7 +262,7 @@ const fallbackDemoUsers: DemoUser[] = [
     firstName: 'Aarav',
     lastName: 'Kapoor',
     username: 'demo-admin',
-    email: 'admin@codewithkasa.demo',
+    email: 'admin@kasa-starter-kit.demo',
     phoneNumber: '+919900000001',
     role: 'admin',
     avatarUrl: '/assets/faculty-1.jpg',
@@ -238,7 +271,7 @@ const fallbackDemoUsers: DemoUser[] = [
     firstName: 'Meera',
     lastName: 'Sharma',
     username: 'demo-faculty-meera',
-    email: 'faculty@codewithkasa.demo',
+    email: 'faculty@kasa-starter-kit.demo',
     phoneNumber: '+919900000002',
     role: 'faculty',
     avatarUrl: '/assets/faculty-2.jpg',
@@ -252,7 +285,7 @@ const fallbackDemoUsers: DemoUser[] = [
     firstName: 'Kabir',
     lastName: 'Malhotra',
     username: 'demo-faculty-kabir',
-    email: 'mentor@codewithkasa.demo',
+    email: 'mentor@kasa-starter-kit.demo',
     phoneNumber: '+919900000003',
     role: 'faculty',
     avatarUrl: '/assets/faculty-3.jpg',
@@ -267,7 +300,7 @@ const fallbackDemoUsers: DemoUser[] = [
     firstName: 'Riya',
     lastName: 'Verma',
     username: 'demo-learner',
-    email: 'learner@codewithkasa.demo',
+    email: 'learner@kasa-starter-kit.demo',
     phoneNumber: '+919900000004',
     role: 'student',
     avatarUrl: '/assets/guest-user.webp',
@@ -277,11 +310,11 @@ const fallbackDemoUsers: DemoUser[] = [
     firstName: 'Arjun',
     lastName: 'Singh',
     username: 'demo-learner-arjun',
-    email: 'arjun@codewithkasa.demo',
+    email: 'arjun@kasa-starter-kit.demo',
     phoneNumber: '+919900000005',
     role: 'student',
     avatarUrl: '/assets/guest-user.webp',
-    headline: 'Hybrid program learner',
+    headline: 'Self-learning course learner',
   },
 ];
 
@@ -292,7 +325,7 @@ const fallbackDemoCourses: DemoCourse[] = [
     shortDescription:
       'A polished self-learning path for HTML, CSS, JavaScript, responsive UI, and portfolio-ready practice.',
     description:
-      '<p>Start from the foundations and build real interface confidence. This self-paced course is structured for learners who want clean HTML, responsive CSS, JavaScript interaction, and practical portfolio exercises without needing a live classroom.</p><p>The demo shows recorded lessons, free preview content, course progress, a final assessment, and certificate eligibility.</p>',
+      '<p>Start from the foundations and build real interface confidence. This self-paced course is structured for learners who want clean HTML, responsive CSS, JavaScript interaction, and practical portfolio exercises.</p><p>The demo shows recorded lessons, free preview content, course progress, and certificate eligibility.</p>',
     imagePath: '/assets/courses/course-1.jpg',
     imageAlt: 'Learner building a frontend project on a laptop',
     priceInr: '1499.00',
@@ -311,7 +344,7 @@ const fallbackDemoCourses: DemoCourse[] = [
       'No prior programming experience required. Basic computer comfort is enough.',
     disclaimer:
       'Learner outcome depends on regular practice and completion of assigned projects.',
-    exams: 'Final assessment required for certification',
+    exams: 'No assessment required for starter demo courses',
     categories: ['Web Development', 'Self Learning'],
     tags: ['HTML', 'CSS', 'JavaScript', 'Portfolio'],
     chapters: [
@@ -383,7 +416,7 @@ const fallbackDemoCourses: DemoCourse[] = [
     priceUsd: '39.00',
     duration: '5 weeks',
     mode: CourseDeliveryMode.SelfLearning,
-    certificate: 'Certificate after design project submission and final quiz',
+    certificate: 'Certificate after design lessons are completed',
     experienceLevel: 'Beginner to Intermediate',
     studyMaterial:
       'UX worksheets, design review checklist, wireframe templates, and handoff notes.',
@@ -395,7 +428,7 @@ const fallbackDemoCourses: DemoCourse[] = [
       'No design degree required. Suitable for students, founders, and junior designers.',
     disclaimer:
       'Design portfolio quality depends on project effort and feedback iteration.',
-    exams: 'Final design-readiness assessment required for certification',
+    exams: 'No assessment required for starter demo courses',
     categories: ['Design', 'Self Learning'],
     tags: ['UI UX', 'Figma', 'Design Systems', 'Portfolio'],
     chapters: [
@@ -455,7 +488,7 @@ const fallbackDemoCourses: DemoCourse[] = [
     shortDescription:
       'A self-learning course for content planning, SEO basics, campaign funnels, and analytics reports.',
     description:
-      '<p>This practical marketing course helps learners understand content strategy, search visibility, paid campaign planning, email sequences, and analytics reporting. It demonstrates how non-technical courses can be sold through the LMS with exams and certificates.</p>',
+      '<p>This practical marketing course helps learners understand content strategy, search visibility, paid campaign planning, email sequences, and analytics reporting. It demonstrates how non-technical courses can be sold through the LMS with progress tracking and certificates.</p>',
     imagePath: '/assets/courses/course-4.png',
     imageAlt: 'Marketing dashboard with campaign planning notes',
     priceInr: '1799.00',
@@ -474,7 +507,7 @@ const fallbackDemoCourses: DemoCourse[] = [
       'Suitable for students, small business owners, creators, and marketing beginners.',
     disclaimer:
       'Marketing results vary by niche, budget, offer, and execution quality.',
-    exams: 'Final marketing strategy assessment required for certification',
+    exams: 'No assessment required for starter demo courses',
     categories: ['Marketing', 'Self Learning'],
     tags: ['SEO', 'Content', 'Analytics', 'Campaigns'],
     chapters: [
@@ -532,44 +565,43 @@ const fallbackDemoCourses: DemoCourse[] = [
     title: 'Ayurveda Nutrition Live Practitioner Program',
     slug: 'ayurveda-nutrition-live-practitioner-program',
     shortDescription:
-      'A faculty-led course with live classes, batch scheduling, attendance rules, and certificate readiness.',
+      'A self-learning wellness course with recorded lessons, downloadable worksheets, and certificate readiness.',
     description:
-      '<p>This faculty-led program demonstrates a coaching-style course where learners attend scheduled live sessions instead of recorded lectures. It highlights batches, calendar sessions, reminders, attendance rules, recordings, and certification workflows.</p>',
+      '<p>This starter course demonstrates a self-learning wellness program where learners watch recorded lessons, download planning worksheets, track progress, and unlock certificates after completion.</p>',
     imagePath: '/assets/courses/vedic-nutrition-beginner.png',
     imageAlt: 'Ayurveda nutrition live class with healthy food planning',
     priceInr: '6999.00',
     priceUsd: '129.00',
     duration: '12 weeks',
-    mode: CourseDeliveryMode.FacultyLed,
-    certificate: 'Certificate after live attendance requirement and final exam',
+    mode: CourseDeliveryMode.SelfLearning,
+    certificate: 'Certificate after all lessons are completed',
     experienceLevel: 'Beginner to Professional',
     studyMaterial:
-      'Live class notes, printable diet planning sheets, case discussion templates, and replay references.',
+      'Printable diet planning sheets, case discussion templates, and lesson references.',
     additionalBook: 'Ayurveda Nutrition Casebook',
     language: 'English and Hindi',
-    technologyRequirements:
-      'Mobile or laptop, camera and microphone for live sessions, and stable internet.',
+    technologyRequirements: 'Mobile or laptop and stable internet.',
     eligibilityRequirements:
       'Open to wellness learners, yoga trainers, nutrition enthusiasts, and healthcare assistants.',
     disclaimer:
       'This course is educational and does not replace medical diagnosis or clinical treatment.',
-    exams: 'Final exam unlocks after attendance requirement is met',
-    monthlyLiveClassLimit: 8,
-    attendanceType: 'percentage',
-    attendanceValue: 80,
-    categories: ['Health and Wellness', 'Live Classes'],
-    tags: ['Ayurveda', 'Nutrition', 'Faculty Led', 'Attendance'],
+    exams: 'No assessment required for starter demo courses',
+    monthlyLiveClassLimit: 0,
+    attendanceType: 'none',
+    attendanceValue: 0,
+    categories: ['Health and Wellness', 'Self Learning'],
+    tags: ['Ayurveda', 'Nutrition', 'Self Learning', 'Certificate'],
     chapters: [
       {
         title: 'Foundations of Ayurvedic Nutrition',
         description:
-          'Live sessions cover prakriti, digestion, meal timing, food qualities, and learner Q&A.',
+          'Recorded lessons cover prakriti, digestion, meal timing, food qualities, and practical notes.',
         isFree: true,
       },
       {
         title: 'Diet Planning Workshops',
         description:
-          'Faculty guides learners through practical meal plans, seasonal adjustments, and case examples.',
+          'Learners work through practical meal plans, seasonal adjustments, and case examples.',
       },
       {
         title: 'Case Discussions and Exam Readiness',
@@ -582,38 +614,37 @@ const fallbackDemoCourses: DemoCourse[] = [
     title: 'Spoken English Live Confidence Batch',
     slug: 'spoken-english-live-confidence-batch',
     shortDescription:
-      'A live batch program for spoken English fluency, interview practice, and confidence building.',
+      'A self-learning spoken English course for fluency, interview practice, and confidence building.',
     description:
-      '<p>This course demonstrates how language academies can run live cohorts. Faculty manages batches, students join scheduled classes, reminders go out automatically, and attendance helps decide assessment eligibility.</p>',
+      '<p>This course demonstrates how language academies can sell recorded speaking lessons with prompts, practice tasks, progress tracking, and completion certificates.</p>',
     imagePath: '/assets/courses/course-2.jpg',
     imageAlt: 'Learners practicing spoken English in a live batch',
     priceInr: '3499.00',
     priceUsd: '69.00',
     duration: '8 weeks',
-    mode: CourseDeliveryMode.FacultyLed,
-    certificate: 'Certificate after attendance and speaking assessment',
+    mode: CourseDeliveryMode.SelfLearning,
+    certificate: 'Certificate after all speaking lessons are completed',
     experienceLevel: 'Beginner to Intermediate',
     studyMaterial:
       'Speaking prompts, vocabulary sheets, interview scripts, and weekly practice tasks.',
     additionalBook: 'Daily Speaking Practice Journal',
     language: 'English and Hindi',
-    technologyRequirements:
-      'Mobile or laptop, microphone, camera for live practice, and stable internet.',
+    technologyRequirements: 'Mobile or laptop and stable internet.',
     eligibilityRequirements:
       'Learners should be comfortable reading basic English sentences.',
     disclaimer:
-      'Fluency improves with regular practice, class participation, and speaking confidence.',
-    exams: 'Speaking assessment and final quiz required for certification',
-    monthlyLiveClassLimit: 12,
-    attendanceType: 'percentage',
-    attendanceValue: 70,
-    categories: ['Language Learning', 'Live Classes'],
-    tags: ['English', 'Interview', 'Communication', 'Faculty Led'],
+      'Fluency improves with regular self-practice, revision, and speaking confidence.',
+    exams: 'No assessment required for starter demo courses',
+    monthlyLiveClassLimit: 0,
+    attendanceType: 'none',
+    attendanceValue: 0,
+    categories: ['Language Learning', 'Self Learning'],
+    tags: ['English', 'Interview', 'Communication', 'Self Learning'],
     chapters: [
       {
         title: 'Confidence and Pronunciation',
         description:
-          'Live speaking drills, pronunciation correction, and confidence-building exercises.',
+          'Recorded speaking drills, pronunciation practice, and confidence-building exercises.',
         isFree: true,
       },
       {
@@ -624,7 +655,7 @@ const fallbackDemoCourses: DemoCourse[] = [
       {
         title: 'Interview and Presentation Practice',
         description:
-          'Mock interviews, short presentations, feedback rounds, and final speaking assessment.',
+          'Mock interviews, short presentations, self-review prompts, and final practice tasks.',
       },
     ],
   },
@@ -632,38 +663,38 @@ const fallbackDemoCourses: DemoCourse[] = [
     title: 'Full Stack Web Development Mentorship',
     slug: 'full-stack-web-development-mentorship',
     shortDescription:
-      'A hybrid mentorship program with recorded modules, live project reviews, attendance, exams, and certificates.',
+      'A self-learning web development course with recorded modules, project tasks, and certificates.',
     description:
-      '<p>This premium hybrid course combines recorded lessons with faculty-led live implementation sessions. It demonstrates the complete platform strength: recorded learning, batches, live classes, reminders, attendance, exams, certificates, and learner dashboards.</p>',
+      '<p>This starter course combines recorded lessons, project briefs, downloadable resources, progress tracking, certificates, and learner dashboards for a clean self-learning flow.</p>',
     imagePath: '/assets/courses/banner-01.webp',
-    imageAlt: 'Hybrid full stack development mentorship dashboard',
+    imageAlt: 'Self-learning full stack development dashboard',
     priceInr: '8999.00',
     priceUsd: '179.00',
     duration: '16 weeks',
-    mode: CourseDeliveryMode.Hybrid,
-    certificate: 'Certificate after progress, attendance, project review, and final exam',
+    mode: CourseDeliveryMode.SelfLearning,
+    certificate: 'Certificate after all project lessons are completed',
     experienceLevel: 'Beginner to Intermediate',
     studyMaterial:
-      'Recorded modules, live class notes, Git workflow guide, project briefs, and review checklists.',
+      'Recorded modules, Git workflow guide, project briefs, and review checklists.',
     additionalBook: 'Full Stack Project Workbook',
     language: 'English',
     technologyRequirements:
-      'Laptop or desktop, Node.js, VS Code, Git, modern browser, webcam, microphone, and internet.',
+      'Laptop or desktop, Node.js, VS Code, Git, modern browser, and internet.',
     eligibilityRequirements:
       'Basic computer skills required. Prior coding experience is helpful but not mandatory.',
     disclaimer:
-      'Project readiness depends on completing both recorded and live learning requirements.',
-    exams: 'Final assessment unlocks after progress and attendance requirements are met',
-    monthlyLiveClassLimit: 10,
-    attendanceType: 'percentage',
-    attendanceValue: 75,
-    categories: ['Web Development', 'Hybrid Programs'],
-    tags: ['Full Stack', 'Mentorship', 'Live Classes', 'Projects'],
+      'Project readiness depends on completing the recorded lessons and project practice.',
+    exams: 'No assessment required for starter demo courses',
+    monthlyLiveClassLimit: 0,
+    attendanceType: 'none',
+    attendanceValue: 0,
+    categories: ['Web Development', 'Self Learning'],
+    tags: ['Full Stack', 'Projects', 'Self Learning'],
     chapters: [
       {
         title: 'Recorded Foundations',
         description:
-          'Self-paced modules prepare learners for productive live project sessions.',
+          'Self-paced modules prepare learners for practical project implementation.',
         isFree: true,
         lectures: [
           {
@@ -719,16 +750,16 @@ const fallbackDemoCourses: DemoCourse[] = [
     title: 'Data Analytics Career Track',
     slug: 'data-analytics-career-track',
     shortDescription:
-      'A hybrid analytics course with recorded Excel/SQL modules, live dashboard workshops, and portfolio review.',
+      'A self-learning analytics course with recorded Excel/SQL modules and portfolio practice.',
     description:
-      '<p>This hybrid analytics track is designed for learners who need structured practice and live review. Recorded modules cover foundations while faculty-led classes focus on case studies, dashboard interpretation, and portfolio presentation.</p>',
+      '<p>This analytics track is designed for learners who need structured self-paced practice. Recorded modules cover foundations, case studies, dashboard interpretation, and portfolio presentation.</p>',
     imagePath: '/assets/courses/course-3.png',
     imageAlt: 'Data analytics dashboard and learner notes',
     priceInr: '5999.00',
     priceUsd: '119.00',
     duration: '10 weeks',
-    mode: CourseDeliveryMode.Hybrid,
-    certificate: 'Certificate after analytics portfolio, attendance, and final assessment',
+    mode: CourseDeliveryMode.SelfLearning,
+    certificate: 'Certificate after analytics lessons are completed',
     experienceLevel: 'Beginner to Intermediate',
     studyMaterial:
       'Practice datasets, dashboard templates, SQL exercises, and case study briefs.',
@@ -740,11 +771,11 @@ const fallbackDemoCourses: DemoCourse[] = [
       'Suitable for students, analysts, operations teams, and career switchers.',
     disclaimer:
       'Portfolio quality depends on completed practice assignments and review participation.',
-    exams: 'Final analytics assessment and portfolio review required for certification',
-    monthlyLiveClassLimit: 6,
-    attendanceType: 'percentage',
-    attendanceValue: 75,
-    categories: ['Data Analytics', 'Hybrid Programs'],
+    exams: 'No assessment required for starter demo courses',
+    monthlyLiveClassLimit: 0,
+    attendanceType: 'none',
+    attendanceValue: 0,
+    categories: ['Data Analytics', 'Self Learning'],
     tags: ['Excel', 'SQL', 'Dashboards', 'Career Track'],
     chapters: [
       {
@@ -806,7 +837,15 @@ const demoCourses = readDemoJson<DemoCourse[]>(
 const demoUsers = readDemoJson<DemoUser[]>('users.json', fallbackDemoUsers);
 const demoCoupons = readDemoJson<DemoCoupon[]>('coupons.json', []);
 const demoArticles = readDemoJson<DemoArticle[]>('articles.json', []);
-const demoTestimonials = readDemoJson<DemoTestimonial[]>('testimonials.json', []);
+const demoTestimonials = readDemoJson<DemoTestimonial[]>(
+  'testimonials.json',
+  [],
+);
+const demoContactLeads = readDemoJson<DemoContactLead[]>(
+  'contact-leads.json',
+  [],
+);
+const demoOrders = readDemoJson<DemoOrder[]>('orders.json', []);
 const demoNotificationRules = readDemoJson<DemoNotificationRule[]>(
   'notification-rules.json',
   [],
@@ -822,6 +861,11 @@ const demoClassSessions = readDemoJson<DemoClassSession[]>(
   [],
 );
 const demoAppSettings = readDemoJson<DemoAppSetting[]>('settings.json', []);
+const legacyDemoCourseSlugs = [
+  'ayurveda-nutrition-live-practitioner-program',
+  'spoken-english-live-confidence-batch',
+  'full-stack-web-development-mentorship',
+];
 
 const demoFaqs = (courseTitle: string) => [
   {
@@ -832,12 +876,12 @@ const demoFaqs = (courseTitle: string) => [
   {
     question: 'Will I get a certificate after completion?',
     answer:
-      'Yes. Certification unlocks after the required progress, attendance when applicable, and final exam are completed.',
+      'Yes. Certification unlocks after all required lessons are completed.',
   },
   {
     question: 'Can I access this on mobile?',
     answer:
-      'You can browse course details and dashboard updates on mobile. For coding practice and live classes, a laptop or desktop is recommended.',
+      'You can browse course details and dashboard updates on mobile. For coding practice, a laptop or desktop is recommended.',
   },
 ];
 
@@ -900,11 +944,12 @@ const createDemoExam = (courseTitle: string) => ({
     },
     {
       id: createId('q3'),
-      prompt: 'True or False: Certification can be unlocked without meeting course requirements.',
+      prompt:
+        'True or False: Certification can be unlocked without meeting course requirements.',
       type: 'true_false' as const,
       points: 2,
       explanation:
-        'Certification requires the configured learning, attendance, and exam requirements.',
+        'Certification requires the configured learning progress requirements.',
       acceptedAnswers: [],
       options: [
         { id: createId('q3o1'), text: 'True', isCorrect: false },
@@ -929,9 +974,17 @@ const createDemoExam = (courseTitle: string) => ({
         'Learners should study, revise, attempt the exam, and then unlock the certificate.',
       acceptedAnswers: [],
       options: [
-        { id: createId('q5o1'), text: 'Complete learning modules', isCorrect: false },
+        {
+          id: createId('q5o1'),
+          text: 'Complete learning modules',
+          isCorrect: false,
+        },
         { id: createId('q5o2'), text: 'Revise key concepts', isCorrect: false },
-        { id: createId('q5o3'), text: 'Attempt final assessment', isCorrect: false },
+        {
+          id: createId('q5o3'),
+          text: 'Attempt final assessment',
+          isCorrect: false,
+        },
         { id: createId('q5o4'), text: 'Unlock certificate', isCorrect: false },
       ],
     },
@@ -943,7 +996,9 @@ async function getRole(dataSource: DataSource, name: string) {
   const role = await roleRepository.findOne({ where: { name } });
 
   if (!role) {
-    throw new Error(`Role "${name}" is missing. Run role seed before demo data.`);
+    throw new Error(
+      `Role "${name}" is missing. Run role seed before demo data.`,
+    );
   }
 
   return role;
@@ -1015,7 +1070,7 @@ async function upsertLearnerProfile(
 
   profile.headline = headline;
   profile.bio =
-    'Demo learner profile used for marketplace screenshots and testing.';
+    'Demo learner profile used for starter kit screenshots and testing.';
   profile.location = 'Bengaluru, India';
   profile.isPublic = true;
   profile.showCourses = true;
@@ -1055,25 +1110,19 @@ async function upsertFacultyProfile(
 
 async function seedDemoUsers(dataSource: DataSource) {
   const adminRole = await getRole(dataSource, 'admin');
-  const facultyRole = await getRole(dataSource, 'faculty');
   const studentRole = await getRole(dataSource, 'student');
   const roleMap = {
     admin: adminRole,
-    faculty: facultyRole,
     student: studentRole,
   };
 
   const seededUsers: User[] = [];
 
-  for (const demoUser of demoUsers) {
+  for (const demoUser of demoUsers.filter((user) => user.role !== 'faculty')) {
     const user = await getDemoUser(dataSource, {
       ...demoUser,
-      role: roleMap[demoUser.role],
+      role: roleMap[demoUser.role as 'admin' | 'student'],
     });
-
-    if (demoUser.facultyProfile) {
-      await upsertFacultyProfile(dataSource, user, demoUser.facultyProfile);
-    }
 
     if (demoUser.role === 'student') {
       await upsertLearnerProfile(
@@ -1091,9 +1140,7 @@ async function seedDemoUsers(dataSource: DataSource) {
       seededUsers.find((user) =>
         user.roles?.some((role) => role.name === 'admin'),
       ) || seededUsers[0],
-    facultyUsers: seededUsers.filter((user) =>
-      user.roles?.some((role) => role.name === 'faculty'),
-    ),
+    facultyUsers: [],
     learnerUsers: seededUsers.filter((user) =>
       user.roles?.some((role) => role.name === 'student'),
     ),
@@ -1124,7 +1171,10 @@ async function getCategory(
   createdBy: User,
 ) {
   const categoryRepository = dataSource.getRepository(Category);
-  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
   const existingCategory = await categoryRepository.findOne({
     where: { slug, type: CategoryType.COURSE },
   });
@@ -1144,7 +1194,10 @@ async function getCategory(
 
 async function getTag(dataSource: DataSource, name: string, createdBy: User) {
   const tagRepository = dataSource.getRepository(Tag);
-  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
   const existingTag = await tagRepository.findOne({ where: { slug } });
 
   if (existingTag) return existingTag;
@@ -1160,7 +1213,10 @@ async function getTag(dataSource: DataSource, name: string, createdBy: User) {
 }
 
 const toSlug = (value: string) =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
 function dateOnlyFromOffset(offsetDays: number) {
   const date = new Date();
@@ -1195,7 +1251,8 @@ async function seedDemoCoupons(dataSource: DataSource) {
     const existingCoupon = await couponRepository.findOne({
       where: { code: demoCoupon.code },
     });
-    const coupon = existingCoupon || couponRepository.create({ code: demoCoupon.code });
+    const coupon =
+      existingCoupon || couponRepository.create({ code: demoCoupon.code });
 
     coupon.type = demoCoupon.type;
     coupon.value = demoCoupon.value;
@@ -1207,9 +1264,134 @@ async function seedDemoCoupons(dataSource: DataSource) {
     coupon.perUserLimit = demoCoupon.perUserLimit || 1;
     coupon.isAutoApply = Boolean(demoCoupon.isAutoApply);
     coupon.applicableCourseIds = applicableCourses.map((course) => course.id);
+    coupon.usedCount = 0;
     coupon.meta = { demo: true };
 
     await couponRepository.save(coupon);
+  }
+}
+
+async function seedDemoOrders(dataSource: DataSource) {
+  const orderRepository = dataSource.getRepository(Order);
+  const enrollmentRepository = dataSource.getRepository(Enrollment);
+  const couponRepository = dataSource.getRepository(Coupon);
+  const couponUsageRepository = dataSource.getRepository(CouponUsage);
+  const courseRepository = dataSource.getRepository(Course);
+  const userRepository = dataSource.getRepository(User);
+
+  const existingDemoOrders = await orderRepository.find({
+    where: { orderId: In(demoOrders.map((order) => order.reference)) },
+  });
+
+  if (existingDemoOrders.length) {
+    await enrollmentRepository.delete({
+      order: { id: In(existingDemoOrders.map((order) => order.id)) },
+    });
+    await couponUsageRepository.delete({
+      order: { id: In(existingDemoOrders.map((order) => order.id)) },
+    });
+    await orderRepository.remove(existingDemoOrders);
+  }
+
+  for (const demoOrder of demoOrders) {
+    const user = await userRepository.findOne({
+      where: { email: demoOrder.userEmail },
+    });
+    const courses = await courseRepository.find({
+      where: demoOrder.courseSlugs.map((slug) => ({ slug })),
+    });
+
+    if (!user || courses.length !== demoOrder.courseSlugs.length) continue;
+
+    const subTotal = courses.reduce(
+      (sum, course) => sum + Number(course.priceInr),
+      0,
+    );
+    const discount = demoOrder.discount || 0;
+    const totalAmount = Math.max(0, subTotal - discount);
+    const tax = Math.round((totalAmount - totalAmount / 1.18) * 100) / 100;
+    const paidAt = new Date();
+    paidAt.setDate(paidAt.getDate() + (demoOrder.paidOffsetDays || 0));
+    const createdAt = new Date();
+    createdAt.setDate(createdAt.getDate() + (demoOrder.createdOffsetDays || 0));
+
+    const orderEntity = orderRepository.create({
+      user,
+      subTotal,
+      discount,
+      autoDiscount: 0,
+      manualDiscount: discount,
+      manualCouponCode: demoOrder.manualCouponCode || null,
+      autoCouponCode: null,
+      tax,
+      totalAmount,
+      currency: 'INR',
+      paymentId:
+        demoOrder.status === OrderStatus.PAID
+          ? `pay_demo_${demoOrder.reference.toLowerCase()}`
+          : null,
+      orderId: demoOrder.reference,
+      paymentAttempts: demoOrder.status === OrderStatus.PENDING ? 0 : 1,
+      paidAt: demoOrder.status === OrderStatus.PAID ? paidAt : null,
+      failedAt: demoOrder.status === OrderStatus.FAILED ? createdAt : null,
+      paymentMethod: demoOrder.paymentMethod || 'RAZORPAY',
+      paymentMode: demoOrder.paymentMode || 'card',
+      status: demoOrder.status,
+      billingAddress: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber || '+919900000000',
+        address: 'Demo Academy Street',
+        country: 'India',
+        state: 'Karnataka',
+        city: 'Bengaluru',
+        pincode: '560001',
+      },
+      createdAt,
+      updatedAt: createdAt,
+      items: courses.map((course) => ({
+        course,
+        price: Number(course.priceInr),
+        quantity: 1,
+      })),
+    } as any);
+    const order = await orderRepository.save(orderEntity);
+
+    if (demoOrder.status === OrderStatus.PAID) {
+      await enrollmentRepository.save(
+        courses.map(
+          (course, index) =>
+            ({
+              user,
+              course,
+              order,
+              isActive: true,
+              progress: index === 0 ? 42 : 18,
+              enrolledAt: paidAt,
+            }) as any,
+        ),
+      );
+    }
+
+    if (demoOrder.manualCouponCode) {
+      const coupon = await couponRepository.findOne({
+        where: { code: demoOrder.manualCouponCode },
+      });
+
+      if (coupon) {
+        await couponUsageRepository.save(
+          couponUsageRepository.create({
+            coupon,
+            user,
+            order,
+            usedAt: paidAt,
+          } as any),
+        );
+        coupon.usedCount += 1;
+        await couponRepository.save(coupon);
+      }
+    }
   }
 }
 
@@ -1300,6 +1482,35 @@ async function seedDemoTestimonials(dataSource: DataSource) {
     testimonial.courses = courses;
 
     await testimonialRepository.save(testimonial);
+  }
+}
+
+async function seedDemoContactLeads(dataSource: DataSource) {
+  const leadRepository = dataSource.getRepository(ContactLead);
+
+  for (const demoLead of demoContactLeads) {
+    const email = demoLead.email.toLowerCase();
+    const existingLead = await leadRepository.findOne({
+      where: { email },
+    });
+    const lead =
+      existingLead ||
+      leadRepository.create({
+        email,
+      });
+
+    lead.fullName = demoLead.fullName;
+    lead.email = email;
+    lead.phoneNumber = demoLead.phoneNumber || null;
+    lead.subject = demoLead.subject || null;
+    lead.message = demoLead.message;
+    lead.status = demoLead.status || ContactLeadStatus.NEW;
+    lead.source = demoLead.source || 'website';
+    lead.pageUrl = demoLead.pageUrl || '/contact';
+    lead.adminNotes = demoLead.adminNotes || null;
+    lead.user = null;
+
+    await leadRepository.save(lead);
   }
 }
 
@@ -1480,7 +1691,8 @@ async function seedDemoLiveOperations(dataSource: DataSource) {
     session.endsAt = endsAt;
     session.timezone = demoSession.timezone || 'Asia/Kolkata';
     session.status = demoSession.status;
-    session.reminderBeforeMinutes = demoSession.reminderOffsetsMinutes?.[0] || 60;
+    session.reminderBeforeMinutes =
+      demoSession.reminderOffsetsMinutes?.[0] || 60;
     session.reminderOffsetsMinutes = demoSession.reminderOffsetsMinutes || [60];
     session.bbbRecord = Boolean(demoSession.bbbRecord);
     session.allowRecordingAccess = Boolean(demoSession.allowRecordingAccess);
@@ -1516,11 +1728,11 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
   const lectureRepository = dataSource.getRepository(Lecture);
   const seededDemoUsers = await seedDemoUsers(dataSource);
   const systemUser = seededDemoUsers.admin;
-  const facultyUsers = seededDemoUsers.facultyUsers.length
-    ? seededDemoUsers.facultyUsers
-    : [systemUser];
+  const starterDemoCourses = demoCourses.filter(
+    (course) => course.mode === CourseDeliveryMode.SelfLearning,
+  );
 
-  for (const demoCourse of demoCourses) {
+  for (const demoCourse of starterDemoCourses) {
     const image = await getUpload(
       dataSource,
       demoCourse.imagePath,
@@ -1565,14 +1777,12 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
     course.priceInr = demoCourse.priceInr;
     course.priceUsd = demoCourse.priceUsd;
     course.duration = demoCourse.duration;
-    course.mode = demoCourse.mode;
-    course.monthlyLiveClassLimit = demoCourse.monthlyLiveClassLimit ?? null;
-    course.liveClassAttendanceRequirementType =
-      demoCourse.attendanceType ?? 'percentage';
-    course.liveClassAttendanceRequirementValue =
-      demoCourse.attendanceValue ?? 75;
+    course.mode = CourseDeliveryMode.SelfLearning;
+    course.monthlyLiveClassLimit = null;
+    course.liveClassAttendanceRequirementType = 'percentage';
+    course.liveClassAttendanceRequirementValue = null;
     course.certificate = demoCourse.certificate;
-    course.exams = demoCourse.exams;
+    course.exams = 'No assessment required for starter demo courses';
     course.experienceLevel = demoCourse.experienceLevel;
     course.studyMaterial = demoCourse.studyMaterial;
     course.additionalBook = demoCourse.additionalBook;
@@ -1581,13 +1791,10 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
     course.eligibilityRequirements = demoCourse.eligibilityRequirements;
     course.disclaimer = demoCourse.disclaimer;
     course.faqs = demoFaqs(demoCourse.title);
-    course.exam = createDemoExam(demoCourse.title);
+    course.exam = null;
     course.categories = categories;
     course.tags = tags;
-    course.faculties =
-      demoCourse.mode === CourseDeliveryMode.SelfLearning
-        ? []
-        : [facultyUsers[demoCourses.indexOf(demoCourse) % facultyUsers.length]];
+    course.faculties = [];
     course.updatedBy = systemUser;
 
     const savedCourse = await courseRepository.save(course);
@@ -1621,14 +1828,27 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
     }
   }
 
+  await courseRepository.update(
+    {
+      slug: In(
+        legacyDemoCourseSlugs.filter(
+          (slug) => !starterDemoCourses.some((course) => course.slug === slug),
+        ),
+      ),
+    },
+    {
+      isPublished: false,
+    },
+  );
+
   await seedDemoCoupons(dataSource);
+  await seedDemoOrders(dataSource);
   await seedDemoArticles(dataSource, systemUser);
   await seedDemoTestimonials(dataSource);
-  await seedDemoEngagement(dataSource, systemUser);
-  await seedDemoLiveOperations(dataSource);
+  await seedDemoContactLeads(dataSource);
   await seedDemoSettings(dataSource);
 
   console.log(
-    `✅ Production demo content seeded (${demoCourses.length} courses, ${demoCoupons.length} coupons, ${demoArticles.length} articles)`,
+    `✅ Starter demo content seeded (${starterDemoCourses.length} courses, ${demoCoupons.length} coupons, ${demoOrders.length} orders, ${demoArticles.length} articles, ${demoTestimonials.length} testimonials, ${demoContactLeads.length} contact leads)`,
   );
 }

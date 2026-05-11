@@ -18,7 +18,7 @@ import { UploadsService } from 'src/uploads/providers/uploads.service';
 import { CategoriesService } from 'src/categories/providers/categories.service';
 import { TagsService } from 'src/tags/providers/tags.service';
 import { getCoursePublishErrors } from '../utils/course-publish.validator';
-import { UsersService } from 'src/users/providers/users.service';
+import { CourseDeliveryMode } from '../constants/course-delivery-mode';
 
 @Injectable()
 export class UpdateCourseProvider {
@@ -50,11 +50,6 @@ export class UpdateCourseProvider {
      */
     private readonly tagsService: TagsService,
 
-    /**
-     * Inject usersService
-     */
-
-    private readonly usersService: UsersService,
   ) {}
   public async update(
     id: number,
@@ -130,18 +125,6 @@ export class UpdateCourseProvider {
         course.imageAlt = patchCourseDto.imageAlt;
       }
 
-      if (patchCourseDto.facultyIds !== undefined) {
-        const faculties = await this.usersService.getFacultiesByIds(
-          patchCourseDto.facultyIds,
-        );
-
-        if (faculties.length !== patchCourseDto.facultyIds.length) {
-          throw new BadRequestException('Some users are not faculty');
-        }
-
-        course.faculties = faculties;
-      }
-
       const {
         imageId,
         videoId,
@@ -154,6 +137,13 @@ export class UpdateCourseProvider {
       } = patchCourseDto;
 
       Object.assign(course, rest);
+      course.mode = CourseDeliveryMode.SelfLearning;
+      course.monthlyLiveClassLimit = null;
+      course.liveClassAttendanceRequirementType = 'none';
+      course.liveClassAttendanceRequirementValue = null;
+      course.exams = 'No assessment required for starter self-learning courses';
+      course.exam = null;
+      course.faculties = [];
       course.slug = finalSlug;
       course.updatedBy = { id: user.sub } as User;
 

@@ -9,7 +9,6 @@ import { CouponUsageCard } from "./coupon-usage-card";
 import { DashboardHero } from "./dashboard-hero";
 import { DashboardSummaryCards } from "./dashboard-summary-cards";
 import { DiscountVsRevenueCard } from "./discount-vs-revenue-card";
-import { ExamInsightsCard } from "./exam-insights-card";
 import { LearningOpsCard } from "./learning-ops-card";
 import { OrderStatusCard } from "./order-status-card";
 import { RecentOrdersCard } from "./recent-orders-card";
@@ -59,7 +58,6 @@ export function AdminDashboard({
         <RecentOrdersCard data={data.recentOrders} />
       </section>
 
-      <ExamInsightsCard data={data} />
     </div>
   );
 }

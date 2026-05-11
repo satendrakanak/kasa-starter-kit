@@ -3,8 +3,8 @@ export const steps = [
   {
     icon: BookOpen,
     eyebrow: "Step 01",
-    title: "Choose the right program",
-    desc: "Browse wellness, Ayurveda, and nutrition courses that match your level and long-term goals.",
+    title: "Browse courses",
+    desc: "Explore free and paid courses with chapters, video lessons, and downloadable resources.",
   },
   {
     icon: UserPlus,
@@ -15,14 +15,14 @@ export const steps = [
   {
     icon: Video,
     eyebrow: "Step 03",
-    title: "Start learning with structure",
-    desc: "Watch lessons and move chapter by chapter with a practical learning path.",
+    title: "Continue learning",
+    desc: "Resume videos, complete lessons, and keep progress synced in the learner dashboard.",
   },
   {
     icon: Brain,
     eyebrow: "Step 04",
-    title: "Practice and apply concepts",
-    desc: "Reinforce learning through notes, assignments, and repeat viewing.",
+    title: "Track completion",
+    desc: "Move through sections with clear completion states and course-level progress.",
   },
   {
     icon: Award,

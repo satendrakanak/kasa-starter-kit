@@ -10,8 +10,6 @@ const SKIP_PREFIXES = [
   "/_next",
   "/assets",
   "/favicon",
-  "/manifest",
-  "/sw.js",
 ];
 
 export function InstallationRedirect() {

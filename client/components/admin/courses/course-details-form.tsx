@@ -27,7 +27,6 @@ export const CourseDetailsForm = ({ course }: CourseDetailsFormProps) => {
       experienceLevel: course.experienceLevel ?? "",
       language: course.language ?? "",
       certificate: course.certificate ?? "",
-      exams: course.exams ?? "",
       studyMaterial: course.studyMaterial ?? "",
       additionalBook: course.additionalBook ?? "",
     },
@@ -109,19 +108,6 @@ export const CourseDetailsForm = ({ course }: CourseDetailsFormProps) => {
               <Input
                 {...field}
                 placeholder="Certificate"
-                className="h-11 w-full rounded-xl px-3 text-sm"
-              />
-            )}
-          />
-
-          {/* Exams */}
-          <Controller
-            name="exams"
-            control={form.control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Exams"
                 className="h-11 w-full rounded-xl px-3 text-sm"
               />
             )}

@@ -2,6 +2,8 @@ import { EmailTemplatesDashboardLoader } from "@/components/admin/email-template
 import { emailTemplateServerService } from "@/services/email-templates/email-template.server";
 import { EmailTemplate } from "@/types/email-template";
 
+export const dynamic = "force-dynamic";
+
 export default async function EmailTemplatesPage() {
   let templates: EmailTemplate[] = [];
 

@@ -2,20 +2,11 @@
   {
     "key": "site_identity_settings",
     "valueJson": {
-      "siteName": "Code With Kasa",
-      "shortName": "CWK",
-      "supportEmail": "support@codewithkasa.demo",
+      "siteName": "kasa-starter-kit",
+      "shortName": "KSK",
+      "supportEmail": "support@kasa-starter-kit.demo",
       "supportPhone": "+91-99000-00000",
-      "tagline": "Practical courses, live classes, and certificates in one platform."
-    }
-  },
-  {
-    "key": "pwa_settings",
-    "valueJson": {
-      "name": "Code With Kasa",
-      "shortName": "CWK",
-      "themeColor": "#0f172a",
-      "backgroundColor": "#ffffff"
+      "tagline": "Practical courses, paid enrollments, progress tracking, and certificates in one platform."
     }
   }
 ]

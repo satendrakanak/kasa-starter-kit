@@ -7,7 +7,6 @@ import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Palette } from "lucide-react";
-import { PwaInstallMenuButton } from "@/components/pwa/pwa-install-menu-button";
 
 export const MobileMenuItems = () => {
   return (
@@ -40,7 +39,6 @@ export const MobileMenuItems = () => {
       </div>
 
       <div className="mt-auto space-y-3 border-t border-border/70 p-5">
-        <PwaInstallMenuButton />
         <Button
           asChild
           className="h-11 w-full rounded-full bg-[var(--brand-600)] text-white hover:bg-[var(--brand-700)]"

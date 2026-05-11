@@ -12,7 +12,7 @@ export type RuntimeDatabaseConfig = {
 };
 
 export const runtimeDatabaseConfigPath =
-  process.env.KASA_RUNTIME_DATABASE_CONFIG || '/app/.kasa/database.json';
+  process.env.KASA_STARTER_KIT_RUNTIME_DATABASE_CONFIG || '/app/.kasa-starter-kit/database.json';
 
 export function readRuntimeDatabaseConfig(): RuntimeDatabaseConfig | null {
   try {

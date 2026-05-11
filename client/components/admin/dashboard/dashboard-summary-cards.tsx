@@ -3,7 +3,6 @@
 import {
   BadgeIndianRupee,
   BookOpen,
-  ClipboardCheck,
   GraduationCap,
   TicketPercent,
   Users,
@@ -18,10 +17,7 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { AdminDashboardData } from "@/types/admin-dashboard";
-import {
-  compactNumberFormatter,
-  currencyFormatter,
-} from "./dashboard-utils";
+import { compactNumberFormatter, currencyFormatter } from "./dashboard-utils";
 
 const statCards = (data: AdminDashboardData) => [
   {
@@ -41,7 +37,7 @@ const statCards = (data: AdminDashboardData) => [
   {
     title: "Published Courses",
     value: `${data.summary.publishedCourses}/${data.summary.totalCourses}`,
-    description: "Live courses visible to learners",
+    description: "Self-learning courses visible to learners",
     icon: BookOpen,
     tone: "from-sky-500/16 via-sky-50 to-white dark:from-sky-500/16 dark:via-[rgba(255,255,255,0.05)] dark:to-[rgba(17,27,46,0.98)]",
   },
@@ -53,26 +49,15 @@ const statCards = (data: AdminDashboardData) => [
     tone: "from-violet-500/16 via-violet-50 to-white dark:from-violet-500/16 dark:via-[rgba(255,255,255,0.05)] dark:to-[rgba(17,27,46,0.98)]",
   },
   {
-    title: "Exam Attempts",
-    value: compactNumberFormatter.format(data.summary.totalExamAttempts),
-    description: `${data.summary.passedExamAttempts} passed attempts with ${data.examOverview.passRate}% pass rate`,
-    icon: ClipboardCheck,
-    tone: "from-amber-500/16 via-amber-50 to-white dark:from-amber-500/16 dark:via-[rgba(255,255,255,0.05)] dark:to-[rgba(17,27,46,0.98)]",
-  },
-  {
     title: "Certificates Issued",
     value: compactNumberFormatter.format(data.summary.certificatesIssued),
-    description: `${data.summary.averageExamScore}% average exam score overall`,
+    description: "Certificates unlocked after course completion",
     icon: GraduationCap,
     tone: "from-rose-500/16 via-rose-50 to-white dark:from-rose-500/16 dark:via-[rgba(255,255,255,0.05)] dark:to-[rgba(17,27,46,0.98)]",
   },
 ];
 
-export function DashboardSummaryCards({
-  data,
-}: {
-  data: AdminDashboardData;
-}) {
+export function DashboardSummaryCards({ data }: { data: AdminDashboardData }) {
   const stats = statCards(data);
 
   return (
@@ -103,7 +88,9 @@ export function DashboardSummaryCards({
               </div>
             </CardHeader>
             <CardContent className="pt-3">
-              <p className="text-sm text-slate-500 dark:text-slate-300">{item.description}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-300">
+                {item.description}
+              </p>
             </CardContent>
           </Card>
         );

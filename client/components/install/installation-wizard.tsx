@@ -50,9 +50,9 @@ const initialForm: CompleteInstallationPayload = {
     ssl: false,
     rejectUnauthorized: true,
   },
-  siteName: "Kasa Enterprise",
-  siteTagline: "Practical courses, live classes, and certificates in one platform.",
-  supportEmail: "support@kasaenterprise.com",
+  siteName: "kasa-starter-kit",
+  siteTagline: "Sell courses, track learning progress, and issue certificates.",
+  supportEmail: "support@example.com",
   supportPhone: "",
   licenseKey: "",
   adminFirstName: "",
@@ -337,7 +337,7 @@ export function InstallationWizard() {
 
   const waitForRuntimeDatabase = async (payload: DatabaseSetupPayload) => {
     setDatabaseFeedback(
-      "Database saved. Kasa is reconnecting to the selected database...",
+      "Database saved. kasa-starter-kit is reconnecting to the selected database...",
     );
 
     for (let attempt = 0; attempt < 30; attempt += 1) {
@@ -362,7 +362,7 @@ export function InstallationWizard() {
     }
 
     setDatabaseFeedback(
-      "Database saved, but Kasa has not reconnected yet. Run kasa restart dev and refresh this installer.",
+      "Database saved, but kasa-starter-kit has not reconnected yet. Run kasa-starter-kit restart dev and refresh this installer.",
     );
   };
 
@@ -380,7 +380,7 @@ export function InstallationWizard() {
                 )}
               </div>
               <h1 className="mt-6 text-3xl font-semibold">
-                Installing Kasa Enterprise
+                Installing kasa-starter-kit
               </h1>
               <p className="mt-2 text-muted-foreground">
                 Keep this page open while the platform prepares your database,
@@ -491,7 +491,7 @@ export function InstallationWizard() {
           </h1>
           <p className="mt-4 text-muted-foreground">
             Connect the running database, activate the license, create the first
-            admin, and optionally import marketplace-ready demo data.
+            admin, and optionally import clean starter LMS demo data.
           </p>
 
           <div className="mt-8 space-y-3">
@@ -583,7 +583,7 @@ export function InstallationWizard() {
                 </div>
               ) : null}
               <div className="mt-6 rounded-2xl border bg-muted/40 p-4 text-sm text-muted-foreground">
-                This checks the database Kasa is currently running on. You will
+                This checks the database kasa-starter-kit is currently running on. You will
                 choose bundled Docker database or your own PostgreSQL database in
                 the next step.
               </div>
@@ -613,8 +613,8 @@ export function InstallationWizard() {
                         mode: "bundled",
                         host: status?.database.host || "postgres",
                         port: status?.database.port || 5432,
-                        name: status?.database.name || "kasa_enterprise",
-                        user: status?.database.user || "codewithkasa",
+                        name: status?.database.name || "kasa-starter-kit",
+                        user: status?.database.user || "kasa-starter-kit",
                         password: "",
                         ssl: false,
                         rejectUnauthorized: true,
@@ -634,7 +634,7 @@ export function InstallationWizard() {
                     Use bundled Docker database
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">
-                    Best for local testing and quick installs. Kasa manages the
+                    Best for local testing and quick installs. kasa-starter-kit manages the
                     Docker Postgres volume.
                   </span>
                 </button>
@@ -681,7 +681,7 @@ export function InstallationWizard() {
                     Use my own PostgreSQL database
                   </span>
                   <span className="mt-2 block text-sm text-muted-foreground">
-                    Use local Postgres, a private server, or RDS. If Kasa runs
+                    Use local Postgres, a private server, or RDS. If kasa-starter-kit runs
                     in Docker, localhost is translated to host.docker.internal.
                   </span>
                 </button>
@@ -757,7 +757,7 @@ export function InstallationWizard() {
                   <div className="rounded-2xl border bg-muted/40 p-4 text-sm text-muted-foreground">
                     Running through Docker? Your local PostgreSQL is not
                     available as localhost inside the API container. Enter
-                    localhost if you prefer, and Kasa will save it as
+                    localhost if you prefer, and kasa-starter-kit will save it as
                     host.docker.internal for the container runtime.
                   </div>
                 </div>
@@ -773,11 +773,11 @@ export function InstallationWizard() {
               >
                 {databaseRestartRequired
                   ? databaseFeedback ||
-                    "Database selection saved. Kasa is reconnecting to the selected database..."
+                    "Database selection saved. kasa-starter-kit is reconnecting to the selected database..."
                   : databaseMatchesActiveConnection
                   ? "Database connection verified. The installer will create admin, settings, and demo content in this database."
                   : databaseFeedback ||
-                    "Verify and save this database before continuing. External databases must already exist before Kasa can install tables and data."}
+                    "Verify and save this database before continuing. External databases must already exist before kasa-starter-kit can install tables and data."}
               </div>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <Button
@@ -874,7 +874,7 @@ export function InstallationWizard() {
               <SectionTitle
                 icon={KeyRound}
                 title="Activate license"
-                description="Activation is checked before admin setup and demo import. This keeps installation gated without interrupting the first screen."
+                description="Activation is required before admin setup and demo import so the starter kit stays sellable."
               />
               <div className="mt-6 grid gap-4">
                 <Field label="License key">
@@ -885,7 +885,7 @@ export function InstallationWizard() {
                       setLicenseFingerprint(null);
                       setLicenseSummary(null);
                     }}
-                    placeholder="Enter the license key from Kasa Licence Portal"
+                    placeholder="Enter the license key from kasa-starter-kit Licence Portal"
                   />
                 </Field>
                 {licenseFingerprint ? (
@@ -988,11 +988,11 @@ export function InstallationWizard() {
                   />
                   <span>
                     <span className="block text-sm font-semibold">
-                      Import marketplace demo data?
+                      Import starter demo data?
                     </span>
                     <span className="text-sm text-muted-foreground">
-                      Adds demo courses, batches, class sessions, coupons,
-                      articles, testimonials, notifications, and schedulers.
+                      Adds sample courses, sections, lessons, coupons, orders,
+                      students, certificates, and dashboard-ready data.
                     </span>
                   </span>
                 </label>
@@ -1032,14 +1032,14 @@ function InstallShell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto mb-8 flex max-w-6xl items-center justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">
-            Kasa Enterprise Installer
+            kasa-starter-kit Installer
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
             Product setup and activation
           </p>
         </div>
         <div className="rounded-full border bg-card px-4 py-2 text-sm font-medium">
-          Kasa Enterprise
+          kasa-starter-kit
         </div>
       </div>
       {children}

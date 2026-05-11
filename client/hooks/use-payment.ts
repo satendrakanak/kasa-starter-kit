@@ -96,7 +96,7 @@ export const usePayment = () => {
       amount,
       currency,
       order_id: razorpayOrderId,
-      name: "Code With Kasa",
+      name: "kasa-starter-kit",
       description: "Course payment",
 
       handler: async (response: RazorpaySuccessResponse) => {

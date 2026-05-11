@@ -1,0 +1,84 @@
+#!/usr/bin/env sh
+set -eu
+
+SCRIPT_PATH="$0"
+while [ -L "$SCRIPT_PATH" ]; do
+  LINK_TARGET="$(readlink "$SCRIPT_PATH")"
+  case "$LINK_TARGET" in
+    /*) SCRIPT_PATH="$LINK_TARGET" ;;
+    *) SCRIPT_PATH="$(dirname -- "$SCRIPT_PATH")/$LINK_TARGET" ;;
+  esac
+done
+
+ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$SCRIPT_PATH")" && pwd)"
+cd "$ROOT_DIR"
+CLI_NAME="${KASA_CLI_NAME:-kasa-starter-kit}"
+
+usage() {
+  cat <<USAGE
+kasa-starter-kit CLI
+
+Usage:
+  $CLI_NAME install dev [-r|--reset]
+  $CLI_NAME install app
+  $CLI_NAME start dev
+  $CLI_NAME start app
+  $CLI_NAME reset dev
+  $CLI_NAME edition
+  $CLI_NAME stop
+  $CLI_NAME restart dev
+  $CLI_NAME restart app
+
+Examples:
+  $CLI_NAME install dev
+  $CLI_NAME install dev -r
+  $CLI_NAME install app
+  $CLI_NAME start dev
+  $CLI_NAME start app
+  $CLI_NAME edition
+  $CLI_NAME stop
+USAGE
+}
+
+command="${1:-}"
+target="${2:-}"
+flag="${3:-}"
+
+case "$command:$target" in
+  install:dev)
+    if [ "$flag" = "-r" ] || [ "$flag" = "--reset" ]; then
+      ./scripts/reset-dev.sh
+    fi
+    ./scripts/install-dev.sh
+    ;;
+  install:app)
+    ./scripts/install-app.sh
+    ;;
+  start:dev)
+    ./scripts/start-dev.sh
+    ;;
+  start:app)
+    ./scripts/start-app.sh
+    ;;
+  reset:dev)
+    ./scripts/reset-dev.sh
+    ;;
+  edition:)
+    echo "kasa-starter-kit"
+    ;;
+  stop:)
+    ./scripts/stop.sh
+    ;;
+  restart:dev)
+    ./scripts/stop-dev.sh
+    ./scripts/start-dev.sh
+    ;;
+  restart:app)
+    ./scripts/stop-app.sh
+    ./scripts/start-app.sh
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+esac

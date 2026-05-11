@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Code With Kasa",
-  title: "Code With Kasa | Practical Coding Courses",
+  name: "kasa-starter-kit",
+  title: "kasa-starter-kit | Practical Coding Courses",
   description:
     "Practical coding courses, live classes, exams, certificates, and career-focused learning.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",

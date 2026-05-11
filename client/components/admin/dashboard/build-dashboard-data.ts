@@ -1,7 +1,6 @@
 import { AdminDashboardData } from "@/types/admin-dashboard";
 import { Coupon } from "@/types/coupon";
 import { Course } from "@/types/course";
-import { AdminExamOverview } from "@/types/exam";
 import { Order, OrderStatus } from "@/types/order";
 import { User } from "@/types/user";
 
@@ -26,7 +25,7 @@ export function buildDashboardData(
   users: User[],
   courses: Course[],
   coupons: Coupon[],
-  examOverview: AdminExamOverview,
+  certificatesIssued: number,
 ): AdminDashboardData {
   const paidOrders = orders.filter(
     (order) => order.status === OrderStatus.PAID,
@@ -133,18 +132,10 @@ export function buildDashboardData(
       averageOrderValue: paidOrders.length
         ? totalRevenue / paidOrders.length
         : 0,
-      totalExamAttempts: examOverview.totalAttempts,
-      passedExamAttempts: examOverview.passedAttempts,
-      certificatesIssued: examOverview.certificatesIssued,
-      averageExamScore: examOverview.averageScore,
+      certificatesIssued,
     },
     learningOps: {
-      selfLearningCourses: courses.filter(
-        (course) => !course.mode || course.mode === "self_learning",
-      ).length,
-      facultyLedCourses: courses.filter((course) => course.mode === "faculty_led")
-        .length,
-      hybridCourses: courses.filter((course) => course.mode === "hybrid").length,
+      selfLearningCourses: courses.length,
       publishedCourses: courses.filter((course) => course.isPublished).length,
       draftCourses: courses.filter((course) => !course.isPublished).length,
     },
@@ -192,11 +183,5 @@ export function buildDashboardData(
         status: order.status,
         createdAt: order.createdAt,
       })),
-    examOverview: {
-      uniqueLearners: examOverview.uniqueLearners,
-      passRate: examOverview.passRate,
-      recentAttempts: examOverview.recentAttempts,
-      topCourses: examOverview.topCourses,
-    },
   };
 }

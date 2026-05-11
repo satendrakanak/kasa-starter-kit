@@ -6,16 +6,6 @@ import { getSession } from "@/lib/auth";
 import { getErrorMessage } from "@/lib/error-handler";
 import { userServerService } from "@/services/users/user.server";
 import { Course } from "@/types/course";
-import { facultyWorkspaceServer } from "@/services/faculty/faculty-workspace.server";
-import type { FacultyClassSession } from "@/types/faculty-workspace";
-import { UpcomingClasses } from "@/components/profile/upcoming-classes";
-import { getLearnerUpcomingSessions } from "@/lib/learner-class-sessions";
-import {
-  hasLiveClasses,
-  hasRecordedLearning,
-  isFacultyLedCourse,
-  isSelfLearningCourse,
-} from "@/lib/course-delivery";
 
 export default async function MyCoursesPage() {
   const session = await getSession();
@@ -23,31 +13,15 @@ export default async function MyCoursesPage() {
   if (!session) return null;
 
   let enrolledCourses: Course[] = [];
-  let upcomingClasses: FacultyClassSession[] = [];
 
   try {
-    const [coursesResponse, classesResponse] = await Promise.all([
-      userServerService.getEnrolledCourses(session.id),
-      facultyWorkspaceServer.getMySessions(),
-    ]);
-    enrolledCourses = coursesResponse.data;
-    upcomingClasses = getLearnerUpcomingSessions(
-      classesResponse,
-      new Date().toISOString(),
+    const coursesResponse = await userServerService.getEnrolledCourses(
+      session.id,
     );
+    enrolledCourses = coursesResponse.data;
   } catch (error: unknown) {
     throw new Error(getErrorMessage(error));
   }
-
-  const selfLearningCourses = enrolledCourses.filter((course) =>
-    isSelfLearningCourse(course),
-  );
-  const facultyLedCourses = enrolledCourses.filter((course) =>
-    isFacultyLedCourse(course),
-  );
-  const hybridCourses = enrolledCourses.filter(
-    (course) => hasRecordedLearning(course) && hasLiveClasses(course),
-  );
 
   return (
     <section className="min-h-[60vh] space-y-6">
@@ -81,26 +55,27 @@ export default async function MyCoursesPage() {
       {enrolledCourses.length > 0 ? (
         <div className="grid gap-3 md:grid-cols-3">
           <LearningModeStat
-            label="Self learning"
-            value={selfLearningCourses.length}
+            label="Self-learning"
+            value={enrolledCourses.length}
             description="Recorded lectures and self-paced progress."
           />
           <LearningModeStat
-            label="Faculty led"
-            value={facultyLedCourses.length}
-            description="Live batches with classroom schedule."
+            label="In progress"
+            value={
+              enrolledCourses.filter(
+                (course) => (course.progress?.progress || 0) > 0,
+              ).length
+            }
+            description="Courses where learning has started."
           />
           <LearningModeStat
-            label="Hybrid"
-            value={hybridCourses.length}
-            description="Recorded learning plus live faculty sessions."
+            label="Completed"
+            value={
+              enrolledCourses.filter((course) => course.progress?.isCompleted)
+                .length
+            }
+            description="Courses ready for certificates."
           />
-        </div>
-      ) : null}
-
-      {upcomingClasses.length > 0 ? (
-        <div className="academy-card p-5 md:p-6">
-          <UpcomingClasses sessions={upcomingClasses} />
         </div>
       ) : null}
 

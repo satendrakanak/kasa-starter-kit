@@ -8,7 +8,7 @@ import { User } from "@/types/user";
 export const metadata = buildMetadata({
   title: "Our Faculty",
   description:
-    "Meet experienced Code With Kasa faculty across programming, software development, projects, and career-focused learning.",
+    "Meet experienced kasa-starter-kit faculty across programming, software development, projects, and career-focused learning.",
   path: "/our-faculty",
 });
 

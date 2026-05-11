@@ -9,7 +9,7 @@ import { Course } from "@/types/course";
 export const metadata = buildMetadata({
   title: "Courses",
   description:
-    "Browse Code With Kasa courses across programming, projects, live classes, and professional learning.",
+    "Browse kasa-starter-kit courses across programming, projects, live classes, and professional learning.",
   path: "/courses",
 });
 

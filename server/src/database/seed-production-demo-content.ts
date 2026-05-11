@@ -8,9 +8,9 @@ const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DATABASE_HOST || 'localhost',
   port: Number(process.env.DATABASE_PORT || 5432),
-  username: process.env.DATABASE_USER || 'codewithkasa',
+  username: process.env.DATABASE_USER || 'kasa-starter-kit',
   password: process.env.DATABASE_PASSWORD || '',
-  database: process.env.DATABASE_NAME || 'kasa_enterprise',
+  database: process.env.DATABASE_NAME || 'kasa-starter-kit',
   entities: [join(__dirname, '..', '**', '*.entity.{ts,js}')],
   synchronize: false,
 });

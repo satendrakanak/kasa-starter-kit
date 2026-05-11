@@ -785,8 +785,8 @@ const invoiceTemplate = `
         <h1>CODE WITH KASA</h1>
         <p>
           Online Learning Platform<br/>
-          Email: support@codewithkasa.com<br/>
-          Website: www.codewithkasa.com
+          Email: support@kasa-starter-kit.example<br/>
+          Website: www.kasa-starter-kit.example
         </p>
       </div>
 
@@ -877,14 +877,14 @@ const invoiceTemplate = `
       <div>
         1. This is a computer-generated invoice and does not require a physical signature.<br/>
         2. Course access will be provided as per the academy policy after successful payment.<br/>
-        3. Fees once paid are subject to the refund and cancellation policy of Code With Kasa.<br/>
-        4. For billing support, contact support@codewithkasa.com.
+        3. Fees once paid are subject to the refund and cancellation policy of kasa-starter-kit.<br/>
+        4. For billing support, contact support@kasa-starter-kit.example.
       </div>
     </div>
 
     <div class="footer">
       <div class="muted">
-        Thank you for choosing Code With Kasa.
+        Thank you for choosing kasa-starter-kit.
       </div>
 
       <div class="signature">

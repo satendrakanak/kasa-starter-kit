@@ -337,12 +337,10 @@ export default function LectureDrawer({
               {/* LEFT */}
               <div className="min-w-0">
                 <DrawerTitle className="font-semibold text-slate-950 dark:text-white">
-                  {isTemp ? "Add New" : "Edit"} {isFacultyLed ? "Topic" : "Lecture"}
+                  {isTemp ? "Add New" : "Edit"} Lecture
                 </DrawerTitle>
                 <DrawerDescription className="dark:text-slate-300">
-                  {isFacultyLed
-                    ? "Manage curriculum topic details. Videos are not used for faculty-led courses."
-                    : "Manage chapters lecture details"}
+                  Manage chapter lecture details, videos, and attachments.
                 </DrawerDescription>
               </div>
 
@@ -354,9 +352,7 @@ export default function LectureDrawer({
                   render={({ field }) => (
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-slate-700 dark:text-slate-200">
-                        {isFacultyLed
-                          ? "Mark this topic as preview?"
-                          : "You want to make this lecture free?"}
+                        Make this lecture free preview?
                       </span>
                       <Switch
                         checked={field.value}

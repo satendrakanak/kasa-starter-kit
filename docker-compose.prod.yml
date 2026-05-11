@@ -1,13 +1,13 @@
-name: codewithkasa-prod
+name: kasa-starter-kit-prod
 
 services:
   postgres:
     image: postgres:16-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-codewithkasa}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-codewithkasa}
-      POSTGRES_DB: ${POSTGRES_DB:-kasa_enterprise}
+      POSTGRES_USER: ${POSTGRES_USER:-kasa-starter-kit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kasa-starter-kit}
+      POSTGRES_DB: ${POSTGRES_DB:-kasa-starter-kit}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
@@ -35,7 +35,7 @@ services:
       - app-network
 
   server:
-    image: ${SERVER_IMAGE:-codewithkasa-server:local-prod}
+    image: ${SERVER_IMAGE:-kasa-starter-kit-api:local-prod}
     build:
       context: ./server
       target: production
@@ -49,9 +49,9 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       LICENSE_PORTAL_URL: ${LICENSE_PORTAL_URL:-http://localhost:5000}
-      LICENSE_PRODUCT_SLUG: ${LICENSE_PRODUCT_SLUG:-kasa-enterprise}
+      LICENSE_PRODUCT_SLUG: ${LICENSE_PRODUCT_SLUG:-kasa-starter-kit}
     volumes:
-      - ./.kasa:/app/.kasa
+      - ./.kasa-starter-kit:/app/.kasa-starter-kit
     ports:
       - "${SERVER_PORT:-8000}:8000"
     extra_hosts:
@@ -65,7 +65,7 @@ services:
       - app-network
 
   client:
-    image: ${CLIENT_IMAGE:-codewithkasa-client:local-prod}
+    image: ${CLIENT_IMAGE:-kasa-starter-kit-client:local-prod}
     build:
       context: ./client
       target: production
@@ -87,11 +87,9 @@ services:
 
 volumes:
   postgres_data:
-    name: ${POSTGRES_VOLUME_NAME:-codewithkasa-prod_postgres_data}
-    external: ${POSTGRES_VOLUME_EXTERNAL:-false}
+    name: ${POSTGRES_VOLUME_NAME:-kasa-starter-kit-prod_postgres_data}
   redis_data:
-    name: ${REDIS_VOLUME_NAME:-codewithkasa-prod_redis_data}
-    external: ${REDIS_VOLUME_EXTERNAL:-false}
+    name: ${REDIS_VOLUME_NAME:-kasa-starter-kit-prod_redis_data}
 
 networks:
   app-network:

@@ -15,6 +15,14 @@ export class UpsertSiteSettingsDto {
 
   @IsOptional()
   @IsString()
+  lightLogoUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  darkLogoUrl?: string;
+
+  @IsOptional()
+  @IsString()
   logoUrl?: string;
 
   @IsOptional()

@@ -6,11 +6,6 @@ import { DashboardStats, WeeklyProgress } from "@/types/user";
 import { getErrorMessage } from "@/lib/error-handler";
 import { orderServerService } from "@/services/orders/order.server";
 import { Order } from "@/types/order";
-import { courseExamsServerService } from "@/services/course-exams/course-exams.server";
-import { ExamHistoryRecord } from "@/types/exam";
-import { facultyWorkspaceServer } from "@/services/faculty/faculty-workspace.server";
-import type { FacultyClassSession } from "@/types/faculty-workspace";
-import { getLearnerUpcomingSessions } from "@/lib/learner-class-sessions";
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -27,8 +22,6 @@ export default async function DashboardPage() {
   let courses: Course[] = [];
   let weeklyProgress: WeeklyProgress[] = [];
   let orders: Order[] = [];
-  let examHistory: ExamHistoryRecord[] = [];
-  let upcomingClasses: FacultyClassSession[] = [];
 
   try {
     const [
@@ -36,27 +29,18 @@ export default async function DashboardPage() {
       coursesRes,
       weeklyProgressRes,
       ordersRes,
-      examHistoryRes,
-      upcomingClassesRes,
     ] =
       await Promise.all([
         userServerService.getDashboardStats(session.id),
         userServerService.getEnrolledCourses(session.id),
         userServerService.getWeeklyProgress(session.id),
         orderServerService.getMine(),
-        courseExamsServerService.getMyHistory(),
-        facultyWorkspaceServer.getMySessions(),
       ]);
 
     stats = statsRes.data;
     courses = coursesRes.data;
     weeklyProgress = weeklyProgressRes.data;
     orders = ordersRes.data;
-    examHistory = examHistoryRes.data;
-    upcomingClasses = getLearnerUpcomingSessions(
-      upcomingClassesRes,
-      new Date().toISOString(),
-    );
   } catch (error: unknown) {
     const message = getErrorMessage(error);
     throw new Error(message);
@@ -79,9 +63,7 @@ export default async function DashboardPage() {
         courses={courses}
         weeklyProgress={weeklyProgress}
         orders={orders}
-        examHistory={examHistory}
         user={session}
-        upcomingClasses={upcomingClasses}
       />
     </div>
   );

@@ -7,22 +7,15 @@ import {
   Award,
   BarChart3,
   BookOpenCheck,
-  CalendarDays,
-  ClipboardCheck,
   GraduationCap,
-  RadioTower,
 } from "lucide-react";
 
 import { CourseCard } from "../courses/course-card";
 import { StatCard } from "./stat-card";
 import { OrderHistory } from "./order-history";
-import { ExamHistory } from "./exam-history";
 import { Course } from "@/types/course";
 import { DashboardStats, User, WeeklyProgress } from "@/types/user";
 import { Order } from "@/types/order";
-import { ExamHistoryRecord } from "@/types/exam";
-import type { FacultyClassSession } from "@/types/faculty-workspace";
-import { UpcomingClasses } from "./upcoming-classes";
 import { Progress } from "@/components/ui/progress";
 
 const ProgressChart = dynamic(
@@ -35,9 +28,7 @@ interface DashboardClientProps {
   courses: Course[];
   weeklyProgress: WeeklyProgress[];
   orders: Order[];
-  examHistory: ExamHistoryRecord[];
   user: User;
-  upcomingClasses: FacultyClassSession[];
 }
 
 export default function DashboardClient({
@@ -45,9 +36,7 @@ export default function DashboardClient({
   courses,
   weeklyProgress,
   orders,
-  examHistory,
   user,
-  upcomingClasses,
 }: DashboardClientProps) {
   const learningSummary = stats.learningSummary;
   const learningCards = [
@@ -61,23 +50,11 @@ export default function DashboardClient({
       icon: BookOpenCheck,
     },
     {
-      title: "Live attendance",
-      value: learningSummary
-        ? `${learningSummary.attendedLiveClasses}/${learningSummary.completedLiveClasses}`
-        : "0/0",
-      description:
-        learningSummary?.missedLiveClasses
-          ? `${learningSummary.missedLiveClasses} missed completed class${learningSummary.missedLiveClasses === 1 ? "" : "es"}`
-          : "Completed live classes attended",
-      href: "/classes",
-      icon: RadioTower,
-    },
-    {
-      title: "Exam readiness",
-      value: `${stats.examsPassed}/${stats.examsTaken}`,
-      description: "Passed attempts out of total submissions",
-      href: "/exams",
-      icon: ClipboardCheck,
+      title: "Average progress",
+      value: `${stats.progress}%`,
+      description: "Progress across enrolled self-learning courses",
+      href: "/my-courses",
+      icon: BarChart3,
     },
     {
       title: "Certificates",
@@ -107,17 +84,10 @@ export default function DashboardClient({
         />
 
         <StatCard
-          icon={ClipboardCheck}
-          title="Exam Attempts"
-          value={stats.examsTaken}
-          description="Total final exam submissions across your courses."
-        />
-
-        <StatCard
           icon={GraduationCap}
-          title="Exams Passed"
-          value={stats.examsPassed}
-          description="Final exams you have cleared successfully."
+          title="Active Courses"
+          value={stats.courses}
+          description="Self-learning courses currently in your library."
         />
 
         <StatCard
@@ -127,12 +97,6 @@ export default function DashboardClient({
           description="Certificates unlocked after completion milestones."
         />
 
-        <StatCard
-          icon={CalendarDays}
-          title="Live Classes"
-          value={upcomingClasses.length}
-          description="Upcoming scheduled classes from your active batches."
-        />
       </div>
 
       <ProgressChart weeklyProgress={weeklyProgress} />
@@ -148,7 +112,7 @@ export default function DashboardClient({
             </h3>
           </div>
           <p className="max-w-xl text-sm leading-6 text-muted-foreground">
-            A compact view across self-learning, live classes, exams, and
+            A compact view across self-learning courses, progress, and
             certificates. Open each page for full details.
           </p>
         </div>
@@ -210,23 +174,12 @@ export default function DashboardClient({
                   ) : (
                     <span>No lectures</span>
                   )}
-                  {course.live.enabled ? (
-                    <span>
-                      {course.live.attendedClasses}/
-                      {course.live.completedClasses} classes
-                    </span>
-                  ) : (
-                    <span>No live classes</span>
-                  )}
+                  <span>Self-paced</span>
                 </div>
               </Link>
             ))}
           </div>
         ) : null}
-      </section>
-
-      <section className="academy-card p-5 md:p-6">
-        <UpcomingClasses sessions={upcomingClasses} limit={3} />
       </section>
 
       <section className="academy-card p-5 md:p-6">
@@ -286,10 +239,6 @@ export default function DashboardClient({
           showViewAll
           canRequestRefund={user.canRequestRefund}
         />
-      </section>
-
-      <section className="academy-card p-5 md:p-6">
-        <ExamHistory records={examHistory} />
       </section>
     </div>
   );

@@ -15,7 +15,7 @@ import { CategoriesService } from 'src/categories/providers/categories.service';
 import { Category } from 'src/categories/category.entity';
 import { TagsService } from 'src/tags/providers/tags.service';
 import { Tag } from 'src/tags/tag.entity';
-import { EngagementService } from 'src/engagement/providers/engagement.service';
+import { CourseDeliveryMode } from '../constants/course-delivery-mode';
 
 @Injectable()
 export class CreateCourseProvider {
@@ -42,8 +42,6 @@ export class CreateCourseProvider {
      * Inject tagsService
      */
     private readonly tagsService: TagsService,
-
-    private readonly engagementService: EngagementService,
   ) {}
 
   public async create(
@@ -74,22 +72,19 @@ export class CreateCourseProvider {
       const newCourse = this.courseRepository.create({
         ...createCouseDto,
         slug: finalSlug,
+        mode: CourseDeliveryMode.SelfLearning,
+        monthlyLiveClassLimit: null,
+        liveClassAttendanceRequirementType: 'none',
+        liveClassAttendanceRequirementValue: null,
+        exams: 'No assessment required for starter self-learning courses',
+        exam: null,
+        faculties: [],
         createdBy: { id: user.sub } as User,
         categories,
         tags,
       });
 
       const savedCourse = await this.courseRepository.save(newCourse);
-
-      if (savedCourse.isPublished) {
-        void this.engagementService
-          .dispatchEvent('course.created', {
-            courseId: savedCourse.id,
-            courseTitle: savedCourse.title,
-            courseSlug: savedCourse.slug,
-          })
-          .catch(() => undefined);
-      }
 
       return savedCourse;
     } catch (error: unknown) {

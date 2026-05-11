@@ -6,8 +6,6 @@ import { useRouter } from "next/navigation";
 import {
   Award,
   BookOpen,
-  ClipboardCheck,
-  GraduationCap,
   LayoutDashboard,
   Loader,
   LogOut,
@@ -30,7 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useSession } from "@/context/session-context";
 import { apiClient } from "@/lib/api/client";
-import { canAccessAdmin, canAccessFaculty } from "@/lib/access-control";
+import { canAccessAdmin } from "@/lib/access-control";
 import { getErrorMessage } from "@/lib/error-handler";
 import { getUserAvatarUrl } from "@/lib/user-avatar";
 
@@ -145,16 +143,8 @@ export const WebsiteNavUser = () => {
               label="Admin Dashboard"
             />
           ) : null}
-          {canAccessFaculty(user) ? (
-            <NavMenuItem
-              href="/faculty/dashboard"
-              icon={GraduationCap}
-              label="Faculty Dashboard"
-            />
-          ) : null}
           <NavMenuItem href="/profile" icon={User} label="Profile" />
           <NavMenuItem href="/my-courses" icon={BookOpen} label="My Courses" />
-          <NavMenuItem href="/exams" icon={ClipboardCheck} label="Exams" />
           <NavMenuItem href="/orders" icon={ReceiptText} label="Orders" />
           <NavMenuItem href="/certificates" icon={Award} label="Certificates" />
           <NavMenuItem href="/settings" icon={Settings} label="Settings" />

@@ -63,7 +63,7 @@ export function NotificationsView({
               Your updates
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Live classes, exams, certificates, orders, and account updates
+              Courses, certificates, orders, and account updates
               appear here.
             </p>
           </div>

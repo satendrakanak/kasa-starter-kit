@@ -14,7 +14,7 @@ export default function AuthHeader({ label }: AuthHeaderProps) {
       </div>
 
       <p className="text-xs font-bold uppercase tracking-[0.24em] text-primary">
-        Code With Kasa
+        kasa-starter-kit
       </p>
 
       <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">

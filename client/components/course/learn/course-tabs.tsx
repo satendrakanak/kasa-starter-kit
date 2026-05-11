@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Award, Download, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -20,10 +19,9 @@ interface CourseTabsProps {
   course: Course;
 }
 
-type TabId = "overview" | "exam" | "qa" | "reviews";
+type TabId = "overview" | "qa" | "reviews";
 
 export const CourseTabs = ({ course }: CourseTabsProps) => {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabId>("overview");
 
   const [meta, setMeta] = useState({
@@ -42,7 +40,6 @@ export const CourseTabs = ({ course }: CourseTabsProps) => {
     { id: "overview", label: "Overview" },
     { id: "qa", label: "Q&A" },
     { id: "reviews", label: "Reviews" },
-    { id: "exam", label: "Final Exams" },
   ];
 
   useEffect(() => {
@@ -141,10 +138,6 @@ export const CourseTabs = ({ course }: CourseTabsProps) => {
                 key={tab.id}
                 type="button"
                 onClick={() => {
-                  if (tab.id === "exam") {
-                    router.push(`/course/${course.slug}/exams`);
-                    return;
-                  }
                   setActiveTab(tab.id);
                 }}
                 className={cn(
@@ -211,13 +204,9 @@ export const CourseTabs = ({ course }: CourseTabsProps) => {
                     <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
                       {certificate
                         ? `Certificate ID ${certificate.certificateNumber}. You can download it anytime from here or your profile.`
-                        : course.exam?.isPublished
-                          ? `Complete all ${
-                              total || meta.totalLectures
-                            } lectures and clear the final exam to generate your official Code With Kasa certificate. Current lecture progress: ${percent}%.`
-                          : `Complete all ${
-                              total || meta.totalLectures
-                            } lectures to generate your official Code With Kasa certificate. Current progress: ${percent}%.`}
+                        : `Complete all ${
+                            total || meta.totalLectures
+                          } lectures to generate your official kasa-starter-kit certificate. Current progress: ${percent}%.`}
                     </p>
                   </div>
                 </div>

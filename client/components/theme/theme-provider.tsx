@@ -14,6 +14,8 @@ type ThemeContextValue = {
 
 const THEME_STORAGE_KEY = "theme";
 const ThemeContext = React.createContext<ThemeContextValue | null>(null);
+const isTheme = (value: string | null): value is Theme =>
+  value === "light" || value === "dark" || value === "system";
 
 function applyTheme(resolvedTheme: ResolvedTheme) {
   const root = document.documentElement;
@@ -22,23 +24,21 @@ function applyTheme(resolvedTheme: ResolvedTheme) {
   root.style.colorScheme = resolvedTheme;
 }
 
-export function ThemeProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = React.useState<Theme>("light");
-  const [systemTheme, setSystemTheme] =
-    React.useState<ResolvedTheme>("light");
+  const [systemTheme, setSystemTheme] = React.useState<ResolvedTheme>("light");
+  const [isReady, setIsReady] = React.useState(false);
 
   React.useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const savedTheme = (localStorage.getItem(THEME_STORAGE_KEY) as Theme | null) ?? "light";
+    const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const savedTheme = isTheme(storedTheme) ? storedTheme : "light";
     const nextSystemTheme = mediaQuery.matches ? "dark" : "light";
 
     setTheme(savedTheme);
     setSystemTheme(nextSystemTheme);
     applyTheme(savedTheme === "system" ? nextSystemTheme : savedTheme);
+    setIsReady(true);
 
     const handleChange = (event: MediaQueryListEvent) => {
       const nextTheme = event.matches ? "dark" : "light";
@@ -50,7 +50,7 @@ export function ThemeProvider({
         return;
       }
 
-      setTheme((event.newValue as Theme | null) ?? "light");
+      setTheme(isTheme(event.newValue) ? event.newValue : "light");
     };
 
     mediaQuery.addEventListener("change", handleChange);
@@ -65,9 +65,13 @@ export function ThemeProvider({
   const resolvedTheme = theme === "system" ? systemTheme : theme;
 
   React.useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+
     localStorage.setItem(THEME_STORAGE_KEY, theme);
     applyTheme(resolvedTheme);
-  }, [theme, resolvedTheme]);
+  }, [isReady, theme, resolvedTheme]);
 
   const value = React.useMemo(
     () => ({

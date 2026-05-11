@@ -6,6 +6,7 @@ import {
   facultyRoutePrefix,
   protectedRoutes,
   publicRoutes,
+  starterDisabledRoutes,
 } from "./routes";
 
 // 🔥 helper → prefix match
@@ -31,6 +32,7 @@ export function proxy(request: NextRequest) {
 
   // ✅ Route checks (improved)
   const isPublicRoute = matchRoute(publicRoutes, pathname);
+  const isStarterDisabledRoute = matchRoute(starterDisabledRoutes, pathname);
   const isAuthRoute = matchRoute(authRoutes, pathname);
   const isAdminRoute = pathname.startsWith(adminRoutePrefix);
   const isFacultyRoute = pathname.startsWith(facultyRoutePrefix);
@@ -38,6 +40,10 @@ export function proxy(request: NextRequest) {
   const isLearningRoute =
     pathname.startsWith("/course/") &&
     (pathname.endsWith("/learn") || pathname.endsWith("/exams"));
+
+  if (isStarterDisabledRoute || pathname.endsWith("/exams")) {
+    return NextResponse.rewrite(new URL("/not-found", request.url));
+  }
 
   // =========================
   // 🔐 2. Auth routes (login/signup)

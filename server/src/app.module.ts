@@ -45,15 +45,10 @@ import { CourseReviewsModule } from './course-reviews/course-reviews.module';
 import { ArticleCommentsModule } from './article-comments/article-comments.module';
 import { CourseQaModule } from './course-qa/course-qa.module';
 import { CartsModule } from './carts/carts.module';
-import { FacultyReviewsModule } from './faculty-reviews/faculty-reviews.module';
 import { ContactLeadsModule } from './contact-leads/contact-leads.module';
-import { CourseExamsModule } from './course-exams/course-exams.module';
 import { RefundsModule } from './refunds/refunds.module';
-import { ExamsModule } from './exams/exams.module';
-import { FacultyWorkspaceModule } from './faculty-workspace/faculty-workspace.module';
-import { NotificationsModule } from './notifications/notifications.module';
-import { EngagementModule } from './engagement/engagement.module';
 import { InstallerModule } from './installer/installer.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -129,14 +124,9 @@ const ENV = process.env.NODE_ENV;
     ArticleCommentsModule,
     CourseQaModule,
     CartsModule,
-    FacultyReviewsModule,
     ContactLeadsModule,
-    ExamsModule,
-    FacultyWorkspaceModule,
     NotificationsModule,
-    EngagementModule,
     InstallerModule,
-    CourseExamsModule,
     RefundsModule,
   ],
   controllers: [AppController],

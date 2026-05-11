@@ -1,0 +1,90 @@
+[
+  {
+    "fullName": "Varun Sethi",
+    "email": "varun.sethi@example.com",
+    "phoneNumber": "+919810001001",
+    "subject": "Need help launching a coding academy",
+    "message": "We want to launch five recorded coding courses and need guidance on payments, certificates, and demo import.",
+    "status": "NEW",
+    "source": "contact-page",
+    "pageUrl": "/contact",
+    "adminNotes": "High intent academy owner. Follow up with installation checklist."
+  },
+  {
+    "fullName": "Neha Arora",
+    "email": "neha.arora@example.com",
+    "phoneNumber": "+919810001002",
+    "subject": "Course migration query",
+    "message": "We already have recorded wellness courses and want to upload videos, PDFs, thumbnails, and testimonials.",
+    "status": "CONTACTED",
+    "source": "contact-page",
+    "pageUrl": "/contact",
+    "adminNotes": "Asked for storage setup and bulk course import options."
+  },
+  {
+    "fullName": "Sahil Kapoor",
+    "email": "sahil.kapoor@example.com",
+    "phoneNumber": "+919810001003",
+    "subject": "Stripe and Razorpay setup",
+    "message": "Please share how payment keys and coupons are configured for paid self-learning courses.",
+    "status": "QUALIFIED",
+    "source": "pricing-section",
+    "pageUrl": "/courses",
+    "adminNotes": "Payment-focused lead. Good fit for starter kit."
+  },
+  {
+    "fullName": "Megha Nair",
+    "email": "megha.nair@example.com",
+    "phoneNumber": "+919810001004",
+    "subject": "Certificate template customization",
+    "message": "Can we use our academy logo and instructor signature on generated certificates?",
+    "status": "NEW",
+    "source": "certificate-demo",
+    "pageUrl": "/client-testimonials",
+    "adminNotes": "Interested in branding and certificate workflow."
+  },
+  {
+    "fullName": "Arpit Jain",
+    "email": "arpit.jain@example.com",
+    "phoneNumber": "+919810001005",
+    "subject": "Admin demo request",
+    "message": "I want to review the admin dashboard, course builder, coupon manager, and sales overview before buying.",
+    "status": "CONTACTED",
+    "source": "footer",
+    "pageUrl": "/",
+    "adminNotes": "Send admin screenshot pack."
+  },
+  {
+    "fullName": "Ritika Shah",
+    "email": "ritika.shah@example.com",
+    "phoneNumber": "+919810001006",
+    "subject": "Student mobile experience",
+    "message": "Most of our learners use mobile. We need course pages and dashboard screens to work nicely on phones.",
+    "status": "NEW",
+    "source": "mobile-demo",
+    "pageUrl": "/courses",
+    "adminNotes": "Mobile screenshot proof useful."
+  },
+  {
+    "fullName": "Devendra Rao",
+    "email": "devendra.rao@example.com",
+    "phoneNumber": "+919810001007",
+    "subject": "Demo import after installation",
+    "message": "Can the installer create an admin account and import demo courses, articles, testimonials, and settings automatically?",
+    "status": "QUALIFIED",
+    "source": "installer-guide",
+    "pageUrl": "/articles/clean-installer-builds-trust",
+    "adminNotes": "Installer and license activation concern."
+  },
+  {
+    "fullName": "Aditi Thomas",
+    "email": "aditi.thomas@example.com",
+    "phoneNumber": "+919810001008",
+    "subject": "Starter LMS for design courses",
+    "message": "We sell design and communication courses. I need a simple self-learning LMS without enterprise complexity.",
+    "status": "CLOSED",
+    "source": "course-page",
+    "pageUrl": "/courses/ui-ux-design-essentials",
+    "adminNotes": "Marked as closed demo lead for sales overview variety."
+  }
+]

@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Monitor,
   Award,
-  ClipboardList,
   Clock,
   BarChart,
   BookOpen,
@@ -35,11 +34,6 @@ export const CourseDetails = ({ course }: CourseDetailsProps) => {
       icon: Award,
     },
     {
-      label: "Exams",
-      value: course.exams || "Exam conducted after course completion",
-      icon: ClipboardList,
-    },
-    {
       label: "Duration",
       value: course.duration || "N/A",
       icon: Clock,
@@ -51,12 +45,12 @@ export const CourseDetails = ({ course }: CourseDetailsProps) => {
     },
     {
       label: "Study Material",
-      value: "Included in the course",
+      value: course.studyMaterial || "Downloadable resources included",
       icon: BookOpen,
     },
     {
       label: "Additional Book",
-      value: "Everyday Ayurveda : Daily Habits That Can Change Your Life",
+      value: course.additionalBook || "Reference material included when added",
       icon: Book,
     },
     {

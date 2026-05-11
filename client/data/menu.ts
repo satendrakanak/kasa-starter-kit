@@ -15,17 +15,10 @@ export const navbarItems = [
     hasChild: false,
   },
   {
-    label: "Client Testimonials",
+    label: "Testimonials",
     href: "/client-testimonials",
     hasChild: false,
   },
-
-  {
-    label: "Our Faculty",
-    href: "/our-faculty",
-    hasChild: false,
-  },
-
   {
     label: "Contact",
     href: "/contact",

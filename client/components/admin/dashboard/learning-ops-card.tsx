@@ -1,29 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, RadioTower, SplitSquareHorizontal } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, FileClock } from "lucide-react";
 
 import type { AdminDashboardData } from "@/types/admin-dashboard";
 
 export function LearningOpsCard({ data }: { data: AdminDashboardData }) {
   const items = [
     {
-      label: "Self-learning",
+      label: "Self-learning courses",
       value: data.learningOps.selfLearningCourses,
       href: "/admin/courses",
       icon: BookOpen,
     },
     {
-      label: "Faculty-led",
-      value: data.learningOps.facultyLedCourses,
+      label: "Published",
+      value: data.learningOps.publishedCourses,
       href: "/admin/courses",
-      icon: RadioTower,
+      icon: CheckCircle2,
     },
     {
-      label: "Hybrid",
-      value: data.learningOps.hybridCourses,
+      label: "Drafts",
+      value: data.learningOps.draftCourses,
       href: "/admin/courses",
-      icon: SplitSquareHorizontal,
+      icon: FileClock,
     },
   ];
 
@@ -35,11 +35,11 @@ export function LearningOpsCard({ data }: { data: AdminDashboardData }) {
             Learning operations
           </p>
           <h2 className="mt-2 text-lg font-semibold text-foreground">
-            Course delivery mix
+            Self-learning library
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Compact view of the three learning modes. Open course management for
-            deeper configuration.
+            Starter kit courses use recorded lessons, resources, learner
+            progress, and certificates.
           </p>
         </div>
         <Link

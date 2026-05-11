@@ -2,7 +2,6 @@ import { Lecture } from "@/types/lecture";
 import { Chapter } from "@/types/chapter";
 import { Course, PublishCheckResult } from "@/types/course";
 import { Article } from "@/types/article";
-import { hasLiveClasses, hasRecordedLearning } from "@/lib/course-delivery";
 
 /**
  * 🎥 Lecture publish check
@@ -30,8 +29,6 @@ const stripHtml = (html: string) => {
 };
 export const checkCoursePublish = (course: Course): PublishCheckResult => {
   const reasons: string[] = [];
-  const needsRecordedContent = hasRecordedLearning(course);
-  const needsFacultySetup = hasLiveClasses(course);
 
   // 🔥 content rule
   const hasPublishedLecture = (course.chapters ?? []).some(
@@ -39,24 +36,11 @@ export const checkCoursePublish = (course: Course): PublishCheckResult => {
       chapter.isPublished &&
       (chapter.lectures ?? []).some((lecture) => lecture.isPublished),
   );
-  const hasPublishedCurriculumModule = (course.chapters ?? []).some(
-    (chapter) => chapter.isPublished && canPublishCurriculumChapter(chapter),
-  );
 
-  if (needsRecordedContent && !hasPublishedLecture) {
+  if (!hasPublishedLecture) {
     reasons.push(
       "At least one published chapter with a published lecture is required",
     );
-  }
-
-  if (!needsRecordedContent && !hasPublishedCurriculumModule) {
-    reasons.push(
-      "At least one published curriculum module with description is required",
-    );
-  }
-
-  if (needsFacultySetup && !course.faculties?.length) {
-    reasons.push("At least one faculty must be assigned");
   }
 
   // 🔥 required fields
@@ -75,16 +59,10 @@ export const checkCoursePublish = (course: Course): PublishCheckResult => {
   if (!course.duration?.trim()) {
     reasons.push("Course duration is required");
   }
-  if (!course.mode?.trim()) {
-    reasons.push("Course mode is required");
-  }
   if (!course.certificate?.trim()) {
     reasons.push("Course certificate is required");
   }
-  if (!course.exams?.trim()) {
-    reasons.push("Course exams is required");
-  }
-  if (needsRecordedContent && !course.studyMaterial?.trim()) {
+  if (!course.studyMaterial?.trim()) {
     reasons.push("Course study material is required");
   }
   if (!course.experienceLevel?.trim()) {

@@ -1,9 +1,6 @@
 import { apiClient, withAuthRetry } from "@/lib/api/client";
 import type { ApiResponse } from "@/types/api";
-import type {
-  AppNotification,
-  PushSubscriptionPayload,
-} from "@/types/notification";
+import type { AppNotification } from "@/types/notification";
 
 export const notificationClientService = {
   getMine: (limit = 20) =>
@@ -48,38 +45,4 @@ export const notificationClientService = {
       ),
     ),
 
-  savePushSubscription: (payload: PushSubscriptionPayload) =>
-    withAuthRetry(() =>
-      apiClient.post<ApiResponse<{ message: string }>>(
-        "/api/notifications/push-subscriptions",
-        payload,
-      ),
-    ),
-
-  deletePushSubscription: (endpoint: string) =>
-    withAuthRetry(() =>
-      apiClient.post<ApiResponse<{ message: string }>>(
-        "/api/notifications/push-subscriptions/remove",
-        { endpoint },
-      ),
-    ),
-
-  getPushPublicKey: () =>
-    apiClient.get<ApiResponse<{ isEnabled: boolean; publicKey: string }>>(
-      "/api/notifications/push/public-key",
-    ),
-
-  sendTestPush: () =>
-    withAuthRetry(() =>
-      apiClient.post<
-        ApiResponse<{
-          message: string;
-          sent: number;
-          failed: number;
-          inactiveRemoved: number;
-          subscriptionCount: number;
-          error?: string | null;
-        }>
-      >("/api/notifications/push/test"),
-    ),
 };

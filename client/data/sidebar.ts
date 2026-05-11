@@ -1,23 +1,15 @@
 import {
   LayoutDashboard,
   BookOpen,
-  FileText,
   FolderTree,
   Users,
   Settings,
-  MessageSquare,
   TicketPercent,
   ShoppingBag,
-  HandCoins,
-  Tags,
   Mail,
-  ShieldCheck,
-  MessageCircleHeart,
-  ClipboardCheck,
-  Video,
-  BellRing,
   Award,
   Images,
+  FileText,
   type LucideIcon,
 } from "lucide-react";
 
@@ -60,30 +52,6 @@ export const sidebarData = {
     },
 
     {
-      title: "Exams",
-      url: "/admin/exams",
-      icon: ClipboardCheck,
-      requiredPermissions: ["view_course", "create_course", "update_course"],
-      items: [
-        {
-          title: "Exams",
-          url: "/admin/exams",
-          requiredPermissions: ["view_course", "create_course", "update_course"],
-        },
-        {
-          title: "Questions",
-          url: "/admin/exams/questions",
-          requiredPermissions: ["view_course", "create_course", "update_course"],
-        },
-        {
-          title: "Categories",
-          url: "/admin/exams/categories",
-          requiredPermissions: ["view_course", "create_course", "update_course"],
-        },
-      ],
-    },
-
-    {
       title: "Coupons",
       url: "/admin/coupons",
       icon: TicketPercent,
@@ -95,20 +63,6 @@ export const sidebarData = {
       url: "/admin/orders",
       icon: ShoppingBag,
       requiredPermissions: ["view_order", "update_order"],
-    },
-
-    {
-      title: "Refunds",
-      url: "/admin/refunds",
-      icon: HandCoins,
-      requiredPermissions: ["view_order", "update_order"],
-    },
-
-    {
-      title: "Recordings",
-      url: "/admin/recordings",
-      icon: Video,
-      requiredPermissions: ["view_faculty_workspace"],
     },
 
     {
@@ -126,25 +80,6 @@ export const sidebarData = {
     },
 
     {
-      title: "Engagement",
-      url: "/admin/engagement",
-      icon: BellRing,
-      requiredPermissions: [
-        "manage_engagement",
-        "manage_schedulers",
-        "manage_notification_rules",
-        "send_broadcast_notification",
-      ],
-    },
-
-    {
-      title: "Articles",
-      url: "/admin/articles",
-      icon: FileText,
-      requiredPermissions: ["view_article", "create_article", "update_article"],
-    },
-
-    {
       title: "Email Templates",
       url: "/admin/email-templates",
       icon: Mail,
@@ -156,20 +91,26 @@ export const sidebarData = {
     },
 
     {
-      title: "Moderation",
-      url: "/admin/moderation",
-      icon: ShieldCheck,
-      requiredPermissions: ["view_comment", "view_review", "view_question"],
-    },
-
-    {
-      title: "Testimonials",
-      url: "/admin/testimonials",
-      icon: MessageSquare,
-      requiredPermissions: [
-        "view_testimonial",
-        "create_testimonial",
-        "update_testimonial",
+      title: "CMS",
+      url: "/admin/articles",
+      icon: FileText,
+      requiredPermissions: ["view_article", "view_testimonial", "view_contact_lead"],
+      items: [
+        {
+          title: "Articles",
+          url: "/admin/articles",
+          requiredPermissions: ["view_article"],
+        },
+        {
+          title: "Testimonials",
+          url: "/admin/testimonials",
+          requiredPermissions: ["view_testimonial"],
+        },
+        {
+          title: "Contact Leads",
+          url: "/admin/contact-leads",
+          requiredPermissions: ["view_contact_lead"],
+        },
       ],
     },
 
@@ -181,24 +122,10 @@ export const sidebarData = {
     },
 
     {
-      title: "Tags",
-      url: "/admin/tags",
-      icon: Tags,
-      requiredPermissions: ["view_tag", "create_tag", "update_tag"],
-    },
-
-    {
       title: "Users",
       url: "/admin/users",
       icon: Users,
       requiredPermissions: ["view_user", "create_user", "update_user"],
-    },
-
-    {
-      title: "Contact Leads",
-      url: "/admin/contact-leads",
-      icon: MessageCircleHeart,
-      requiredPermissions: ["view_contact_lead"],
     },
 
     {

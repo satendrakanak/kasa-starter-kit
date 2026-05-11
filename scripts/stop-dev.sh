@@ -8,5 +8,5 @@ if [ ! -f .env.docker ] && [ -f .env.docker.example ]; then
   cp .env.docker.example .env.docker
 fi
 
-echo "Stopping Kasa Enterprise development stack..."
+echo "Stopping kasa-starter-kit development stack..."
 docker compose --env-file .env.docker down --remove-orphans

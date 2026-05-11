@@ -1,4 +1,4 @@
-# CodeWithKasa Docker, Infra, and CI/CD Guide
+# kasa-starter-kit Docker, Infra, and CI/CD Guide
 
 This project has three runtime parts:
 
@@ -19,8 +19,8 @@ should not depend on fetching Google Fonts during build.
 Development should run everything locally through Docker Compose:
 
 ```bash
-./scripts/register-kasa-command.sh
-kasa install dev
+./scripts/register-kasa-starter-kit-command.sh
+kasa-starter-kit install dev
 ```
 
 Open:
@@ -66,25 +66,25 @@ Redis later if queue volume, uptime, or horizontal scaling grows.
 1. Create local env:
 
 ```bash
-kasa install dev
+kasa-starter-kit install dev
 ```
 
 2. Start all services:
 
 ```bash
-kasa start dev
+kasa-starter-kit start dev
 ```
 
 3. Stop services:
 
 ```bash
-kasa stop
+kasa-starter-kit stop
 ```
 
 4. Reset local database:
 
 ```bash
-kasa install dev -r
+kasa-starter-kit install dev -r
 ```
 
 This reset command stops the development stack with the current `.env.docker`,
@@ -107,7 +107,7 @@ make dev-down
 2. Create the local production env once:
 
 ```bash
-kasa install app
+kasa-starter-kit install app
 ```
 
 ## Installer Database Modes
@@ -120,7 +120,7 @@ The installer supports two database modes:
    - Reset with:
 
 ```bash
-kasa install dev -r
+kasa-starter-kit install dev -r
 ```
 
    - The reset also refreshes `.env.docker` from `.env.docker.example` after
@@ -133,27 +133,27 @@ kasa install dev -r
    - Restart the app containers so the API boots from that database:
 
 ```bash
-kasa restart dev
+kasa-starter-kit restart dev
 ```
 
 For local production testing:
 
 ```bash
-kasa restart app
+kasa-starter-kit restart app
 ```
 
-The runtime database selection is stored in `.kasa/database.json`. Keep this file out of Git.
+The runtime database selection is stored in `.kasa-starter-kit/database.json`. Keep this file out of Git.
 
 3. Build and start production containers locally:
 
 ```bash
-kasa start app
+kasa-starter-kit start app
 ```
 
 4. Stop local production containers:
 
 ```bash
-kasa stop
+kasa-starter-kit stop
 ```
 
 This runs the same production Docker targets used by deployment, but with local
@@ -202,8 +202,8 @@ handled by GitHub Actions.
 On the production server:
 
 ```bash
-mkdir -p /opt/codewithkasa
-cd /opt/codewithkasa
+mkdir -p /opt/kasa-starter-kit
+cd /opt/kasa-starter-kit
 ```
 
 Copy these files to that folder:
@@ -227,10 +227,10 @@ Add these repository secrets in GitHub:
 - `DEPLOY_USER`: SSH username.
 - `DEPLOY_SSH_KEY`: private SSH key allowed to deploy.
 - `DEPLOY_PORT`: SSH port, usually `22`.
-- `DEPLOY_PATH`: server path, for example `/opt/codewithkasa`.
-- `NEXT_PUBLIC_APP_URL`: public frontend URL, for example `https://codewithkasa.com`.
+- `DEPLOY_PATH`: server path, for example `/opt/kasa-starter-kit`.
+- `NEXT_PUBLIC_APP_URL`: public frontend URL, for example `https://lms.your-domain.com`.
 
-Your server-side secrets live in `/opt/codewithkasa/.env.production`, not in GitHub Actions.
+Your server-side secrets live in `/opt/kasa-starter-kit/.env.production`, not in GitHub Actions.
 
 ## Reverse Proxy
 
@@ -277,14 +277,14 @@ Use this order for a first launch:
 4. Start the server once and verify it connects.
 5. Run `npm run seed:production` inside the server container for required master data.
 6. Upload media assets through the app or sync S3 separately.
-7. Configure site settings, SMTP, payment gateway, BBB, VAPID, and storage from the admin dashboard.
-8. Create one test purchase/class/exam/certificate flow before opening to users.
+7. Configure site settings, SMTP, payment gateway, and storage from the admin dashboard.
+8. Create one test purchase, learning progress, and certificate flow before opening to users.
 
 For PostgreSQL dump/restore:
 
 ```bash
-pg_dump "$LOCAL_DATABASE_URL" --format=custom --no-owner --no-acl > codewithkasa.dump
-pg_restore --clean --if-exists --no-owner --no-acl --dbname "$PRODUCTION_DATABASE_URL" codewithkasa.dump
+pg_dump "$LOCAL_DATABASE_URL" --format=custom --no-owner --no-acl > kasa-starter-kit.dump
+pg_restore --clean --if-exists --no-owner --no-acl --dbname "$PRODUCTION_DATABASE_URL" kasa-starter-kit.dump
 ```
 
 Do not copy development payment gateway keys, test users, or demo course data into production unless you intentionally want them.

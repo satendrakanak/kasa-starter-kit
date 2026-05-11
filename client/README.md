@@ -1,8 +1,8 @@
-# Code With Kasa - Client
+# kasa-starter-kit - Client
 
-This is the frontend application of **Code With Kasa**, a full-stack Learning Management System built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**.
+This is the frontend application of **kasa-starter-kit**, a full-stack Learning Management System built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**.
 
-The client handles the complete user interface for students, faculty, and admins.
+The client handles the starter kit user interface for students and admins.
 
 ---
 
@@ -10,35 +10,27 @@ The client handles the complete user interface for students, faculty, and admins
 
 ### Home Page
 
-![Home Page](../screenshots/home-page-1.jpg)
+![Home Page](../screenshots/envato-focused/desktop-01-home-hero.png)
 
-### User Dashboard
+### Course Catalog
 
-![User Dashboard](../screenshots/user-dashboard-page-1.jpg)
+![Course Catalog](../screenshots/envato-focused/desktop-02-courses-grid.png)
 
 ### Admin Dashboard
 
-![Admin Dashboard](../screenshots/admin-dashboard-light-1.jpg)
+![Admin Dashboard](../screenshots/envato-focused/admin-01-dashboard.png)
 
 ### Courses Dashboard
 
-![Courses Dashboard](../screenshots/courses-dashboard.jpg)
+![Courses Dashboard](../screenshots/envato-focused/admin-02-courses.png)
 
-### Single Course Page
+### Mobile Home
 
-![Single Course Page](../screenshots/single-course-page-1.jpg)
+![Mobile Home](../screenshots/envato-focused/mobile-01-home.png)
 
-### Learning Player
+### Mobile Courses
 
-![Learning Player](../screenshots/learn-screen-player.jpg)
-
-### Orders Dashboard
-
-![Orders Dashboard](../screenshots/orders-dashboard.jpg)
-
-### Role Management
-
-![Role Management](../screenshots/role-management-dashboard.jpg)
+![Mobile Courses](../screenshots/envato-focused/mobile-02-courses.png)
 
 ---
 
@@ -46,7 +38,7 @@ The client handles the complete user interface for students, faculty, and admins
 
 The frontend provides a modern, responsive, role-based LMS interface. It includes public pages, authentication pages, student dashboard pages, admin dashboard pages, course pages, learning screens, article pages, and management dashboards.
 
-The UI is designed to support different user roles with protected routes and separate dashboard experiences.
+The UI is designed around the starter roles with protected student and admin dashboard experiences.
 
 ---
 
@@ -78,7 +70,6 @@ The UI is designed to support different user roles with protected routes and sep
 - Watch course lessons
 - Learning player
 - Course overview screen
-- Course exams screen
 - Course reviews screen
 - Track learning progress
 - View certificates
@@ -94,7 +85,6 @@ The UI is designed to support different user roles with protected routes and sep
 - Categories dashboard
 - Orders dashboard
 - Coupons dashboard
-- Refunds dashboard
 - Role management dashboard
 - Roles-permission dashboard
 - Permission library dashboard
@@ -103,19 +93,7 @@ The UI is designed to support different user roles with protected routes and sep
 - Client testimonials dashboard
 - Email templates dashboard
 - Site settings dashboard
-- Tags dashboard
 - Articles management pages
-
----
-
-### Faculty UI
-
-- Faculty dashboard
-- Assigned course management
-- Lesson/content management
-- Exam management
-- Student progress view
-- Course review visibility
 
 ---
 
@@ -126,7 +104,7 @@ The UI is designed to support different user roles with protected routes and sep
 - Token-based frontend auth
 - Role-based redirects
 - Protected dashboard routes
-- Separate UI handling for Admin, Faculty, and Student
+- Separate UI handling for Admin and Student
 
 ---
 
@@ -273,25 +251,21 @@ Tags
 ## Screenshot References
 
 ```txt
-../screenshots/home-page-1.jpg
-../screenshots/home-page-2.jpg
-../screenshots/articles-page.jpg
-../screenshots/single-article-page.jpg
-../screenshots/contact-us-page.jpg
-
-../screenshots/user-dashboard.jpg
-../screenshots/user-dashboard-page-1.jpg
-../screenshots/user-dashboard-profile-page.jpg
-../screenshots/user-dashboard-settings-pgae.jpg
-../screenshots/user-dashboard-certificate-page.jpg
-
-../screenshots/admin-dashboard-light-1.jpg
-../screenshots/admin-dashboard-dark.jpg
-../screenshots/courses-dashboard.jpg
-../screenshots/orders-dashboard.jpg
-../screenshots/coupons-dashboard.jpg
-../screenshots/role-management-dashboard.jpg
-../screenshots/permission-library-dashboard.jpg
+../screenshots/envato-focused/desktop-01-home-hero.png
+../screenshots/envato-focused/desktop-02-courses-grid.png
+../screenshots/envato-focused/desktop-03-articles.png
+../screenshots/envato-focused/desktop-04-testimonials.png
+../screenshots/envato-focused/desktop-05-contact.png
+../screenshots/envato-focused/desktop-06-home-dark.png
+../screenshots/envato-focused/mobile-01-home.png
+../screenshots/envato-focused/mobile-02-courses.png
+../screenshots/envato-focused/mobile-03-contact.png
+../screenshots/envato-focused/mobile-04-home-dark.png
+../screenshots/envato-focused/admin-01-dashboard.png
+../screenshots/envato-focused/admin-02-courses.png
+../screenshots/envato-focused/admin-03-users.png
+../screenshots/envato-focused/admin-04-sales.png
+../screenshots/envato-focused/admin-05-site-settings.png
 ```
 
 ---

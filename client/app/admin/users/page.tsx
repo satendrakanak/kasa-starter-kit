@@ -5,6 +5,8 @@ import { userServerService } from "@/services/users/user.server";
 import { Paginated } from "@/types/api";
 import { Role, User } from "@/types/user";
 
+export const dynamic = "force-dynamic";
+
 const UsersPage = async ({
   searchParams,
 }: {

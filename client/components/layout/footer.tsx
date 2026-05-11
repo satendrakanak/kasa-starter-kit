@@ -41,14 +41,12 @@ export default function Footer() {
     { href: "/courses", label: "Courses" },
     { href: "/articles", label: "Articles" },
     { href: "/client-testimonials", label: "Testimonials" },
-    { href: "/our-faculty", label: "Faculty" },
   ];
 
   const companyLinks = [
     { href: "/contact", label: "Contact Us" },
     { href: "/courses", label: "Admissions" },
     { href: "/articles", label: "Learning Resources" },
-    { href: "/our-faculty", label: "Meet the Faculty" },
     { href: "/cart", label: "Your Cart" },
   ];
 

@@ -1,35 +1,29 @@
-import {
-  BookOpen,
-  Brain,
-  GraduationCap,
-  TrendingUp,
-  HeartPulse,
-} from "lucide-react";
+import { Award, BookOpen, CreditCard, Gauge, GraduationCap } from "lucide-react";
 
 export const featuresData = [
   {
     icon: BookOpen,
-    title: "Online Interactive Live Classes",
-    desc: "Engage in real-time sessions with expert instructors.",
+    title: "Course Builder",
+    desc: "Create paid or free courses with chapters, videos, and attachments.",
   },
   {
-    icon: Brain,
-    title: "Insights Based Learning",
-    desc: "Understand concepts deeply with real-world insights.",
+    icon: Gauge,
+    title: "Learner Progress",
+    desc: "Track continue watching, completed lessons, and course progress.",
+  },
+  {
+    icon: Award,
+    title: "Certificates",
+    desc: "Generate completion certificates with a simple customizable template.",
+  },
+  {
+    icon: CreditCard,
+    title: "Payments",
+    desc: "Start with Razorpay-ready checkout and coupon support.",
   },
   {
     icon: GraduationCap,
-    title: "Practical Knowledge",
-    desc: "Hands-on projects to build real skills.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Upskill for Professionals",
-    desc: "Industry-relevant skills for career growth.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Impact on Health",
-    desc: "Apply knowledge to improve your lifestyle.",
+    title: "Student Dashboard",
+    desc: "Give learners one place for courses, progress, orders, and certificates.",
   },
 ];

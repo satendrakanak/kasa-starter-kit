@@ -1,0 +1,73 @@
+[
+  {
+    "reference": "order_demo_1001",
+    "userEmail": "learner@kasa-starter-kit.demo",
+    "courseSlugs": ["frontend-developer-starter-kit"],
+    "status": "PAID",
+    "manualCouponCode": "WELCOME25",
+    "discount": 375,
+    "paymentMethod": "RAZORPAY",
+    "paymentMode": "upi",
+    "paidOffsetDays": -2,
+    "createdOffsetDays": -2
+  },
+  {
+    "reference": "order_demo_1002",
+    "userEmail": "arjun@kasa-starter-kit.demo",
+    "courseSlugs": ["full-stack-web-development-blueprint"],
+    "status": "PAID",
+    "manualCouponCode": "CAREER15",
+    "discount": 1350,
+    "paymentMethod": "STRIPE",
+    "paymentMode": "card",
+    "paidOffsetDays": -4,
+    "createdOffsetDays": -4
+  },
+  {
+    "reference": "order_demo_1003",
+    "userEmail": "kavya@kasa-starter-kit.demo",
+    "courseSlugs": ["data-analytics-career-track"],
+    "status": "PAID",
+    "manualCouponCode": "CAREER15",
+    "discount": 900,
+    "paymentMethod": "RAZORPAY",
+    "paymentMode": "netbanking",
+    "paidOffsetDays": -8,
+    "createdOffsetDays": -8
+  },
+  {
+    "reference": "order_demo_1004",
+    "userEmail": "sneha@kasa-starter-kit.demo",
+    "courseSlugs": ["spoken-english-confidence-builder"],
+    "status": "PAID",
+    "manualCouponCode": "SELFLEARN10",
+    "discount": 350,
+    "paymentMethod": "RAZORPAY",
+    "paymentMode": "wallet",
+    "paidOffsetDays": -11,
+    "createdOffsetDays": -11
+  },
+  {
+    "reference": "order_demo_1005",
+    "userEmail": "learner@kasa-starter-kit.demo",
+    "courseSlugs": ["ui-ux-design-essentials", "digital-marketing-launchpad"],
+    "status": "PAID",
+    "manualCouponCode": "STARTER500",
+    "discount": 500,
+    "paymentMethod": "STRIPE",
+    "paymentMode": "card",
+    "paidOffsetDays": -15,
+    "createdOffsetDays": -15
+  },
+  {
+    "reference": "order_demo_1006",
+    "userEmail": "arjun@kasa-starter-kit.demo",
+    "courseSlugs": ["ayurveda-nutrition-self-learning-program"],
+    "status": "PENDING",
+    "manualCouponCode": "WELLNESS750",
+    "discount": 750,
+    "paymentMethod": "RAZORPAY",
+    "paymentMode": "upi",
+    "createdOffsetDays": -1
+  }
+]

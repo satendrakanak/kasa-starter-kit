@@ -19,7 +19,7 @@ type ArticleCategorySummary = {
 export const metadata = buildMetadata({
   title: "Articles",
   description:
-    "Read practical coding, learning, projects, and career-oriented articles from Code With Kasa.",
+    "Read practical coding, learning, projects, and career-oriented articles from kasa-starter-kit.",
   path: "/articles",
 });
 

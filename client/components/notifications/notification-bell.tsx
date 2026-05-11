@@ -548,7 +548,7 @@ export function NotificationNavIcon({
               </div>
               <p className="mt-4 text-base font-semibold">No updates yet</p>
               <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Live classes, exams, orders, and certificates will appear here.
+                Courses, orders, certificates, and account updates will appear here.
               </p>
             </div>
           )}

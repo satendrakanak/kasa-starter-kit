@@ -16,28 +16,7 @@ export async function seedRoles(dataSource: DataSource) {
   const rolesData = [
     {
       name: 'student',
-      permissions: ['view_course', 'enroll_course', 'view_article'],
-    },
-    {
-      name: 'faculty',
-      permissions: [
-        'view_course',
-        'update_course',
-        'view_article',
-        'view_exam',
-        'create_exam',
-        'update_exam',
-        'manage_exam_rules',
-        'grade_exam_attempt',
-        'view_question_bank',
-        'create_question',
-        'update_question',
-        'create_question_category',
-        'update_question_category',
-        'view_faculty_workspace',
-        'manage_faculty_batches',
-        'manage_faculty_calendar',
-      ],
+      permissions: ['view_course', 'enroll_course'],
     },
     {
       name: 'admin',

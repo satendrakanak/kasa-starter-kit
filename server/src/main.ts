@@ -29,7 +29,7 @@ async function bootstrap() {
     `http://localhost:${configService.get('appConfig.appPort') ?? 8000}`;
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Code With Kasa Backend App API')
+    .setTitle('kasa-starter-kit Backend App API')
     .setDescription(`Use the API base url ${appUrl}`)
     .setTermsOfService(appUrl)
     .setLicense('MIT', appUrl)

@@ -20,7 +20,6 @@ import { Upload } from 'src/uploads/upload.entity';
 import { FileTypes } from 'src/uploads/enums/file-types.enum';
 import { UploadStatus } from 'src/uploads/enums/upload-status.enum';
 import { UserProgres } from 'src/user-progress/user-progres.entity';
-import { CourseExamsService } from 'src/course-exams/providers/course-exams.service';
 import { User } from 'src/users/user.entity';
 import { Certificate } from '../certificate.entity';
 import { CertificateResponse } from '../interfaces/certificate-response.interface';
@@ -60,7 +59,6 @@ export class CertificatesService {
     private readonly mailService: MailService,
     private readonly emailTemplatesService: EmailTemplatesService,
     private readonly certificateTemplateProvider: CertificateTemplateProvider,
-    private readonly courseExamsService: CourseExamsService,
   ) {}
 
   async findMine(userId: number): Promise<CertificateResponse[]> {
@@ -252,9 +250,7 @@ export class CertificatesService {
     if (!completion.isCompleted) {
       if (options.throwIfIncomplete) {
         throw new BadRequestException(
-          completion.examRequired && !completion.examPassed
-            ? 'Pass the final exam to unlock certificate'
-            : 'Complete the course to unlock certificate',
+          'Complete the course to unlock certificate',
         );
       }
 
@@ -308,15 +304,8 @@ export class CertificatesService {
       relations: ['chapter', 'chapter.course'],
     });
 
-    const course = await this.courseRepository.findOne({
-      where: { id: courseId },
-    });
-    const examRequired =
-      (!!course?.exam?.isPublished && !!course?.exam?.questions?.length) ||
-      (await this.courseExamsService.hasPublishedAdvancedExam(courseId));
-    const examPassed = examRequired
-      ? await this.courseExamsService.hasPassedExam(userId, courseId)
-      : true;
+    const examRequired = false;
+    const examPassed = true;
 
     if (!totalLectures) {
       return {
@@ -455,7 +444,7 @@ export class CertificatesService {
       );
     } catch {
       return {
-        subject: 'Your Code With Kasa certificate for {{courseTitle}} is ready',
+        subject: 'Your kasa-starter-kit certificate for {{courseTitle}} is ready',
         body: this.defaultEmailTemplate(),
       };
     }
@@ -470,7 +459,7 @@ export class CertificatesService {
             <h1 style="font-size:32px;line-height:1.2;margin:0">Congratulations, {{name}}!</h1>
           </div>
           <div style="padding:32px">
-            <p style="font-size:16px;line-height:1.7;color:#475569">You have successfully completed <strong>{{courseTitle}}</strong>. Your certificate is attached with this email and can also be downloaded from your Code With Kasa profile.</p>
+            <p style="font-size:16px;line-height:1.7;color:#475569">You have successfully completed <strong>{{courseTitle}}</strong>. Your certificate is attached with this email and can also be downloaded from your kasa-starter-kit profile.</p>
             <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:18px;margin:24px 0">
               <p style="margin:0;color:#9a3412;font-size:13px">Certificate ID</p>
               <p style="margin:6px 0 0;font-size:20px;font-weight:700;color:#111827">{{certificateNumber}}</p>

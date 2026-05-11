@@ -17,10 +17,3 @@ export type AppNotification = {
     email: string;
   } | null;
 };
-
-export type PushSubscriptionPayload = {
-  endpoint: string;
-  p256dh: string;
-  auth: string;
-  userAgent?: string;
-};

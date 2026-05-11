@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Contact Code With Kasa for course guidance, support, and academy enquiries.",
+    "Contact kasa-starter-kit for course guidance, support, and academy enquiries.",
   path: "/contact",
 });
 

@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarDays } from "lucide-react";
-
-import { OpenClassroomButton } from "@/components/classroom/open-classroom-button";
 import { LearnFooter } from "@/components/layout/learn-footer";
-import { Badge } from "@/components/ui/badge";
 import {
   getNextLecture,
   getResumeLecture,
@@ -15,13 +11,6 @@ import { userProgressClientService } from "@/services/user-progress/user-progres
 import { Course } from "@/types/course";
 import type { FacultyClassSession } from "@/types/faculty-workspace";
 import { Lecture } from "@/types/lecture";
-import {
-  hasLiveClasses,
-  hasRecordedLearning,
-  isFacultyLedCourse,
-} from "@/lib/course-delivery";
-import { formatDateTime } from "@/utils/formate-date";
-import { FacultyLedLearningClient } from "./faculty-led-learning-client";
 import { CourseTabs } from "./course-tabs";
 import { LearnCourseSidebar } from "./learn-course-sidebar";
 import { PlayerHeader } from "./player-header";
@@ -32,16 +21,11 @@ interface LearnClientProps {
   liveSessions?: FacultyClassSession[];
 }
 
-export const LearnClient = ({ course, liveSessions = [] }: LearnClientProps) => {
+export const LearnClient = ({ course }: LearnClientProps) => {
   const [courseData, setCourseData] = useState(course);
   const [currentLecture, setCurrentLecture] = useState<Lecture | null>(null);
-  const showLiveSessions = hasLiveClasses(course) && liveSessions.length > 0;
 
   useEffect(() => {
-    if (!hasRecordedLearning(course)) {
-      return;
-    }
-
     const load = async () => {
       const res = await userProgressClientService.getCourse(course.id);
       const updated = mergeCourseProgress(course, res.data);
@@ -102,12 +86,7 @@ export const LearnClient = ({ course, liveSessions = [] }: LearnClientProps) => 
           }
         : current,
     );
-
   };
-
-  if (isFacultyLedCourse(course)) {
-    return <FacultyLedLearningClient course={course} sessions={liveSessions} />;
-  }
 
   if (!currentLecture) {
     return (
@@ -142,55 +121,6 @@ export const LearnClient = ({ course, liveSessions = [] }: LearnClientProps) => 
 
             <div className="relative z-10">
               <CourseTabs course={courseData} />
-              {showLiveSessions ? (
-                <section className="mx-auto max-w-6xl px-4 pb-8 md:px-6">
-                  <div className="rounded-2xl border bg-card p-5 shadow-sm">
-                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
-                          Live classroom
-                        </p>
-                        <h3 className="mt-1 text-lg font-semibold">
-                          Upcoming faculty sessions
-                        </h3>
-                      </div>
-                      <Badge variant="secondary">
-                        {liveSessions.length} upcoming
-                      </Badge>
-                    </div>
-
-                    <div className="grid gap-3">
-                      {liveSessions.slice(0, 3).map((session) => (
-                        <div
-                          key={session.id}
-                          className="grid gap-3 rounded-xl border bg-background p-4 md:grid-cols-[minmax(0,1fr)_auto]"
-                        >
-                          <div className="min-w-0">
-                            <h4 className="truncate font-semibold">
-                              {session.title}
-                            </h4>
-                            <p className="mt-1 flex gap-2 text-sm text-muted-foreground">
-                              <CalendarDays className="mt-0.5 size-4 text-primary" />
-                              <span>
-                                {formatDateTime(session.startsAt)} to{" "}
-                                {formatDateTime(session.endsAt)}
-                              </span>
-                            </p>
-                            <p className="mt-1 text-xs text-muted-foreground">
-                              Batch: {session.batch.name}
-                            </p>
-                          </div>
-
-                          <OpenClassroomButton
-                            sessionId={session.id}
-                            variant="outline"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-              ) : null}
               <LearnFooter />
             </div>
           </div>

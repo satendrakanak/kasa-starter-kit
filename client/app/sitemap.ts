@@ -8,7 +8,6 @@ const staticRoutes = [
   "/courses",
   "/articles",
   "/client-testimonials",
-  "/our-faculty",
   "/contact",
 ];
 

@@ -35,6 +35,8 @@ export type SiteSettings = {
   siteName: string;
   siteTagline: string;
   siteDescription: string;
+  lightLogoUrl?: string;
+  darkLogoUrl?: string;
   logoUrl: string;
   footerLogoUrl: string;
   faviconUrl: string;
@@ -80,25 +82,6 @@ export type AwsStorageSettings = {
   accessKeyId: string;
   accessKeySecret: string;
   hasAccessKeySecret?: boolean;
-};
-
-export type BbbSettings = {
-  isEnabled: boolean;
-  apiUrl: string;
-  sharedSecret: string;
-  hasSharedSecret?: boolean;
-  defaultRecord: boolean;
-  autoStartRecording: boolean;
-  allowStartStopRecording: boolean;
-  meetingExpireIfNoUserJoinedInMinutes: number;
-};
-
-export type PushNotificationSettings = {
-  isEnabled: boolean;
-  subject: string;
-  publicKey: string;
-  privateKey: string;
-  hasPrivateKey?: boolean;
 };
 
 export type SocialProvider = "GOOGLE" | "APPLE" | "META";

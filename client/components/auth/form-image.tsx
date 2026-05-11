@@ -39,7 +39,7 @@ export default function FormImage({
           </h2>
 
           <p className="mt-2 text-sm leading-6 text-slate-100">
-            Access courses, certificates, exams, and your academy dashboard from
+            Access courses, certificates, and your academy dashboard from
             one protected account.
           </p>
         </div>

@@ -1,6 +1,6 @@
 # AWS Storage Setup
 
-Kasa Enterprise stores media configuration from the admin Site Settings
+kasa-starter-kit stores media configuration from the admin Site Settings
 dashboard. The env file should only contain infrastructure values needed to boot
 the app. Upload credentials, bucket settings, CloudFront URL, and related media
 settings should be saved from the dashboard after installation.

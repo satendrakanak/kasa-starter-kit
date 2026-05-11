@@ -257,7 +257,7 @@ export const CreateTestimonialForm = ({
                   <FieldLabel>Company / Institute</FieldLabel>
                   <Input
                     {...field}
-                    placeholder="e.g. Code With Kasa"
+                    placeholder="e.g. kasa-starter-kit"
                     className="h-11"
                   />
                   {fieldState.invalid && (

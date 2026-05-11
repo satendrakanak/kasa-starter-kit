@@ -2,6 +2,8 @@ import { EngagementDashboardLoader } from "@/components/admin/engagement/engagem
 import { engagementServerService } from "@/services/engagement/engagement.server";
 import type { EngagementDashboard } from "@/types/engagement";
 
+export const dynamic = "force-dynamic";
+
 const emptyData: EngagementDashboard = {
   summary: {
     activeSchedulers: 0,
