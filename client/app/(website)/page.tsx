@@ -33,42 +33,31 @@ export default async function Home() {
     redirect("/install");
   }
 
-  let courses: Course[] = [];
   try {
-    const response = await courseServerService.getPopularCourses();
-    courses = response.data;
+    const [coursesResponse, articlesResponse, testimonialsResponse] =
+      await Promise.all([
+        courseServerService.getPopularCourses(),
+        articleServerService.getAll(),
+        testimonialServerService.getFeatured(6),
+      ]);
+
+    const courses: Course[] = coursesResponse.data;
+    const articles: Article[] = articlesResponse.data;
+    const testimonials: Testimonial[] = testimonialsResponse.data;
+
+    return (
+      <div>
+        <Hero courses={courses} />
+        <StatsTimeline />
+        <WhyJoinOurCourses />
+        <PopularCourses courses={courses} />
+        <HowItWorks />
+        <FeaturedTestimonialsSection testimonials={testimonials} />
+        <ArticlesSection articles={articles} />
+      </div>
+    );
   } catch (error) {
     const message = getErrorMessage(error);
     throw new Error(message);
   }
-
-  let articles: Article[] = [];
-  try {
-    const response = await articleServerService.getAll();
-    articles = response.data;
-  } catch (error) {
-    const message = getErrorMessage(error);
-    throw new Error(message);
-  }
-
-  let testimonials: Testimonial[] = [];
-  try {
-    const response = await testimonialServerService.getFeatured(6);
-    testimonials = response.data;
-  } catch (error) {
-    const message = getErrorMessage(error);
-    throw new Error(message);
-  }
-
-  return (
-    <div>
-      <Hero courses={courses} />
-      <StatsTimeline />
-      <WhyJoinOurCourses />
-      <PopularCourses courses={courses} />
-      <HowItWorks />
-      <FeaturedTestimonialsSection testimonials={testimonials} />
-      <ArticlesSection articles={articles} />
-    </div>
-  );
 }

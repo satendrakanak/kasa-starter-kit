@@ -33,6 +33,7 @@ services:
       - app-network
 
   server:
+    image: ${SERVER_IMAGE:-kasa-starter-kit-live-server}
     build:
       context: ../../server
       target: production
@@ -62,6 +63,7 @@ services:
       - app-network
 
   client:
+    image: ${CLIENT_IMAGE:-kasa-starter-kit-live-client}
     build:
       context: ../../client
       target: production
