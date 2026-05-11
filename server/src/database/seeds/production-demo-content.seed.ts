@@ -67,6 +67,7 @@ type DemoLecture = {
   title: string;
   description: string;
   isFree?: boolean;
+  videoPath?: string;
 };
 
 type DemoChapter = {
@@ -83,6 +84,7 @@ type DemoCourse = {
   description: string;
   imagePath: string;
   imageAlt: string;
+  videoPath?: string;
   priceInr: string;
   priceUsd: string;
   duration: string;
@@ -1153,12 +1155,20 @@ async function getUpload(dataSource: DataSource, path: string, name: string) {
 
   if (existingUpload) return existingUpload;
 
+  const extension = path.split('.').pop()?.toLowerCase();
+  const isVideo = ['mp4', 'webm', 'mov'].includes(extension || '');
+
   return uploadRepository.save(
     uploadRepository.create({
       name,
       path,
-      type: FileTypes.IMAGE,
-      mime: 'image/jpeg',
+      type: isVideo ? FileTypes.VIDEO : FileTypes.IMAGE,
+      mime:
+        extension === 'webm'
+          ? 'video/webm'
+          : extension === 'mp4'
+            ? 'video/mp4'
+            : 'image/jpeg',
       size: 0,
       status: UploadStatus.COMPLETED,
     }),
@@ -1738,6 +1748,13 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
       demoCourse.imagePath,
       `${demoCourse.title} cover`,
     );
+    const video = demoCourse.videoPath
+      ? await getUpload(
+          dataSource,
+          demoCourse.videoPath,
+          `${demoCourse.title} preview lesson`,
+        )
+      : null;
     const categories = await Promise.all(
       demoCourse.categories.map((category) =>
         getCategory(dataSource, category, systemUser),
@@ -1770,6 +1787,7 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
     course.metaSlug = demoCourse.slug;
     course.metaDescription = demoCourse.shortDescription.slice(0, 160);
     course.image = image;
+    course.video = video;
     course.imageAlt = demoCourse.imageAlt;
     course.isFree = false;
     course.isFeatured = true;
@@ -1821,6 +1839,13 @@ export async function seedProductionDemoContent(dataSource: DataSource) {
             position: lectureIndex + 1,
             isPublished: true,
             isFree: Boolean(demoLecture.isFree),
+            video: demoLecture.videoPath
+              ? await getUpload(
+                  dataSource,
+                  demoLecture.videoPath,
+                  `${demoLecture.title} lesson video`,
+                )
+              : video,
             chapter,
           }),
         );

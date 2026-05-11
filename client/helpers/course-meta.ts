@@ -1,5 +1,5 @@
 import { Course } from "@/types/course";
-import { formatDuration, getVideoDuration } from "./get-section-stats";
+import { formatTotalDuration, getVideoDuration } from "./get-section-stats";
 
 export const getCourseMeta = async (course: Course) => {
   if (!course?.chapters) {
@@ -24,10 +24,13 @@ export const getCourseMeta = async (course: Course) => {
     }),
   );
 
-  const totalSeconds = durations.reduce((a, b) => a + b, 0);
+  const totalSeconds = durations.reduce(
+    (a, b) => a + (Number.isFinite(b) ? b : 0),
+    0,
+  );
 
   return {
     totalLectures,
-    totalDuration: formatDuration(totalSeconds),
+    totalDuration: formatTotalDuration(totalSeconds),
   };
 };

@@ -11,7 +11,7 @@ export const getVideoDuration = (url: string): Promise<number> => {
     video.preload = "metadata";
 
     video.onloadedmetadata = () => {
-      resolve(video.duration || 0);
+      resolve(Number.isFinite(video.duration) ? video.duration : 120);
     };
 
     video.onerror = () => resolve(0);
@@ -22,7 +22,7 @@ export const getVideoDuration = (url: string): Promise<number> => {
  * ⏱️ format duration
  */
 export const formatDuration = (seconds: number) => {
-  if (!seconds) return "";
+  if (!Number.isFinite(seconds) || seconds <= 0) return "";
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, "0")}`;
@@ -33,7 +33,7 @@ export const formatDuration = (seconds: number) => {
  */
 
 export const formatTotalDuration = (seconds: number) => {
-  if (!seconds) return "";
+  if (!Number.isFinite(seconds) || seconds <= 0) return "";
 
   const hrs = Math.floor(seconds / 3600);
   const mins = Math.floor((seconds % 3600) / 60);
@@ -72,7 +72,10 @@ export const getSectionStats = async (lectures: Lecture[]) => {
     }),
   );
 
-  const totalSeconds = durations.reduce((a, b) => a + b, 0);
+  const totalSeconds = durations.reduce(
+    (a, b) => a + (Number.isFinite(b) ? b : 0),
+    0,
+  );
 
   return { total, completed, totalSeconds };
 };

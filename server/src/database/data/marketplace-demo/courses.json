@@ -19,54 +19,149 @@
     "eligibilityRequirements": "No prior programming experience required. Basic computer comfort is enough.",
     "disclaimer": "Learner outcome depends on regular practice and completion of assigned projects.",
     "exams": "No assessment required for starter demo courses",
-    "categories": ["Web Development", "Self Learning"],
-    "tags": ["HTML", "CSS", "JavaScript", "Portfolio"],
+    "categories": [
+      "Web Development",
+      "Self Learning"
+    ],
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Portfolio"
+    ],
     "chapters": [
       {
         "title": "Web Foundations",
-        "description": "Understand browser basics, page structure, assets, semantic HTML, and project setup.",
+        "description": "How websites work, browser flow, URLs, hosting, and project folders.",
         "isFree": true,
         "lectures": [
           {
-            "title": "How websites are built",
-            "description": "A practical introduction to pages, assets, links, developer tools, and deployment thinking.",
-            "isFree": true
-          },
-          {
-            "title": "Semantic HTML starter project",
-            "description": "Create a clean page structure with headings, sections, forms, links, and media."
+            "title": "Web Foundations lesson",
+            "description": "How websites work, browser flow, URLs, hosting, and project folders.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "Responsive Interface Design",
-        "description": "Build layouts that stay readable on mobile, tablet, and desktop screens.",
+        "title": "HTML Document Structure",
+        "description": "Build semantic sections, headings, lists, forms, links, and accessible page landmarks.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "CSS layout essentials",
-            "description": "Use spacing, typography, flexbox, grid, and reusable layout patterns."
-          },
-          {
-            "title": "Mobile-first landing page",
-            "description": "Turn a simple design into a responsive landing page with polished buttons and cards."
+            "title": "HTML Document Structure lesson",
+            "description": "Build semantic sections, headings, lists, forms, links, and accessible page landmarks.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "JavaScript for Real UI",
-        "description": "Add meaningful interaction using events, DOM updates, validation, and loading states.",
+        "title": "CSS Styling Basics",
+        "description": "Use selectors, spacing, color, typography, and reusable style rules.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "DOM events and state",
-            "description": "Build interactive menus, tabs, counters, and small interface patterns."
-          },
+            "title": "CSS Styling Basics lesson",
+            "description": "Use selectors, spacing, color, typography, and reusable style rules.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Responsive Layouts",
+        "description": "Create mobile-first layouts with flexbox, grid, and stable spacing systems.",
+        "isFree": false,
+        "lectures": [
           {
-            "title": "Form validation mini project",
-            "description": "Create a practical form flow with validation messages and submit feedback."
+            "title": "Responsive Layouts lesson",
+            "description": "Create mobile-first layouts with flexbox, grid, and stable spacing systems.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Reusable UI Components",
+        "description": "Design cards, buttons, navbars, forms, and page sections with consistency.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Reusable UI Components lesson",
+            "description": "Design cards, buttons, navbars, forms, and page sections with consistency.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "JavaScript Essentials",
+        "description": "Understand variables, functions, conditions, arrays, objects, and debugging.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "JavaScript Essentials lesson",
+            "description": "Understand variables, functions, conditions, arrays, objects, and debugging.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "DOM Events and State",
+        "description": "Build menus, tabs, accordions, counters, and dynamic UI feedback.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "DOM Events and State lesson",
+            "description": "Build menus, tabs, accordions, counters, and dynamic UI feedback.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Form Validation Project",
+        "description": "Create validation rules, messages, submit states, and clean user feedback.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Form Validation Project lesson",
+            "description": "Create validation rules, messages, submit states, and clean user feedback.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Portfolio Landing Page",
+        "description": "Assemble a polished responsive landing page for a portfolio project.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Portfolio Landing Page lesson",
+            "description": "Assemble a polished responsive landing page for a portfolio project.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Deployment and Next Steps",
+        "description": "Prepare assets, test pages, deploy the project, and plan continued practice.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Deployment and Next Steps lesson",
+            "description": "Prepare assets, test pages, deploy the project, and plan continued practice.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "UI UX Design Essentials",
@@ -88,40 +183,136 @@
     "eligibilityRequirements": "No design degree required. Suitable for students, founders, and junior designers.",
     "disclaimer": "Design portfolio quality depends on project effort and feedback iteration.",
     "exams": "No assessment required for starter demo courses",
-    "categories": ["Design", "Self Learning"],
-    "tags": ["UI UX", "Figma", "Design Systems", "Portfolio"],
+    "categories": [
+      "Design",
+      "Self Learning"
+    ],
+    "tags": [
+      "UI UX",
+      "Figma",
+      "Design Systems",
+      "Portfolio"
+    ],
     "chapters": [
       {
-        "title": "UX Thinking",
-        "description": "Learn problem framing, user goals, customer journeys, and simple research notes.",
+        "title": "Design Process Overview",
+        "description": "Understand product goals, constraints, research, wireframes, UI, testing, and handoff.",
         "isFree": true,
         "lectures": [
           {
-            "title": "Understanding users",
-            "description": "Map user goals, pain points, and decisions before designing screens.",
-            "isFree": true
-          },
-          {
-            "title": "Journey map practice",
-            "description": "Create a simple journey map and identify moments where UI can reduce friction."
+            "title": "Design Process Overview lesson",
+            "description": "Understand product goals, constraints, research, wireframes, UI, testing, and handoff.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "Interface Craft",
-        "description": "Improve hierarchy, spacing, typography, colors, components, and responsive composition.",
+        "title": "User Research Notes",
+        "description": "Capture user goals, pain points, assumptions, and interview insights.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "Visual hierarchy basics",
-            "description": "Use size, contrast, grouping, and alignment to make screens easier to scan."
-          },
+            "title": "User Research Notes lesson",
+            "description": "Capture user goals, pain points, assumptions, and interview insights.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Personas and Journey Maps",
+        "description": "Turn research into practical flows, decisions, and experience gaps.",
+        "isFree": false,
+        "lectures": [
           {
-            "title": "Component consistency",
-            "description": "Build repeatable buttons, cards, forms, and navigation patterns."
+            "title": "Personas and Journey Maps lesson",
+            "description": "Turn research into practical flows, decisions, and experience gaps.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Information Architecture",
+        "description": "Structure pages, menus, labels, and content hierarchy for clarity.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Information Architecture lesson",
+            "description": "Structure pages, menus, labels, and content hierarchy for clarity.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Wireframing Workflow",
+        "description": "Sketch low-fidelity screens and validate layout decisions early.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Wireframing Workflow lesson",
+            "description": "Sketch low-fidelity screens and validate layout decisions early.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Visual Hierarchy",
+        "description": "Use size, spacing, contrast, grouping, and rhythm to guide attention.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Visual Hierarchy lesson",
+            "description": "Use size, spacing, contrast, grouping, and rhythm to guide attention.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Color and Typography",
+        "description": "Create accessible type scales, color choices, and readable compositions.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Color and Typography lesson",
+            "description": "Create accessible type scales, color choices, and readable compositions.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Components and Design Systems",
+        "description": "Build reusable buttons, fields, cards, states, and component rules.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Components and Design Systems lesson",
+            "description": "Build reusable buttons, fields, cards, states, and component rules.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Prototype and Handoff",
+        "description": "Prepare clickable flows, annotations, assets, and developer handoff notes.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Prototype and Handoff lesson",
+            "description": "Prepare clickable flows, annotations, assets, and developer handoff notes.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "Digital Marketing Launchpad",
@@ -143,40 +334,123 @@
     "eligibilityRequirements": "Suitable for students, small business owners, creators, and marketing beginners.",
     "disclaimer": "Marketing results vary by niche, budget, offer, and execution quality.",
     "exams": "No assessment required for starter demo courses",
-    "categories": ["Marketing", "Self Learning"],
-    "tags": ["SEO", "Content", "Analytics", "Campaigns"],
+    "categories": [
+      "Marketing",
+      "Self Learning"
+    ],
+    "tags": [
+      "SEO",
+      "Content",
+      "Analytics",
+      "Campaigns"
+    ],
     "chapters": [
       {
-        "title": "Marketing Foundations",
-        "description": "Understand audiences, positioning, offers, channels, and conversion goals.",
+        "title": "Marketing Strategy Map",
+        "description": "Define audience, positioning, offer, channel mix, and conversion goals.",
         "isFree": true,
         "lectures": [
           {
-            "title": "Audience and offer clarity",
-            "description": "Define who the campaign is for, what problem it solves, and why it matters.",
-            "isFree": true
-          },
-          {
-            "title": "Channel selection",
-            "description": "Choose the right mix of search, social, email, and content channels."
+            "title": "Marketing Strategy Map lesson",
+            "description": "Define audience, positioning, offer, channel mix, and conversion goals.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "Campaign Execution",
-        "description": "Plan content, landing pages, lead magnets, paid promotion, and email follow-up.",
+        "title": "Customer Persona Workshop",
+        "description": "Create useful buyer profiles from needs, objections, motivations, and context.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "Content calendar workflow",
-            "description": "Build a practical publishing calendar with topics, owners, and outcomes."
-          },
+            "title": "Customer Persona Workshop lesson",
+            "description": "Create useful buyer profiles from needs, objections, motivations, and context.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Content Pillars",
+        "description": "Plan educational, trust-building, proof, and promotional content themes.",
+        "isFree": false,
+        "lectures": [
           {
-            "title": "Funnel and email sequence",
-            "description": "Create a simple campaign funnel from awareness to lead capture and conversion."
+            "title": "Content Pillars lesson",
+            "description": "Plan educational, trust-building, proof, and promotional content themes.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "SEO Foundations",
+        "description": "Understand keywords, page intent, titles, meta descriptions, and content structure.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "SEO Foundations lesson",
+            "description": "Understand keywords, page intent, titles, meta descriptions, and content structure.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Landing Page Basics",
+        "description": "Write clear page copy, calls to action, benefits, proof, and lead capture flows.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Landing Page Basics lesson",
+            "description": "Write clear page copy, calls to action, benefits, proof, and lead capture flows.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Social Media Planning",
+        "description": "Turn ideas into platform-specific posts, calendars, and campaign sequences.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Social Media Planning lesson",
+            "description": "Turn ideas into platform-specific posts, calendars, and campaign sequences.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Email Funnel Setup",
+        "description": "Design welcome, nurture, offer, reminder, and follow-up email flows.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Email Funnel Setup lesson",
+            "description": "Design welcome, nurture, offer, reminder, and follow-up email flows.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Analytics and Reporting",
+        "description": "Track traffic, leads, conversion rate, campaign cost, and decision metrics.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Analytics and Reporting lesson",
+            "description": "Track traffic, leads, conversion rate, campaign cost, and decision metrics.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "Ayurveda Nutrition Self-Learning Program",
@@ -201,23 +475,175 @@
     "monthlyLiveClassLimit": 0,
     "attendanceType": "none",
     "attendanceValue": 0,
-    "categories": ["Health and Wellness", "Self Learning"],
-    "tags": ["Ayurveda", "Nutrition", "Worksheets", "Certificate"],
+    "categories": [
+      "Health and Wellness",
+      "Self Learning"
+    ],
+    "tags": [
+      "Ayurveda",
+      "Nutrition",
+      "Worksheets",
+      "Certificate"
+    ],
     "chapters": [
       {
-        "title": "Foundations of Ayurvedic Nutrition",
-        "description": "Recorded lessons cover prakriti, digestion, meal timing, food qualities, and practical routines.",
-        "isFree": true
+        "title": "Ayurveda Nutrition Orientation",
+        "description": "Understand the learning path, safety boundaries, and practical food planning goals.",
+        "isFree": true,
+        "lectures": [
+          {
+            "title": "Ayurveda Nutrition Orientation lesson",
+            "description": "Understand the learning path, safety boundaries, and practical food planning goals.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       },
       {
-        "title": "Diet Planning Workshops",
-        "description": "Learners practice meal plans, seasonal adjustments, and simple case examples."
+        "title": "Prakriti Basics",
+        "description": "Study body constitution ideas and how learners can organize observation notes.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Prakriti Basics lesson",
+            "description": "Study body constitution ideas and how learners can organize observation notes.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       },
       {
-        "title": "Case Review and Completion",
-        "description": "Learners review common client scenarios, revise key concepts, and complete the course."
+        "title": "Agni and Digestion",
+        "description": "Learn digestion concepts, meal timing, appetite patterns, and routine awareness.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Agni and Digestion lesson",
+            "description": "Learn digestion concepts, meal timing, appetite patterns, and routine awareness.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Food Qualities",
+        "description": "Review common food qualities and how they influence planning decisions.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Food Qualities lesson",
+            "description": "Review common food qualities and how they influence planning decisions.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Seasonal Eating",
+        "description": "Plan seasonal adjustments for summer, monsoon, winter, and daily routines.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Seasonal Eating lesson",
+            "description": "Plan seasonal adjustments for summer, monsoon, winter, and daily routines.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Meal Planning Framework",
+        "description": "Build simple breakfast, lunch, dinner, and snack planning templates.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Meal Planning Framework lesson",
+            "description": "Build simple breakfast, lunch, dinner, and snack planning templates.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Kitchen Herbs and Spices",
+        "description": "Understand common pantry ingredients and practical usage boundaries.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Kitchen Herbs and Spices lesson",
+            "description": "Understand common pantry ingredients and practical usage boundaries.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Wellness Routine Design",
+        "description": "Connect sleep, hydration, movement, and meal consistency.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Wellness Routine Design lesson",
+            "description": "Connect sleep, hydration, movement, and meal consistency.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Client Scenario Practice",
+        "description": "Review sample learner scenarios and create simple educational suggestions.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Client Scenario Practice lesson",
+            "description": "Review sample learner scenarios and create simple educational suggestions.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Worksheet Completion",
+        "description": "Use printable sheets to record observations, routines, and plan revisions.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Worksheet Completion lesson",
+            "description": "Use printable sheets to record observations, routines, and plan revisions.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Certificate Readiness",
+        "description": "Review lessons, complete pending work, and prepare for course completion.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Certificate Readiness lesson",
+            "description": "Review lessons, complete pending work, and prepare for course completion.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Final Recap and Next Steps",
+        "description": "Summarize key concepts and plan responsible continued learning.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Final Recap and Next Steps lesson",
+            "description": "Summarize key concepts and plan responsible continued learning.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "Spoken English Confidence Builder",
@@ -242,23 +668,149 @@
     "monthlyLiveClassLimit": 0,
     "attendanceType": "none",
     "attendanceValue": 0,
-    "categories": ["Language Learning", "Self Learning"],
-    "tags": ["English", "Interview", "Communication", "Practice"],
+    "categories": [
+      "Language Learning",
+      "Self Learning"
+    ],
+    "tags": [
+      "English",
+      "Interview",
+      "Communication",
+      "Practice"
+    ],
     "chapters": [
       {
-        "title": "Confidence and Pronunciation",
-        "description": "Recorded speaking drills, pronunciation practice, and confidence-building exercises.",
-        "isFree": true
+        "title": "Speaking Confidence Orientation",
+        "description": "Set fluency goals, practice routines, and confidence-building expectations.",
+        "isFree": true,
+        "lectures": [
+          {
+            "title": "Speaking Confidence Orientation lesson",
+            "description": "Set fluency goals, practice routines, and confidence-building expectations.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       },
       {
-        "title": "Daily Conversation Practice",
-        "description": "Roleplays for introductions, workplace conversations, calls, and common situations."
+        "title": "Pronunciation Warmups",
+        "description": "Practice sounds, syllables, stress, and slow-to-clear speaking drills.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Pronunciation Warmups lesson",
+            "description": "Practice sounds, syllables, stress, and slow-to-clear speaking drills.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       },
       {
-        "title": "Interview and Presentation Practice",
-        "description": "Mock interviews, short presentations, self-review prompts, and final practice tasks."
+        "title": "Vocabulary Building",
+        "description": "Learn practical words, phrases, and context-based vocabulary habits.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Vocabulary Building lesson",
+            "description": "Learn practical words, phrases, and context-based vocabulary habits.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Everyday Conversation",
+        "description": "Practice introductions, small talk, requests, opinions, and polite responses.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Everyday Conversation lesson",
+            "description": "Practice introductions, small talk, requests, opinions, and polite responses.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Listening and Shadowing",
+        "description": "Improve rhythm and fluency through repeat-after-me and shadowing methods.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Listening and Shadowing lesson",
+            "description": "Improve rhythm and fluency through repeat-after-me and shadowing methods.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Workplace English",
+        "description": "Practice meetings, calls, updates, emails, and professional phrases.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Workplace English lesson",
+            "description": "Practice meetings, calls, updates, emails, and professional phrases.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Interview Answers",
+        "description": "Structure answers for strengths, projects, experience, and career goals.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Interview Answers lesson",
+            "description": "Structure answers for strengths, projects, experience, and career goals.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Presentation Practice",
+        "description": "Plan short talks, transitions, examples, and confident closing lines.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Presentation Practice lesson",
+            "description": "Plan short talks, transitions, examples, and confident closing lines.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Self Review Method",
+        "description": "Record practice, review mistakes, and improve with weekly checkpoints.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Self Review Method lesson",
+            "description": "Record practice, review mistakes, and improve with weekly checkpoints.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Final Speaking Plan",
+        "description": "Create a 30-day speaking routine and next-step practice roadmap.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Final Speaking Plan lesson",
+            "description": "Create a 30-day speaking routine and next-step practice roadmap.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "Full Stack Web Development Blueprint",
@@ -283,40 +835,214 @@
     "monthlyLiveClassLimit": 0,
     "attendanceType": "none",
     "attendanceValue": 0,
-    "categories": ["Web Development", "Self Learning"],
-    "tags": ["Full Stack", "Projects", "Node.js", "React"],
+    "categories": [
+      "Web Development",
+      "Self Learning"
+    ],
+    "tags": [
+      "Full Stack",
+      "Projects",
+      "Node.js",
+      "React"
+    ],
     "chapters": [
       {
-        "title": "Recorded Foundations",
-        "description": "Self-paced modules prepare learners for practical project building.",
+        "title": "Full Stack Roadmap",
+        "description": "Understand frontend, backend, database, auth, deployment, and project milestones.",
         "isFree": true,
         "lectures": [
           {
-            "title": "Development environment setup",
-            "description": "Install and configure Node.js, VS Code, Git, browser tools, and project folders.",
-            "isFree": true
-          },
-          {
-            "title": "JavaScript and TypeScript essentials",
-            "description": "Revise variables, functions, async flows, types, and practical debugging habits."
+            "title": "Full Stack Roadmap lesson",
+            "description": "Understand frontend, backend, database, auth, deployment, and project milestones.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "Frontend Application Build",
-        "description": "Build authenticated screens, dashboards, forms, tables, and reusable UI patterns.",
+        "title": "Developer Environment",
+        "description": "Set up Node.js, VS Code, Git, browser tools, and project folders.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "Component planning",
-            "description": "Break screens into maintainable components, states, and data-fetching boundaries."
-          },
+            "title": "Developer Environment lesson",
+            "description": "Set up Node.js, VS Code, Git, browser tools, and project folders.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "TypeScript Essentials",
+        "description": "Use types, interfaces, functions, async logic, and safer refactoring habits.",
+        "isFree": false,
+        "lectures": [
           {
-            "title": "Forms and validation",
-            "description": "Create polished form flows with validation, loading states, and helpful errors."
+            "title": "TypeScript Essentials lesson",
+            "description": "Use types, interfaces, functions, async logic, and safer refactoring habits.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Frontend Architecture",
+        "description": "Plan components, layouts, routes, forms, state, and reusable UI patterns.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Frontend Architecture lesson",
+            "description": "Plan components, layouts, routes, forms, state, and reusable UI patterns.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "API Design Basics",
+        "description": "Build endpoints, DTOs, validation, errors, status codes, and service layers.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "API Design Basics lesson",
+            "description": "Build endpoints, DTOs, validation, errors, status codes, and service layers.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Database Modeling",
+        "description": "Design entities, relationships, migrations, seed data, and query patterns.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Database Modeling lesson",
+            "description": "Design entities, relationships, migrations, seed data, and query patterns.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Authentication Flow",
+        "description": "Implement login, protected routes, tokens, cookies, and user session handling.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Authentication Flow lesson",
+            "description": "Implement login, protected routes, tokens, cookies, and user session handling.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Payments and Orders",
+        "description": "Structure checkout, coupons, order records, webhooks, and access unlocks.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Payments and Orders lesson",
+            "description": "Structure checkout, coupons, order records, webhooks, and access unlocks.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "File Uploads and Media",
+        "description": "Handle thumbnails, videos, PDFs, storage paths, and media mapping.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "File Uploads and Media lesson",
+            "description": "Handle thumbnails, videos, PDFs, storage paths, and media mapping.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Admin Dashboard",
+        "description": "Manage courses, users, sales, settings, and operational reports.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Admin Dashboard lesson",
+            "description": "Manage courses, users, sales, settings, and operational reports.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Student Dashboard",
+        "description": "Track enrolled courses, progress, certificates, orders, and profile settings.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Student Dashboard lesson",
+            "description": "Track enrolled courses, progress, certificates, orders, and profile settings.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Testing and Debugging",
+        "description": "Check API contracts, UI states, database records, and production errors.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Testing and Debugging lesson",
+            "description": "Check API contracts, UI states, database records, and production errors.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Docker Workflow",
+        "description": "Run the full stack locally with containers, env files, and service logs.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Docker Workflow lesson",
+            "description": "Run the full stack locally with containers, env files, and service logs.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Deployment Checklist",
+        "description": "Prepare environment variables, database, storage, SMTP, and domain settings.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Deployment Checklist lesson",
+            "description": "Prepare environment variables, database, storage, SMTP, and domain settings.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Capstone Project Review",
+        "description": "Review the complete SaaS learning app and plan improvements.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Capstone Project Review lesson",
+            "description": "Review the complete SaaS learning app and plan improvements.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   },
   {
     "title": "Data Analytics Career Starter",
@@ -341,39 +1067,161 @@
     "monthlyLiveClassLimit": 0,
     "attendanceType": "none",
     "attendanceValue": 0,
-    "categories": ["Data Analytics", "Self Learning"],
-    "tags": ["Excel", "SQL", "Dashboards", "Career Track"],
+    "categories": [
+      "Data Analytics",
+      "Self Learning"
+    ],
+    "tags": [
+      "Excel",
+      "SQL",
+      "Dashboards",
+      "Career Track"
+    ],
     "chapters": [
       {
-        "title": "Analytics Foundations",
-        "description": "Learn data cleaning, metrics, spreadsheet logic, and practical analysis habits.",
+        "title": "Analytics Career Roadmap",
+        "description": "Understand analyst roles, project types, datasets, tools, and portfolio outcomes.",
         "isFree": true,
         "lectures": [
           {
-            "title": "Data thinking for beginners",
-            "description": "Understand rows, columns, metrics, dimensions, and business questions.",
-            "isFree": true
-          },
-          {
-            "title": "Spreadsheet cleanup workflow",
-            "description": "Practice cleaning messy data and preparing it for charts and reports."
+            "title": "Analytics Career Roadmap lesson",
+            "description": "Understand analyst roles, project types, datasets, tools, and portfolio outcomes.",
+            "isFree": true,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       },
       {
-        "title": "SQL and Reporting",
-        "description": "Use SQL queries and reporting patterns to answer practical business questions.",
+        "title": "Data Thinking Basics",
+        "description": "Work with rows, columns, metrics, dimensions, and business questions.",
+        "isFree": false,
         "lectures": [
           {
-            "title": "SQL select and filters",
-            "description": "Write simple queries, filter records, sort outputs, and avoid common mistakes."
-          },
+            "title": "Data Thinking Basics lesson",
+            "description": "Work with rows, columns, metrics, dimensions, and business questions.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Spreadsheet Cleanup",
+        "description": "Clean duplicate values, missing entries, inconsistent labels, and formatted tables.",
+        "isFree": false,
+        "lectures": [
           {
-            "title": "Report storytelling",
-            "description": "Turn metrics into clear observations, risks, and recommendations."
+            "title": "Spreadsheet Cleanup lesson",
+            "description": "Clean duplicate values, missing entries, inconsistent labels, and formatted tables.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Formulas and Logic",
+        "description": "Use lookup, conditional, aggregation, and date formulas for analysis.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Formulas and Logic lesson",
+            "description": "Use lookup, conditional, aggregation, and date formulas for analysis.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Charts and Dashboards",
+        "description": "Create readable charts, KPI cards, filters, and dashboard layouts.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Charts and Dashboards lesson",
+            "description": "Create readable charts, KPI cards, filters, and dashboard layouts.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "SQL Foundations",
+        "description": "Write select, where, order, limit, and aggregation queries.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "SQL Foundations lesson",
+            "description": "Write select, where, order, limit, and aggregation queries.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Joins and Relationships",
+        "description": "Combine tables and understand keys, grain, and data quality risks.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Joins and Relationships lesson",
+            "description": "Combine tables and understand keys, grain, and data quality risks.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Business Reporting",
+        "description": "Turn findings into observations, risks, recommendations, and decision notes.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Business Reporting lesson",
+            "description": "Turn findings into observations, risks, recommendations, and decision notes.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Portfolio Case Study",
+        "description": "Package a dataset, dashboard, written insight, and project summary.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Portfolio Case Study lesson",
+            "description": "Package a dataset, dashboard, written insight, and project summary.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Interview Preparation",
+        "description": "Prepare analytics stories, tool explanations, and practical problem-solving answers.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Interview Preparation lesson",
+            "description": "Prepare analytics stories, tool explanations, and practical problem-solving answers.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
+          }
+        ]
+      },
+      {
+        "title": "Final Analytics Project",
+        "description": "Complete a guided reporting project and prepare the certificate path.",
+        "isFree": false,
+        "lectures": [
+          {
+            "title": "Final Analytics Project lesson",
+            "description": "Complete a guided reporting project and prepare the certificate path.",
+            "isFree": false,
+            "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
           }
         ]
       }
-    ]
+    ],
+    "videoPath": "/assets/videos/kasa-starter-demo-lesson.webm"
   }
 ]
