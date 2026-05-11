@@ -87,9 +87,9 @@ export function RouteProgressBar() {
       }
     };
 
-    document.addEventListener("click", clickHandler);
+    document.addEventListener("click", clickHandler, true);
     return () => {
-      document.removeEventListener("click", clickHandler);
+      document.removeEventListener("click", clickHandler, true);
       clearTimers();
     };
   }, []);
@@ -122,12 +122,13 @@ export function RouteProgressBar() {
   return (
     <div
       className={cn(
-        "fixed inset-x-0 top-0 z-[90] h-[3px] origin-left bg-transparent",
+        "fixed inset-x-0 top-0 z-[9999] h-1 origin-left bg-transparent",
         active ? "opacity-100" : "opacity-0",
       )}
+      aria-hidden="true"
     >
       <div
-        className="h-full bg-[linear-gradient(90deg,var(--brand-500),#5f7bff,var(--primary))] shadow-[0_0_18px_rgba(95,123,255,0.55)] transition-[width] duration-150 ease-out"
+        className="h-full bg-[linear-gradient(90deg,var(--brand-500),#5f7bff,var(--primary))] shadow-[0_0_18px_rgba(95,123,255,0.7)] transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

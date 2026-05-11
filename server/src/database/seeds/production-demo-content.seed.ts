@@ -1014,7 +1014,7 @@ async function getDemoUser(
     username: string;
     email: string;
     phoneNumber?: string;
-    role: Role;
+    roles: Role[];
     avatarUrl?: string;
   },
 ) {
@@ -1034,7 +1034,7 @@ async function getDemoUser(
     existingUser.password = password;
     existingUser.avatarUrl = payload.avatarUrl || null;
     existingUser.emailVerified = existingUser.emailVerified || new Date();
-    existingUser.roles = [payload.role];
+    existingUser.roles = payload.roles;
     return userRepository.save(existingUser);
   }
 
@@ -1048,7 +1048,7 @@ async function getDemoUser(
       password,
       avatarUrl: payload.avatarUrl || null,
       emailVerified: new Date(),
-      roles: [payload.role],
+      roles: payload.roles,
     }),
   );
 }
@@ -1123,7 +1123,10 @@ async function seedDemoUsers(dataSource: DataSource) {
   for (const demoUser of demoUsers.filter((user) => user.role !== 'faculty')) {
     const user = await getDemoUser(dataSource, {
       ...demoUser,
-      role: roleMap[demoUser.role as 'admin' | 'student'],
+      roles:
+        demoUser.role === 'admin'
+          ? [adminRole, studentRole]
+          : [roleMap[demoUser.role as 'student']],
     });
 
     if (demoUser.role === 'student') {
