@@ -26,7 +26,9 @@ function withQuery(path: string, query?: DateRangeQuery) {
 
 export const courseServerService = {
   getAll: () =>
-    apiServer.get<ApiResponse<Course[]>>("/courses?isPublished=true"),
+    apiServer.get<ApiResponse<Course[]>>("/courses?isPublished=true", {
+      next: { revalidate: PUBLIC_REVALIDATE_SECONDS },
+    }),
   getAllCourses: (query?: DateRangeQuery) =>
     apiServer.get<ApiResponse<{ data: Course[] }>>(
       withQuery("/courses", query),
