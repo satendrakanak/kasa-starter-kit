@@ -19,6 +19,7 @@ copy_path() {
 copy_path "client"
 copy_path "server"
 copy_path "scripts"
+copy_path "deploy"
 copy_path "docs"
 copy_path "screenshots"
 copy_path "README.md"

@@ -1,0 +1,114 @@
+name: kasa-starter-kit-live
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ../../server
+      target: production
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      APP_PORT: 8000
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_SYNC: "false"
+      DATABASE_AUTO_LOAD: "true"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    volumes:
+      - ../../.kasa-starter-kit:/app/.kasa-starter-kit
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ../../client
+      target: production
+      args:
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+        NEXT_PUBLIC_API_BASE_URL: http://server:8000
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+      NEXT_PUBLIC_API_BASE_URL: http://server:8000
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      STARTER_DOMAIN: ${STARTER_DOMAIN}
+      STARTER_API_DOMAIN: ${STARTER_API_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - client
+      - server
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+    name: ${POSTGRES_VOLUME_NAME:-kasa-starter-kit-live_postgres_data}
+  redis_data:
+    name: ${REDIS_VOLUME_NAME:-kasa-starter-kit-live_redis_data}
+  caddy_data:
+    name: ${CADDY_DATA_VOLUME:-kasa-starter-kit-live_caddy_data}
+  caddy_config:
+    name: ${CADDY_CONFIG_VOLUME:-kasa-starter-kit-live_caddy_config}
+
+networks:
+  app-network:
+    driver: bridge
