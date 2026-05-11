@@ -2,17 +2,17 @@
 set -eu
 
 ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
-ORACLE_DIR="$ROOT_DIR/deploy/oracle"
-ENV_FILE="$ORACLE_DIR/.env.production"
+AWS_DIR="$ROOT_DIR/deploy/aws"
+ENV_FILE="$AWS_DIR/.env.production"
 
 if [ ! -f "$ENV_FILE" ]; then
-  cp "$ORACLE_DIR/.env.production.example" "$ENV_FILE"
+  cp "$AWS_DIR/.env.production.example" "$ENV_FILE"
   echo "Created $ENV_FILE"
   echo "Edit it with your real domains and secrets, then run this command again."
   exit 1
 fi
 
-cd "$ORACLE_DIR"
+cd "$AWS_DIR"
 
 docker compose \
   --env-file "$ENV_FILE" \
@@ -22,7 +22,7 @@ docker compose \
 echo ""
 echo "kasa-starter-kit live stack is starting."
 echo "Check status:"
-echo "  cd $ORACLE_DIR"
+echo "  cd $AWS_DIR"
 echo "  docker compose --env-file .env.production -f docker-compose.starter.yml ps"
 echo ""
 echo "Watch logs:"

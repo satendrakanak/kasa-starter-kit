@@ -127,7 +127,7 @@ The selected external database is stored locally in `.kasa-starter-kit/database.
 ## Docs
 
 - Infrastructure and deployment: [docs/INFRA_AND_DEPLOYMENT.md](./docs/INFRA_AND_DEPLOYMENT.md)
-- Oracle Cloud live demo deployment: [docs/ORACLE_CLOUD_DEPLOYMENT.md](./docs/ORACLE_CLOUD_DEPLOYMENT.md)
+- AWS EC2 live demo deployment: [docs/AWS_EC2_LIVE_DEMO.md](./docs/AWS_EC2_LIVE_DEMO.md)
 - AWS S3 and CloudFront storage: [docs/AWS_STORAGE_SETUP.md](./docs/AWS_STORAGE_SETUP.md)
 - Marketplace packaging: [docs/MARKETPLACE_PACKAGING.md](./docs/MARKETPLACE_PACKAGING.md)
 - Envato submission notes: [docs/ENVATO_SUBMISSION.md](./docs/ENVATO_SUBMISSION.md)

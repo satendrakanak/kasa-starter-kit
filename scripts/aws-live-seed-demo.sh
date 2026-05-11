@@ -2,16 +2,16 @@
 set -eu
 
 ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
-ORACLE_DIR="$ROOT_DIR/deploy/oracle"
-ENV_FILE="$ORACLE_DIR/.env.production"
+AWS_DIR="$ROOT_DIR/deploy/aws"
+ENV_FILE="$AWS_DIR/.env.production"
 
 if [ ! -f "$ENV_FILE" ]; then
   echo "Missing $ENV_FILE"
-  echo "Create it from deploy/oracle/.env.production.example first."
+  echo "Create it from deploy/aws/.env.production.example first."
   exit 1
 fi
 
-cd "$ORACLE_DIR"
+cd "$AWS_DIR"
 
 docker compose \
   --env-file "$ENV_FILE" \
