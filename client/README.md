@@ -16,6 +16,18 @@ The client handles the starter kit user interface for students and admins.
 
 ![Course Catalog](../screenshots/envato-focused/desktop-02-courses-grid.png)
 
+### Login
+
+![Login](../screenshots/envato-focused/auth-01-login.png)
+
+### Sign Up
+
+![Sign Up](../screenshots/envato-focused/auth-02-signup.png)
+
+### Student Learning Player
+
+![Student Learning Player](../screenshots/envato-focused/student-01-learning-player.png)
+
 ### Admin Dashboard
 
 ![Admin Dashboard](../screenshots/envato-focused/admin-01-dashboard.png)
@@ -261,11 +273,17 @@ Tags
 ../screenshots/envato-focused/mobile-02-courses.png
 ../screenshots/envato-focused/mobile-03-contact.png
 ../screenshots/envato-focused/mobile-04-home-dark.png
+../screenshots/envato-focused/auth-01-login.png
+../screenshots/envato-focused/auth-02-signup.png
+../screenshots/envato-focused/student-01-learning-player.png
 ../screenshots/envato-focused/admin-01-dashboard.png
 ../screenshots/envato-focused/admin-02-courses.png
 ../screenshots/envato-focused/admin-03-users.png
 ../screenshots/envato-focused/admin-04-sales.png
 ../screenshots/envato-focused/admin-05-site-settings.png
+../screenshots/envato-focused/admin-06-coupons.png
+../screenshots/envato-focused/admin-07-testimonials.png
+../screenshots/envato-focused/admin-08-contact-leads.png
 ```
 
 ---

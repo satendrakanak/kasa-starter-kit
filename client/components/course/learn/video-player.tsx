@@ -134,6 +134,8 @@ export const VideoPlayer = ({ lecture, onNext, onProgressUpdate }: Props) => {
 
   if (!lecture) return null;
 
+  const hasAttachment = Boolean(firstAttachment?.file?.path);
+
   return (
     <div className="flex w-full items-center justify-center bg-foreground">
       {hasVideo ? (
@@ -146,11 +148,26 @@ export const VideoPlayer = ({ lecture, onNext, onProgressUpdate }: Props) => {
           onContextMenu={(e) => e.preventDefault()}
           className="h-125 w-full object-cover"
         />
-      ) : (
+      ) : hasAttachment ? (
         <iframe
           src={`${firstAttachment?.file?.path}#toolbar=0&navpanes=0&scrollbar=0`}
           className="h-125 w-full bg-background"
         />
+      ) : (
+        <div className="flex h-125 w-full items-center justify-center bg-slate-950 px-6 text-white">
+          <div className="max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.32em] text-blue-200">
+              Self-learning lesson
+            </p>
+            <h1 className="mt-4 text-3xl font-semibold">
+              {lecture.title}
+            </h1>
+            <p className="mt-4 text-sm leading-6 text-slate-300">
+              Add a video or PDF attachment from the admin course builder to
+              turn this lesson into a complete player experience.
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
